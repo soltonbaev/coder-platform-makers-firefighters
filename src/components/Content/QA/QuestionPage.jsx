@@ -3,7 +3,7 @@ import React from "react";
 import "./q.css";
 const QuestionPage = () => {
   return (
-    <div>
+    <div style={{ width: "80%" }}>
       <Box className="firstBox">
         <div className="question">Последние вопросы</div>
         <button className="firstButton">Задать вопрос</button>
