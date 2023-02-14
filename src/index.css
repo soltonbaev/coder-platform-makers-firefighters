@@ -36,6 +36,17 @@ code {
 center {
   margin: 20px;
 }
+
+.futter p {
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+.futter h4 {
+  color: #ffffff;
+}
 @media (max-width: 900px) {
   .search-icon {
     display: none;
