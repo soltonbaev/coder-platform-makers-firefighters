@@ -1,10 +1,15 @@
-import NavBar from "./components/Header/NavBar";
+
+
+import "./App.css";
+import SideBar from "./components/Content/QA/SideBar";
 
 function App() {
   return (
-    <>
-      <NavBar />
-    </>
+    <div className="App">
+     <NavBar />
+      <SideBar />
+    </div>
+
   );
 }
 
