@@ -72,11 +72,25 @@ const Tags = () => {
           </Search>
         </Box>
       </Box>
+
       <Box
         className="secondContainer"
-        style={{ display: "flex", flexWrap: "wrap" }}
+        sx={{ display: "flex", justifyContent: "center" }}
       >
-        <Box className="firstTypeOfSecondContainer">
+        <Box
+          className="firstTypeOfSecondContainer"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: {
+              xl: "300px",
+              lg: "250px",
+              md: "200px",
+              sm: "150px",
+              xs: "100px",
+            },
+          }}
+        >
           <span>javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
@@ -84,7 +98,20 @@ const Tags = () => {
           </div>
           <div className="lastSecondContainer">Всего задано 250 вопросов</div>
         </Box>
-        <Box className="firstTypeOfSecondContainer">
+        <Box
+          className="firstTypeOfSecondContainer"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: {
+              xl: "300px",
+              lg: "250px",
+              md: "200px",
+              sm: "150px",
+              xs: "100px",
+            },
+          }}
+        >
           <span>javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
@@ -92,7 +119,20 @@ const Tags = () => {
           </div>
           <div className="lastSecondContainer">Всего задано 250 вопросов</div>
         </Box>
-        <Box className="firstTypeOfSecondContainer">
+        <Box
+          className="firstTypeOfSecondContainer"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: {
+              xl: "300px",
+              lg: "250px",
+              md: "200px",
+              sm: "150px",
+              xs: "100px",
+            },
+          }}
+        >
           <span>javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
@@ -100,7 +140,20 @@ const Tags = () => {
           </div>
           <div className="lastSecondContainer">Всего задано 250 вопросов</div>
         </Box>
-        <Box className="firstTypeOfSecondContainer">
+        <Box
+          className="firstTypeOfSecondContainer"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: {
+              xl: "300px",
+              lg: "250px",
+              md: "200px",
+              sm: "150px",
+              xs: "100px",
+            },
+          }}
+        >
           <span>javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
@@ -108,52 +161,20 @@ const Tags = () => {
           </div>
           <div className="lastSecondContainer">Всего задано 250 вопросов</div>
         </Box>
-        <Box className="firstTypeOfSecondContainer">
-          <span>javascript</span>
-          <div className="lorem">
-            Вопросы по динамически типизированному языку программирования
-            который широко используется на просторах Интернета
-          </div>
-          <div className="lastSecondContainer">Всего задано 250 вопросов</div>
-        </Box>
-      </Box>
-      <Box
-        className="secondContainer"
-        style={{ display: "flex", flexWrap: "wrap" }}
-      >
-        <Box className="firstTypeOfSecondContainer">
-          <span>javascript</span>
-          <div className="lorem">
-            Вопросы по динамически типизированному языку программирования
-            который широко используется на просторах Интернета
-          </div>
-          <div className="lastSecondContainer">Всего задано 250 вопросов</div>
-        </Box>
-        <Box className="firstTypeOfSecondContainer">
-          <span>javascript</span>
-          <div className="lorem">
-            Вопросы по динамически типизированному языку программирования
-            который широко используется на просторах Интернета
-          </div>
-          <div className="lastSecondContainer">Всего задано 250 вопросов</div>
-        </Box>
-        <Box className="firstTypeOfSecondContainer">
-          <span>javascript</span>
-          <div className="lorem">
-            Вопросы по динамически типизированному языку программирования
-            который широко используется на просторах Интернета
-          </div>
-          <div className="lastSecondContainer">Всего задано 250 вопросов</div>
-        </Box>
-        <Box className="firstTypeOfSecondContainer">
-          <span>javascript</span>
-          <div className="lorem">
-            Вопросы по динамически типизированному языку программирования
-            который широко используется на просторах Интернета
-          </div>
-          <div className="lastSecondContainer">Всего задано 250 вопросов</div>
-        </Box>
-        <Box className="firstTypeOfSecondContainer">
+        <Box
+          className="firstTypeOfSecondContainer"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: {
+              xl: "300px",
+              lg: "250px",
+              md: "200px",
+              sm: "150px",
+              xs: "100px",
+            },
+          }}
+        >
           <span>javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
