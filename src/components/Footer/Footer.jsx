@@ -3,11 +3,11 @@ import React from 'react';
 import BgImage from '../Footer/fire-ext-orange.svg';
 import Logo from '../Footer/makers-logo-white.svg';
 import firePng from '../Footer/firefighters.svg';
-import {Button, Link} from '@mui/material';
+import {Button, Container, Link} from '@mui/material';
 
 const Footer = () => {
    return (
-      <div style={{position: 'absolute', bottom: '0'}}>
+      <Container maxWidth="lg">
          <Box
             sx={{
                position: 'relative',
@@ -99,7 +99,7 @@ const Footer = () => {
                </p>
             </Box>
          </Box>
-      </div>
+      </Container>
    );
 };
 

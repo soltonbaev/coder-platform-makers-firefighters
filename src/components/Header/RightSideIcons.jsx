@@ -10,7 +10,7 @@ const RightSideIcons = () => {
    return (
       <Box
          sx={{
-            display: {xs: 'none', md: 'flex'},
+            display: 'flex',
             alignItems: 'center',
             width: '30%',
             justifyContent: 'flex-end',
@@ -37,8 +37,8 @@ const RightSideIcons = () => {
                sx={{
                   cursor: 'pointer',
                   fill: 'black',
-                  height: '2.5rem',
-                  width: '2.5rem',
+                  height: '2rem',
+                  width: '2rem',
                   marginRight: '10px',
                }}
                onClick={() => {
@@ -50,9 +50,9 @@ const RightSideIcons = () => {
             <img
                src={Image}
                style={{
-                  height: '2.5rem',
-                  width: '2.5rem',
-                  marginTop: '7px',
+                  height: '2rem',
+                  width: '2rem',
+                  marginTop: '5px',
                }}
             />
          </Link>
