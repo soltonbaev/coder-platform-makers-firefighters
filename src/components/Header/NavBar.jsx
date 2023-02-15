@@ -15,12 +15,13 @@ const NavBar = () => {
          sx={{
             borderStyle: 'solid',
             borderWidth: '0 0 1px 0 ',
-            borderColor: '#1e1e1e50',
+            borderColor: '#D9D9D9',
          }}
       >
          <Container
             maxWidth="lg"
             sx={{
+               padding: '0.3rem',
                backgroundColor: 'white',
                //  height: '10vh',
                //  width: '100%',

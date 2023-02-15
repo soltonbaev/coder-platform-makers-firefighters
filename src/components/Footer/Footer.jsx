@@ -68,6 +68,11 @@ const Footer = () => {
                      sx={{
                         color: ' #ffffff',
                         borderColor: 'white',
+                        '&:hover': {
+                           backgroundColor: 'rgba(170, 104, 0, 1)',
+                           borderColor: 'rgba(170, 104, 0, 1)',
+                           // color: '#3c52b2',
+                        },
                         // border: '1px solid white',
                         // borderRadius: '8px',
                      }}

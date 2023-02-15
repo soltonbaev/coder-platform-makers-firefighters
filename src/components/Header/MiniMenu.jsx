@@ -6,7 +6,7 @@ import './MiniMenu.css';
 
 const MiniMenu = () => {
    return (
-      <Container>
+      <Container sx={{height: '3rem'}}>
          <Grid
             container
             sx={{
@@ -14,7 +14,7 @@ const MiniMenu = () => {
                textDecoration: 'none',
                margin: 'auto',
                justifyContent: 'center',
-               height: '1rem',
+               alignItems: 'center',
                padding: '1rem',
             }}
          >
