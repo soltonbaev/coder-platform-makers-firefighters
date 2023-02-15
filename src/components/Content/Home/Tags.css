@@ -1,0 +1,84 @@
+.firstBox {
+  display: block;
+}
+.searchForTegs {
+  font-family: Raleway;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 35px;
+  margin-left: 3%;
+  color: rgba(71, 71, 71, 1);
+}
+
+.secondTypeOfFirstBox {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.firstP {
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 53%;
+  color: rgba(71, 71, 71, 1);
+}
+
+.firstInp {
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+}
+
+.secondContainer {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 1%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+}
+
+.firstTypeOfSecondContainer {
+  background-color: rgba(217, 217, 217, 1);
+  width: 19%;
+  height: 20%;
+  border-radius: 8px;
+  margin-left: 1%;
+}
+
+span {
+  font-family: Raleway;
+  height: 16.12598419189453px;
+  border-radius: 7px;
+  color: white;
+  background-color: rgba(170, 104, 0, 1);
+  padding: 1%;
+  margin: 5px;
+}
+
+.lorem {
+  font-family: Raleway;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: inherit;
+  margin-top: 8%;
+  margin-bottom: 8%;
+  width: 73%;
+}
+
+.lastSecondContainer {
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(170, 104, 0, 1);
+}
