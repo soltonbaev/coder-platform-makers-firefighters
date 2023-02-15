@@ -1,19 +1,14 @@
 import "./App.css";
-import Auth from "./components/Content/Authorization/Auth";
-import Tags from "./components/Content/Home/Tags";
-import HomePage from "./components/Content/Pages/HomePage";
-import QuestionPage from "./components/Content/QA/QuestionPage";
-import SideBar from "./components/Content/QA/Sidebar.jsx";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/Header/NavBar";
+import Content from "./components/Content/Content";
 
 function App() {
   return (
     <div className="App">
-      <Tags />
-      {/* <HomePage /> */}
-      {/* <NavBar /> */}
-      {/* <Footer /> */}
+      <NavBar />
+      <Content />
+      <Footer />
     </div>
   );
 }
