@@ -1,3 +1,4 @@
+
 import {Box} from '@mui/system';
 import React from 'react';
 import BgImage from '../Footer/fire-ext-orange.svg';
@@ -123,6 +124,7 @@ const Footer = () => {
          </Container>
       </Box>
    );
+
 };
 
 export default Footer;
