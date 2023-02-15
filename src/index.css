@@ -31,7 +31,7 @@ code {
 }
 .inp-place::placeholder {
   color: #fffdfd;
-  padding-left: 10px;
+  /* padding-left: 10px; */
 }
 center {
   margin: 20px;
