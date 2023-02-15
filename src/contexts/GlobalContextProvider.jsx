@@ -1,12 +1,19 @@
-import React, { createContext, useContext } from "react";
+import React, {createContext, useContext, useState} from 'react';
 
 export const globalContext = createContext();
-export const useGlobalContext = () => useContext(useGlobalContext);
+export const useGlobalContext = () => useContext(globalContext);
 
-const GlobalContextProvider = ({ children }) => {
-  return (
-    <globalContext.Provider value={null}>{children}</globalContext.Provider>
-  );
+
+const GlobalContextProvider = ({children}) => {
+   const [user, setUser] = useState('');
+   const value = {
+      user,
+      setUser,
+   };
+   return (
+      <globalContext.Provider value={value}>{children}</globalContext.Provider>
+   );
+
 };
 
 export default GlobalContextProvider;
