@@ -1,4 +1,4 @@
-import {Box, Grid} from '@mui/material';
+import {Avatar, Box, Grid} from '@mui/material';
 import React from 'react';
 
 const RenderQuestion = ({
@@ -9,6 +9,7 @@ const RenderQuestion = ({
    tags,
    username,
    isAnswered,
+   userPic,
 }) => {
    return (
       <Grid
@@ -45,10 +46,26 @@ const RenderQuestion = ({
                   sx={{display: 'flex', fontSize: '0.8rem', gap: '0.5rem'}}
                >
                   {tags.map(tag => {
-                     return <Grid item>{tag}</Grid>;
+                     return (
+                        <Grid
+                           item
+                           sx={{
+                              border: '1px solid #AA6800',
+                              padding: '0.1rem 0.3rem',
+                              borderRadius: '0.3rem',
+                              color: '#AA6800',
+                           }}
+                        >
+                           {tag}
+                        </Grid>
+                     );
                   })}
                </Grid>
-               <Grid item sx={{fontSize: '0.8rem'}}>
+               <Grid
+                  item
+                  sx={{display: 'flex', gap: '0.5rem', fontSize: '0.8rem'}}
+               >
+                  <Avatar sx={{width: '1rem', height: '1rem'}}></Avatar>{' '}
                   {username}
                </Grid>
             </Grid>
