@@ -4,7 +4,7 @@ import Tags from "./components/Content/Home/Tags";
 import HomePage from "./components/Content/Pages/HomePage";
 import QuestionPage from "./components/Content/QA/QuestionPage";
 import SideBar from "./components/Content/QA/Sidebar.jsx";
-// import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import NavBar from "./components/Header/NavBar";
 
 function App() {
