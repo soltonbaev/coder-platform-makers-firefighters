@@ -14,6 +14,7 @@ const MiniMenu = () => {
                textDecoration: 'none',
                margin: 'auto',
                justifyContent: 'center',
+               height: '1rem',
                padding: '1rem',
             }}
          >

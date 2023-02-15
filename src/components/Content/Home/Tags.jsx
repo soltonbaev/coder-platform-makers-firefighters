@@ -1,3 +1,4 @@
+
 import { Box } from "@mui/material";
 import React from "react";
 import "./Tags.css";
@@ -185,6 +186,7 @@ const Tags = () => {
       </Box>
     </>
   );
+
 };
 
 export default Tags;
