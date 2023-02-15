@@ -1,0 +1,7 @@
+.mini-menu a {
+   text-decoration: none;
+}
+
+.mini-menu .active {
+   text-decoration: underline;
+}
