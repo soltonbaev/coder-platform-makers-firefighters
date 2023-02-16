@@ -3,10 +3,11 @@ import {Route, Routes} from 'react-router-dom';
 import Auth from './components/Content/Authorization/Auth';
 import FindGroups from './components/Content/Groups/FindGroups';
 import Questions from './components/Content/Home/Questions';
+import RenderUserProfile from './components/Content/Home/RenderUserProfile';
 import Tags from './components/Content/Home/Tags';
 import Users from './components/Content/Home/Users';
 import ProfilePage from './components/Content/Profile/ProfilePage';
-import RenderUserProfile from './components/Content/Profile/RenderUserProfile';
+
 import AskQuestion from './components/Content/QA/AskQuestion';
 import QuestionPage from './components/Content/QA/QuestionPage';
 

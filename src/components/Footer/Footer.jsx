@@ -1,4 +1,3 @@
-
 import {Box} from '@mui/system';
 import React from 'react';
 import BgImage from '../Footer/fire-ext-orange.svg';
@@ -20,6 +19,7 @@ const Footer = () => {
             backgroundColor: 'rgb(71 71 71)',
             backgroundImage: `${BgImage}`,
             color: 'white',
+            marginTop: '1rem',
          }}
       >
          <img
@@ -68,6 +68,11 @@ const Footer = () => {
                      sx={{
                         color: ' #ffffff',
                         borderColor: 'white',
+                        '&:hover': {
+                           backgroundColor: 'rgba(170, 104, 0, 1)',
+                           borderColor: 'rgba(170, 104, 0, 1)',
+                           // color: '#3c52b2',
+                        },
                         // border: '1px solid white',
                         // borderRadius: '8px',
                      }}
@@ -124,7 +129,6 @@ const Footer = () => {
          </Container>
       </Box>
    );
-
 };
 
 export default Footer;

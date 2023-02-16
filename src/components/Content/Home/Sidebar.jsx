@@ -1,15 +1,26 @@
 import React from 'react';
-import {Box, Container} from '@mui/material';
+import {Box, Container, Grid} from '@mui/material';
 import './SideBar.css';
 const SideBar = () => {
    return (
-      <div>
-         <Box className="container">
-            <div className="filter">Фильтровать по тэгам</div>
+      <Grid
+         container
+         sx={{
+            padding: '1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: '0.3rem',
+            backgroundColor: '#d9d9d9',
+            minHeight: '50vh',
+         }}
+      >
+         <Grid item>Фильтровать по тэгам</Grid>
+         <Grid item>
             <input className="inp" placeholder="поиск тэгов" />
-            <span className="preventSearch">prevent search</span>
-         </Box>
-      </div>
+         </Grid>
+
+         <span className="preventSearch">prevent search</span>
+      </Grid>
    );
 };
 
