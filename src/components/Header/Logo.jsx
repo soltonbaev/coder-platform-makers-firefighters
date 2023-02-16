@@ -1,7 +1,9 @@
 import {Box} from '@mui/material';
 import React from 'react';
-import Logo from '../Header/logo.svg';
-const logo = () => {
+import {useNavigate} from 'react-router-dom';
+import logo from '../Header/logo.svg';
+const Logo = () => {
+   const navigate = useNavigate();
    return (
       <>
          <Box
@@ -17,11 +19,21 @@ const logo = () => {
                   paddingRight: {xs: '5px'},
                }}
             >
-               <img style={{marginTop: '0.3rem', width: '10rem'}} src={Logo} />
+               <img
+                  style={{
+                     marginTop: '0.3rem',
+                     width: '10rem',
+                     cursor: 'pointer',
+                  }}
+                  src={logo}
+                  onClick={() => {
+                     navigate('/');
+                  }}
+               />
             </Box>
          </Box>
       </>
    );
 };
 
-export default logo;
+export default Logo;

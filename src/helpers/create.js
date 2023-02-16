@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useState } from "react";
 import { REGISTER } from "./globals";
@@ -22,3 +23,7 @@ export const login = async (formData, username) => {
     console.log(error);
   }
 };
+export function setToStorage(data) {
+   localStorage.setItem('token', JSON.stringify(data));
+}
+

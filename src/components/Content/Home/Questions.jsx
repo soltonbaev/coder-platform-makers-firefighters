@@ -1,5 +1,6 @@
 import {Box, Button, Container, Grid, Typography} from '@mui/material';
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import './q.css';
 import RenderQuestion from './RenderQuestion';
 import SideBar from './Sidebar';
@@ -11,6 +12,7 @@ const questions = [
       viewsCount: 10,
       tags: ['javascript', 'even numbers', 'loop'],
       username: 'codewarrior',
+      id: 1,
    },
    {
       question: 'Как в Питоне превратить строку в массив',
@@ -19,6 +21,7 @@ const questions = [
       viewsCount: 50,
       tags: ['python', 'string', 'array'],
       username: 'noobiest_noob',
+      id: 2,
    },
    {
       question: 'Как добавить в html-элемент несколько классов?',
@@ -27,6 +30,7 @@ const questions = [
       viewsCount: 60,
       tags: ['html', 'classes'],
       username: 'meowmeow',
+      id: 3,
    },
    {
       question: 'Как сгенерировать случайное число в Python?',
@@ -35,6 +39,7 @@ const questions = [
       viewsCount: 70,
       tags: ['python', 'random number'],
       username: 'axios',
+      id: 4,
    },
    {
       question: 'Как найти одинаковые элементы в массиве js?',
@@ -43,9 +48,11 @@ const questions = [
       viewsCount: 133,
       tags: ['javascript', 'array'],
       username: 'jsexpert',
+      id: 5,
    },
 ];
 const Questions = () => {
+   const navigate = useNavigate();
    return (
       <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
          <Grid container sx={{gap: '2rem'}}>
@@ -72,6 +79,9 @@ const Questions = () => {
                            // color: '#3c52b2',
                         },
                      }}
+                     onClick={() => {
+                        navigate('/ask-question');
+                     }}
                   >
                      Задать вопрос
                   </Button>
@@ -80,6 +90,7 @@ const Questions = () => {
                   {questions.map(question => {
                      return (
                         <RenderQuestion
+                           key={question.id}
                            username={question.username}
                            question={question.question}
                            votesCount={question.votesCount}
