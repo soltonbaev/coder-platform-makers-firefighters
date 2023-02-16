@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 import {testLogin, testRegister} from '../../helpers/test';
 import {formData} from '../../helpers/test';
 import {getTags} from '../../helpers/read';
+import {getFromStorage} from '../../helpers/read';
 
 const Footer = () => {
    const navigate = useNavigate();
@@ -95,6 +96,7 @@ const Footer = () => {
                         // testRegister(formData);
                         // getTags();
                         testLogin();
+                        console.log('Tokens from storage:', getFromStorage());
                      }}
                   >
                      TEST
