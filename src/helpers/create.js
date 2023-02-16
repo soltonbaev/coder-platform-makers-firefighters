@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {useState} from 'react';
 import {REGISTER} from './globals';
 import {LOGIN} from './globals';
 export const Register = async formData => {
