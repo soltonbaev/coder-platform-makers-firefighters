@@ -1,37 +1,40 @@
 .container {
-  height: 616px;
-  width: 213px;
-  margin-left: 1%;
-  border-radius: 8px;
-  background-color: #d9d9d9;
+   height: 616px;
+   width: 213px;
+   margin-left: 1%;
+   border-radius: 8px;
+   background-color: #d9d9d9;
 }
 .filter {
-  height: 14px;
-  margin-top: 5%;
-  padding-top: 5%;
-  font-family: Raleway;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14px;
-  text-align: center;
+   height: 14px;
+   margin-top: 5%;
+   padding-top: 5%;
+   font-family: Raleway;
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 14px;
+   text-align: center;
 }
 
 .inp {
-  height: 26px;
-  width: 165px;
-  margin-top: 7%;
-  margin-bottom: 7%;
-  border-radius: 8px;
-  border-color: #212121;
+   height: 26px;
+   width: 165px;
+   margin-top: 7%;
+   margin-bottom: 7%;
+   border-radius: 8px;
+   outline: none;
+   border-width: 1px;
+   border-style: solid;
+   border-color: #8b8a8a;
 }
 
 .preventSearch {
-  font-family: Raleway;
-  height: 16.12598419189453px;
-  border-radius: 7px;
-  background-color: rgba(253, 155, 2, 1);
-  padding: 1%;
-  margin: 5px;
+   font-family: Raleway;
+   height: 16.12598419189453px;
+   border-radius: 7px;
+   background-color: rgba(253, 155, 2, 1);
+   padding: 1%;
+   margin: 5px;
 }
 
 /* .preventSearch {

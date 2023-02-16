@@ -6,7 +6,9 @@ import "./MiniMenu.css";
 
 const MiniMenu = () => {
   return (
-    <Container>
+
+    <Container sx={{ height: "3rem" }}>
+
       <Grid
         container
         sx={{
@@ -14,7 +16,9 @@ const MiniMenu = () => {
           textDecoration: "none",
           margin: "auto",
           justifyContent: "center",
-          height: "1rem",
+
+          alignItems: "center",
+
           padding: "1rem",
         }}
       >
@@ -28,7 +32,9 @@ const MiniMenu = () => {
           <NavLink to="/users">Пользователи</NavLink>
         </Grid>
         <Grid className="mini-menu">
-          <NavLink to="/groups">Группы</NavLink>
+
+          <NavLink to="/my-profile">Группы</NavLink>
+
         </Grid>
       </Grid>
     </Container>

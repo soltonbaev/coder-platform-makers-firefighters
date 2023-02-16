@@ -1,5 +1,10 @@
 .mini-menu a {
    text-decoration: none;
+   visited: ;
+}
+
+.mini-menu a:visited {
+   color: #474747;
 }
 
 .mini-menu .active {

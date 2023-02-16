@@ -1,40 +1,105 @@
 import {Box, Button, Container, Grid, Typography} from '@mui/material';
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import './q.css';
+import RenderQuestion from './RenderQuestion';
 import SideBar from './Sidebar';
+const questions = [
+   {
+      question: 'Как вывести нечетные числа в javascript',
+      votesCount: 5,
+      answersCount: 3,
+      viewsCount: 10,
+      tags: ['javascript', 'even numbers', 'loop'],
+      username: 'codewarrior',
+      id: 1,
+   },
+   {
+      question: 'Как в Питоне превратить строку в массив',
+      votesCount: 10,
+      answersCount: 2,
+      viewsCount: 50,
+      tags: ['python', 'string', 'array'],
+      username: 'noobiest_noob',
+      id: 2,
+   },
+   {
+      question: 'Как добавить в html-элемент несколько классов?',
+      votesCount: 90,
+      answersCount: 7,
+      viewsCount: 60,
+      tags: ['html', 'classes'],
+      username: 'meowmeow',
+      id: 3,
+   },
+   {
+      question: 'Как сгенерировать случайное число в Python?',
+      votesCount: 9,
+      answersCount: 5,
+      viewsCount: 70,
+      tags: ['python', 'random number'],
+      username: 'axios',
+      id: 4,
+   },
+   {
+      question: 'Как найти одинаковые элементы в массиве js?',
+      votesCount: 40,
+      answersCount: 13,
+      viewsCount: 133,
+      tags: ['javascript', 'array'],
+      username: 'jsexpert',
+      id: 5,
+   },
+];
 const Questions = () => {
+   const navigate = useNavigate();
    return (
-      <Container maxWidth="lg">
-         <Grid container spacing={4}>
+      <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
+         <Grid container sx={{gap: '2rem'}}>
             <Grid item>
                <SideBar />
             </Grid>
             <Grid item>
-               <Box className="firstBox">
+               <Box
+                  sx={{
+                     display: 'flex',
+                     justifyContent: 'space-between',
+                     alignItems: 'center',
+                  }}
+               >
                   <h1>Последние вопросы</h1>
                   <Button
-                     vairant="contained"
-                     sx={{backgroundColor: '#474747', color: 'white'}}
+                     variant="contained"
+                     sx={{
+                        height: '2rem',
+                        backgroundColor: '#474747',
+                        color: 'white',
+                        '&:hover': {
+                           backgroundColor: 'rgba(170, 104, 0, 1);',
+                           // color: '#3c52b2',
+                        },
+                     }}
+                     onClick={() => {
+                        navigate('/ask-question');
+                     }}
                   >
                      Задать вопрос
                   </Button>
                </Box>
-               <Box className="secondBox">
-                  <ul>
-                     <p>0 голосов</p>
-                     <p>1 ответ</p>
-                     <p>15 просмотров</p>
-                  </ul>
-                  <div>
-                     <div className="secondQ">
-                        Как вывести четные числа из набора смешанных чисел в
-                        массиве?
-                     </div>
-                     <div className="thirdBox">
-                        <span className="tegs">javascript</span>
-                        <p>users name</p>
-                     </div>
-                  </div>
+               <Box sx={{border: '1px solid #D9D9D9', borderRadius: '0.3rem'}}>
+                  {questions.map(question => {
+                     return (
+                        <RenderQuestion
+                           key={question.id}
+                           username={question.username}
+                           question={question.question}
+                           votesCount={question.votesCount}
+                           answersCount={question.answersCount}
+                           viewsCount={question.viewsCount}
+                           tags={question.tags}
+                        />
+                     );
+                  })}
                </Box>
             </Grid>
          </Grid>

@@ -9,7 +9,7 @@ const SideBar = () => {
             padding: '1rem',
             display: 'flex',
             flexDirection: 'column',
-            borderRadius: '8px',
+            borderRadius: '0.3rem',
             backgroundColor: '#d9d9d9',
             minHeight: '50vh',
          }}

@@ -13,7 +13,7 @@ const SearchBox = () => {
                width: '30vw',
                borderColor: 'darkgray',
                backgroundColor: '#D9D9D9',
-               borderRadius: '10px',
+               borderRadius: '0.3rem',
                paddingLeft: '10%',
                borderStyle: 'none',
             }}

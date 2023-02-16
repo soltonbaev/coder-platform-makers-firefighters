@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, Link } from "@mui/material";
+import { Button } from "@mui/material";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
+import { Register } from "../../../helpers/create";
 const Auth = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +12,21 @@ const Auth = () => {
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  let navigate = useNavigate();
+
+  const handleSubmit = () => {
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("last_name", lastName);
+    formData.append("username", userName);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("password_confirm", confirmPassword);
+    console.log(formData);
+    Register(formData);
+    navigate("/");
+  };
   //?=================================================================   VALIDATION START    ======================================================================================================================================================================
   const [nameDirty, setNameDirty] = useState(false);
   const [nameError, setNameError] = useState("Поле не может быть пустым!");
@@ -147,6 +164,7 @@ const Auth = () => {
     }
   };
   //?==============================================================    VALIDATION END   ========================================================================================================================================================================================================
+
   return (
     <div>
       <Box
@@ -331,13 +349,14 @@ const Auth = () => {
               height: "35px",
               color: "#fffdfd",
             }}
+            onClick={handleSubmit}
           >
             Cоздать
           </Button>
         </center>
-        <Link href="#" variant="body2">
-          Have an account? Sign In.
-        </Link>
+        <center>
+          <RouterLink to="/login">Have an account? Sign In.</RouterLink>
+        </center>
       </Box>
     </div>
   );

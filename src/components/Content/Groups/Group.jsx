@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Group = () => {
-   return <div></div>;
+   return <Container maxWidth="lg"></Container>;
 };
 
 export default Group;
