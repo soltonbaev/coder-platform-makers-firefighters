@@ -1,6 +1,7 @@
 import axios from 'axios';
-import {REGISTER} from './globals';
+import {REFRESH, REGISTER} from './globals';
 import {LOGIN} from './globals';
+import {getUserProfile} from './read';
 export const Register = async formData => {
    try {
       const res = await axios.post(`${REGISTER}`, formData);
@@ -11,18 +12,16 @@ export const Register = async formData => {
    }
 };
 
-export const login = async (formData, username) => {
-   try {
-      const res = await axios.post(`${LOGIN}`, formData);
-      setToStorage(res.data);
-      console.log(res);
-   } catch (error) {
-      alert('Не верные данные');
-
-      console.log(error);
+export function setToStorage(type, data) {
+   if (type === 'token') {
+      localStorage.setItem('token', JSON.stringify(data));
+   } else if (type === 'uid') {
+      localStorage.setItem('uid', JSON.stringify(data));
    }
-};
+}
 
-export function setToStorage(data) {
-   localStorage.setItem('token', JSON.stringify(data));
+export async function tokenRefresh(token) {
+   return await axios.post(REFRESH, {
+      refresh: token,
+   });
 }

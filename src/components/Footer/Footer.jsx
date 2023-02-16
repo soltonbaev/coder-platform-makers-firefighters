@@ -3,17 +3,26 @@ import React from 'react';
 import BgImage from '../Footer/fire-ext-orange.svg';
 import Logo from '../Footer/makers-logo-white.svg';
 import firePng from '../Footer/firefighters.svg';
-import {Button, Container, Grid, Link, List, ListItem} from '@mui/material';
-import {useNavigate} from 'react-router-dom';
+import {Button, Container, Grid, List, ListItem} from '@mui/material';
+import {Link, useNavigate} from 'react-router-dom';
 import {testLogin, testRegister} from '../../helpers/test';
 import {formData} from '../../helpers/test';
 import {getTags} from '../../helpers/read';
 import {getFromStorage} from '../../helpers/read';
-
+import {useGlobalContext} from '../../contexts/GlobalContextProvider';
+import './Footer.css';
+import {clearStorage} from '../../helpers/delete';
 const Footer = () => {
+   const {user, setUser} = useGlobalContext();
    const navigate = useNavigate();
+   function handleLogOut() {
+      clearStorage();
+      navigate('/login');
+      setUser('');
+   }
    return (
       <Box
+         className="footer"
          sx={{
             position: 'relative',
             display: 'flex',
@@ -86,29 +95,41 @@ const Footer = () => {
                   >
                      Задать вопрос
                   </Button>
-                  <Button
+                  {/* <Button
                      variant="outlined"
                      sx={{
                         color: ' #ffffff',
                         borderColor: 'red',
                      }}
-                     onClick={() => {
+                     onClick={async () => {
+                        console.clear();
+                        console.group('Test button group');
+                        console.log('user', user);
                         // testRegister(formData);
-                        // getTags();
-                        testLogin();
-                        console.log('Tokens from storage:', getFromStorage());
+                        // await getTags();
+                        // await testLogin();
+                        // console.log('Tokens from storage:', getFromStorage());
+                        console.groupEnd();
                      }}
                   >
                      TEST
-                  </Button>
+                  </Button> */}
                </Grid>
                <Grid item>
                   <List>
                      <h4>Навигация</h4>
-                     <ListItem disableGutters>Вопросы</ListItem>
-                     <ListItem disableGutters>Тэги</ListItem>
-                     <ListItem disableGutters>Пользователи</ListItem>
-                     <ListItem disableGutters>Группы</ListItem>
+                     <Link to="/">
+                        <ListItem disableGutters>Вопросы</ListItem>
+                     </Link>
+                     <ListItem disableGutters>
+                        <Link to="/tags">Тэги</Link>
+                     </ListItem>
+                     <ListItem disableGutters>
+                        <Link to="/users">Пользователи</Link>
+                     </ListItem>
+                     <ListItem disableGutters>
+                        <Link to="/groups">Группы</Link>
+                     </ListItem>
                   </List>
                </Grid>
                <Grid item>
@@ -129,9 +150,31 @@ const Footer = () => {
                <Grid>
                   <List>
                      <h4>Ваш аккаунт</h4>
-                     <ListItem disableGutters>Профиль</ListItem>
-                     <ListItem disableGutters>Активность</ListItem>
-                     <ListItem disableGutters>Закладки</ListItem>
+                     {user ? (
+                        <>
+                           <ListItem disableGutters>Профиль</ListItem>
+                           <ListItem disableGutters>Активность</ListItem>
+                           <ListItem disableGutters>Закладки</ListItem>
+                           <ListItem
+                              onClick={handleLogOut}
+                              sx={{cursor: 'pointer'}}
+                              disableGutters
+                           >
+                              Выйти из аккаунта
+                           </ListItem>
+                        </>
+                     ) : (
+                        <>
+                           <Link to="/login">
+                              <ListItem disableGutters>Войти</ListItem>
+                           </Link>
+                           <Link to="/auth">
+                              <ListItem disableGutters>
+                                 Зарегистрироваться
+                              </ListItem>
+                           </Link>
+                        </>
+                     )}
                   </List>
                </Grid>
             </Grid>
