@@ -5,6 +5,8 @@ import Logo from '../Footer/makers-logo-white.svg';
 import firePng from '../Footer/firefighters.svg';
 import {Button, Container, Grid, Link, List, ListItem} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import {testRegister} from '../../helpers/test';
+import {formData} from '../../helpers/test';
 
 const Footer = () => {
    const navigate = useNavigate();
@@ -81,6 +83,18 @@ const Footer = () => {
                      }}
                   >
                      Задать вопрос
+                  </Button>
+                  <Button
+                     variant="outlined"
+                     sx={{
+                        color: ' #ffffff',
+                        borderColor: 'red',
+                     }}
+                     onClick={() => {
+                        testRegister(formData);
+                     }}
+                  >
+                     TEST
                   </Button>
                </Grid>
                <Grid item>

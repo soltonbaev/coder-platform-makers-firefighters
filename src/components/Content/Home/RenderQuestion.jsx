@@ -48,6 +48,7 @@ const RenderQuestion = ({
                   {tags.map(tag => {
                      return (
                         <Grid
+                           key={tag}
                            item
                            sx={{
                               border: '1px solid #AA6800',
