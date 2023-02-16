@@ -21,7 +21,7 @@ const Footer = () => {
             backgroundColor: 'rgb(71 71 71)',
             backgroundImage: `${BgImage}`,
             color: 'white',
-            marginTop: '1rem',
+            marginTop: '2rem',
          }}
       >
          <img
