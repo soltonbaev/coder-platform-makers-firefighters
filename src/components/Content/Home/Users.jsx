@@ -2,7 +2,7 @@ import { Block } from "@mui/icons-material";
 import { Grid } from "@mui/material";
 import { borderRadius, Container } from "@mui/system";
 import React from "react";
-import Ernast from "./images/ernast.svg";
+// import Ernast from "./images/ernast.svg";
 import Fire from "./images/fireexting 1.svg";
 import bita from "./images/image 5.svg";
 
