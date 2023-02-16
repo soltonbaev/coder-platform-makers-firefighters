@@ -1,5 +1,6 @@
 import {Box, Button, Container, Grid, Typography} from '@mui/material';
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import './q.css';
 import RenderQuestion from './RenderQuestion';
 import SideBar from './Sidebar';
@@ -51,6 +52,7 @@ const questions = [
    },
 ];
 const Questions = () => {
+   const navigate = useNavigate();
    return (
       <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
          <Grid container sx={{gap: '2rem'}}>
@@ -76,6 +78,9 @@ const Questions = () => {
                            backgroundColor: 'rgba(170, 104, 0, 1);',
                            // color: '#3c52b2',
                         },
+                     }}
+                     onClick={() => {
+                        navigate('/ask-question');
                      }}
                   >
                      Задать вопрос

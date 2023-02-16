@@ -5,8 +5,9 @@ import Logo from '../Footer/makers-logo-white.svg';
 import firePng from '../Footer/firefighters.svg';
 import {Button, Container, Grid, Link, List, ListItem} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
-import {testRegister} from '../../helpers/test';
+import {testLogin, testRegister} from '../../helpers/test';
 import {formData} from '../../helpers/test';
+import {getTags} from '../../helpers/read';
 
 const Footer = () => {
    const navigate = useNavigate();
@@ -91,7 +92,9 @@ const Footer = () => {
                         borderColor: 'red',
                      }}
                      onClick={() => {
-                        testRegister(formData);
+                        // testRegister(formData);
+                        // getTags();
+                        testLogin();
                      }}
                   >
                      TEST
