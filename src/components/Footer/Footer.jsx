@@ -1,3 +1,4 @@
+
 import {Box} from '@mui/system';
 import React from 'react';
 import BgImage from '../Footer/fire-ext-orange.svg';
@@ -133,19 +134,81 @@ const Footer = () => {
                   </List>
                </Grid>
             </Grid>
+
             <Box
-               sx={{
-                  textAlign: 'center',
-                  fontSize: '0.7rem',
-                  padding: '1rem',
-               }}
+              className="footer-logo"
+              sx={{
+                justifyContent: "space-between",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.1px",
+              }}
             >
-               @ 2023 - проект создан командами из PY24: Николай, Артур,
-               Александр JS28: Бекмырза, Эрнас, Ибраим
+              <img style={{ width: "150px" }} src={Logo} />
+              <img style={{ width: "80px" }} src={firePng} />
             </Box>
-         </Container>
-      </Box>
-   );
+            <Button
+              variant="outlined"
+              sx={{
+                color: " #ffffff",
+                borderColor: "white",
+                // border: '1px solid white',
+                // borderRadius: '8px',
+              }}
+              onClick={() => {
+                navigate("/ask-question");
+              }}
+            >
+              Задать вопрос
+            </Button>
+          </Grid>
+          <Grid item>
+            <List>
+              <h4>Навигация</h4>
+              <ListItem disableGutters>Вопросы</ListItem>
+              <ListItem disableGutters>Тэги</ListItem>
+              <ListItem disableGutters>Пользователи</ListItem>
+              <ListItem disableGutters>Группы</ListItem>
+            </List>
+          </Grid>
+          <Grid item>
+            <List>
+              <h4>Makers</h4>
+              <ListItem disableGutters>Главный сайт Makers</ListItem>
+              <ListItem disableGutters>О компании</ListItem>
+            </List>
+          </Grid>
+          <Grid>
+            <List>
+              <h4>Контакты Makers</h4>
+              <ListItem disableGutters>Телеграм</ListItem>
+              <ListItem disableGutters>Инстаграм</ListItem>
+              <ListItem disableGutters>Электронная почта</ListItem>
+            </List>
+          </Grid>
+          <Grid>
+            <List>
+              <h4>Ваш аккаунт</h4>
+              <ListItem disableGutters>Профиль</ListItem>
+              <ListItem disableGutters>Активность</ListItem>
+              <ListItem disableGutters>Закладки</ListItem>
+            </List>
+          </Grid>
+        </Grid>
+        <Box
+          sx={{
+            textAlign: "center",
+            fontSize: "0.7rem",
+            padding: "1rem",
+          }}
+        >
+          @ 2023 - проект создан командами из PY24: Николай, Артур, Александр
+          JS28: Бекмырза, Эрнас, Ибраим
+        </Box>
+      </Container>
+    </Box>
+  );
 };
 
 export default Footer;
