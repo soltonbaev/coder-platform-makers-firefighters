@@ -28,7 +28,7 @@ const MiniMenu = () => {
           <NavLink to="/users">Пользователи</NavLink>
         </Grid>
         <Grid className="mini-menu">
-          <NavLink to="/groups">Группы</NavLink>
+          <NavLink to="/my-profile">Группы</NavLink>
         </Grid>
       </Grid>
     </Container>
