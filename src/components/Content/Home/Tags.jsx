@@ -1,4 +1,3 @@
-
 import { Box } from "@mui/material";
 import React from "react";
 import "./Tags.css";
@@ -92,7 +91,7 @@ const Tags = () => {
             },
           }}
         >
-          <span>javascript</span>
+          <span className="spans">javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
             который широко используется на просторах Интернета
@@ -113,7 +112,7 @@ const Tags = () => {
             },
           }}
         >
-          <span>javascript</span>
+          <span className="spans">javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
             который широко используется на просторах Интернета
@@ -134,7 +133,7 @@ const Tags = () => {
             },
           }}
         >
-          <span>javascript</span>
+          <span className="spans">javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
             который широко используется на просторах Интернета
@@ -155,7 +154,7 @@ const Tags = () => {
             },
           }}
         >
-          <span>javascript</span>
+          <span className="spans">javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
             который широко используется на просторах Интернета
@@ -176,7 +175,7 @@ const Tags = () => {
             },
           }}
         >
-          <span>javascript</span>
+          <span className="spans">javascript</span>
           <div className="lorem">
             Вопросы по динамически типизированному языку программирования
             который широко используется на просторах Интернета
@@ -186,7 +185,6 @@ const Tags = () => {
       </Box>
     </>
   );
-
 };
 
 export default Tags;
