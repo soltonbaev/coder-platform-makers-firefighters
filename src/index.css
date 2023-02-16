@@ -12,6 +12,10 @@ h1 {
    color: #474747;
 }
 
+h2 {
+   font-size: 1.5rem;
+   color: #aa6800;
+}
 code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
