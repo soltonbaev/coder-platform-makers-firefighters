@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {TAGS} from './globals';
 export async function getTags() {
    try {
@@ -7,4 +8,8 @@ export async function getTags() {
    } catch (error) {
       console.log(error);
    }
+}
+
+export function getFromStorage() {
+   return JSON.parse(localStorage.getItem('token'));
 }
