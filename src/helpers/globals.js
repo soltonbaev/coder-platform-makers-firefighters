@@ -1,4 +1,6 @@
-const BASE_URL = '104.199.234.60/api/v1';
+import axios from 'axios';
+
+const BASE_URL = 'http://104.199.234.60/api/v1';
 
 // login and logout
 export const LOGIN = BASE_URL + '/login/';
