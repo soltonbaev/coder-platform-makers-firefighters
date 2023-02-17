@@ -1,4 +1,4 @@
-import {Box, Button} from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import {Link as RouterLink, useNavigate} from 'react-router-dom';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
@@ -118,6 +118,7 @@ const Login = () => {
                   <div
                      style={{
                         color: 'red',
+                        fontSize: '0.8rem',
                      }}
                   >
                      {userNameError}
@@ -127,6 +128,7 @@ const Login = () => {
                   <div
                      style={{
                         color: 'red',
+                        fontSize: '0.8rem',
                      }}
                   >
                      {passwordError}
@@ -149,7 +151,11 @@ const Login = () => {
                </Button>
             </center>
             <center>
-               <RouterLink to="/auth">Dont have an account?Sign up!</RouterLink>
+               <RouterLink to="/auth">
+                  <Typography sx={{fontSize: '0.8rem'}}>
+                     Еще нет аккаунта? Зарегистрироваться
+                  </Typography>
+               </RouterLink>
             </center>
          </Box>
       </div>
