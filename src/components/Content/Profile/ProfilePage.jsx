@@ -1,13 +1,15 @@
 import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import Tg from "../Profile/tg.svg";
 import Git from "../Profile/git.svg";
 import ImgLink from "../Profile/imgLink.svg";
 import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
 const ProfilePage = () => {
   const { user } = useGlobalContext();
+  const navigate = useNavigate();
   return (
     //  <Container>
     <Grid
@@ -241,6 +243,7 @@ const ProfilePage = () => {
             >
               участник с 22 апреля, 2021 года
             </Typography>
+
             <Box
               sx={{
                 display: "flex",
@@ -291,6 +294,7 @@ const ProfilePage = () => {
             }}
           >
             <Button
+              onClick={() => navigate("/editProfile")}
               sx={{
                 fontWeight: "400",
                 fontSize: "16px",
