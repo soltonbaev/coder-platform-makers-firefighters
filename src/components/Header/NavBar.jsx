@@ -32,7 +32,18 @@ const NavBar = () => {
          >
             <Box sx={{display: 'flex', alignItems: 'center'}}>
                <Logo />
-               <SearchBox />
+               <SearchBox
+                  style={{
+                     height: '4vh',
+                     width: '30vw',
+                     borderColor: 'darkgray',
+                     backgroundColor: '#D9D9D9',
+                     borderRadius: '0.3rem',
+                     paddingLeft: '10%',
+                     borderStyle: 'none',
+                  }}
+                  placeholder="искать вопросы"
+               />
                <RightSideIcons />
             </Box>
          </Container>
