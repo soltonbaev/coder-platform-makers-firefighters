@@ -18,7 +18,14 @@ const Tags = () => {
             <h1>Поиск по тэгам </h1>
 
             <Grid item sx={{display: 'flex', justifyContent: 'space-between'}}>
-               <Grid item sx={{maxWidth: '500px', marginBottom: '1.5rem'}}>
+               <Grid
+                  item
+                  sx={{
+                     maxWidth: '500px',
+                     marginBottom: '1.5rem',
+                     color: '#474747',
+                  }}
+               >
                   Тэг - ключевое слово которое позволяет разделять вопросы по
                   схожим темам. Изпользуя тэги правильным образом вы можете
                   помочь другим пользователям легко найти ваш вопрос
@@ -26,13 +33,14 @@ const Tags = () => {
                <Grid item sx={{alignSelf: 'flex-end'}}>
                   <SearchBox
                      style={{
-                        height: '4vh',
-                        width: '30vw',
+                        height: '1.5rem',
+                        width: '10rem',
                         borderColor: 'darkgray',
                         backgroundColor: '#D9D9D9',
                         borderRadius: '0.3rem',
-                        paddingLeft: '10%',
+                        paddingLeft: '1.5rem',
                         borderStyle: 'none',
+                        marginBottom: '1rem',
                      }}
                      placeholder="искать тэги"
                   ></SearchBox>
