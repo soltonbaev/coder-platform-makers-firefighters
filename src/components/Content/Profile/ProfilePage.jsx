@@ -1,8 +1,9 @@
 import { Avatar, Box, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const ProfilePage = () => {
+  const navigate = useNavigate();
   return (
     //  <Container>
     <Grid
@@ -225,6 +226,9 @@ const ProfilePage = () => {
               }}
             >
               участник с 22 апреля, 2021 года
+            </Typography>
+            <Typography onClick={() => navigate("/editProfile")}>
+              edit profile
             </Typography>
           </Box>
           <Box></Box>

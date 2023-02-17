@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 import { Register } from "../../../helpers/create";
@@ -288,6 +288,7 @@ const Auth = () => {
             <div
               style={{
                 color: "red",
+                fontSize: "0.8rem",
               }}
             >
               {nameError}
@@ -297,6 +298,7 @@ const Auth = () => {
             <div
               style={{
                 color: "red",
+                fontSize: "0.8rem",
               }}
             >
               {lastNameError}
@@ -306,6 +308,7 @@ const Auth = () => {
             <div
               style={{
                 color: "red",
+                fontSize: "0.8rem",
               }}
             >
               {userNameError}
@@ -315,6 +318,7 @@ const Auth = () => {
             <div
               style={{
                 color: "red",
+                fontSize: "0.8rem",
               }}
             >
               {emailError}
@@ -324,6 +328,7 @@ const Auth = () => {
             <div
               style={{
                 color: "red",
+                fontSize: "0.8rem",
               }}
             >
               {passwordError}
@@ -333,6 +338,7 @@ const Auth = () => {
             <div
               style={{
                 color: "red",
+                fontSize: "0.8rem",
               }}
             >
               {confirmPasswordError}
@@ -355,7 +361,11 @@ const Auth = () => {
           </Button>
         </center>
         <center>
-          <RouterLink to="/login">Have an account? Sign In.</RouterLink>
+          <RouterLink to="/login">
+            <Typography sx={{ fontSize: "0.8rem" }}>
+              Уже есть аккаунт? Войти
+            </Typography>
+          </RouterLink>
         </center>
       </Box>
     </div>

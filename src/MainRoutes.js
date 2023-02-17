@@ -7,6 +7,7 @@ import Questions from "./components/Content/Home/Questions";
 import RenderUserProfile from "./components/Content/Home/RenderUserProfile";
 import Tags from "./components/Content/Home/Tags";
 import Users from "./components/Content/Home/Users";
+import EditProfile from "./components/Content/Profile/EditProfile";
 import ProfilePage from "./components/Content/Profile/ProfilePage";
 
 import AskQuestion from "./components/Content/QA/AskQuestion";
@@ -25,6 +26,7 @@ const MainRoutes = () => {
       <Route path="/auth" element={<Auth />} />
       <Route path="/my-profile" element={<ProfilePage />} />
       <Route path="/login" element={<Login />} />
+      <Route path="editProfile" element={<EditProfile />} />
     </Routes>
   );
 };

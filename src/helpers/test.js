@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {REGISTER} from './globals';
 import {LOGIN} from './globals';
+import {setToStorage} from './create';
+import {getUserProfile} from './read';
 
 export let formData = new FormData();
 
@@ -23,7 +25,9 @@ export const testLogin = async () => {
    formData.append('password', '123456');
    try {
       const res = await axios.post(LOGIN, formData);
-      console.log(res);
+      console.log('result from test login', res.data);
+      await getUserProfile(res.data.id);
+      setToStorage(res.data);
    } catch (error) {
       console.log(error);
    }
