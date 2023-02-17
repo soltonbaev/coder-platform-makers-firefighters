@@ -1,3 +1,4 @@
+
 import {Box} from '@mui/system';
 import React from 'react';
 import BgImage from '../Footer/fire-ext-orange.svg';
@@ -179,6 +180,7 @@ const Footer = () => {
                   </List>
                </Grid>
             </Grid>
+
             <Box
                sx={{
                   textAlign: 'center',
@@ -189,9 +191,11 @@ const Footer = () => {
                @ 2023 - проект создан командами из PY24: Николай, Артур,
                Александр JS28: Бекмырза, Эрнас, Ибраим
             </Box>
+
          </Container>
       </Box>
    );
+
 };
 
 export default Footer;
