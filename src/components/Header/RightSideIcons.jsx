@@ -19,8 +19,8 @@ const RightSideIcons = () => {
       >
          {user ? (
             <Avatar
-               alt="Remy Sharp"
-               src="https://i.pinimg.com/originals/c6/63/25/c663252ee33f5851edd48b80701d8e81.jpg"
+               alt={`${user.name}${user.last_name}`}
+               src={user.user_photo}
                sx={{
                   cursor: 'pointer',
                   fill: 'black',
