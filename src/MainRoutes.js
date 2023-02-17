@@ -26,7 +26,7 @@ const MainRoutes = () => {
       <Route path="/auth" element={<Auth />} />
       <Route path="/my-profile" element={<ProfilePage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="editProfile" element={<EditProfile />} />
+      <Route path="/editProfile" element={<EditProfile />} />
     </Routes>
   );
 };

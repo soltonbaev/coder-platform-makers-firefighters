@@ -119,7 +119,6 @@ const EditProfile = () => {
                 borderStyle: "none",
                 borderRadius: "7px",
                 alignContent: "center",
-                onChange: { handleChange },
               }}
             />
           </center>

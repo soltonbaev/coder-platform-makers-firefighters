@@ -53,24 +53,6 @@ const GlobalContextProvider = ({ children }) => {
     tagsArr,
   };
 
-  async function addProducts(user) {
-    try {
-      const token = JSON.parse(localStorage.getItem("token"));
-      const Authorization = `Bearer ${token.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-
-      const res = await axios.post(`${BASE_URL}`, user, config);
-      console.log(res.data);
-      navigate("/products");
-    } catch (error) {
-      console.log(error);
-      setError(error);
-    }
-  }
   return (
     <globalContext.Provider value={value}>{children}</globalContext.Provider>
   );
