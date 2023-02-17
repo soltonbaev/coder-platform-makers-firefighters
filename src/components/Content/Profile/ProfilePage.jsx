@@ -1,9 +1,14 @@
-import { Avatar, Box, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+import Tg from "../Profile/tg.svg";
+import Git from "../Profile/git.svg";
+import ImgLink from "../Profile/imgLink.svg";
+import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
 const ProfilePage = () => {
-  const navigate = useNavigate();
+  const { user } = useGlobalContext();
   return (
     //  <Container>
     <Grid
@@ -193,21 +198,31 @@ const ProfilePage = () => {
           </Link>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid
+        item
+        sx={{
+          marginTop: "1.5rem",
+        }}
+      >
         <Grid
           item
           sx={{
+            width: "1000px",
             display: "flex",
           }}
         >
           <Box>
             <Avatar
-              sx={{ width: "19vw", height: "30vh" }}
+              sx={{ width: "16vw", height: "30vh" }}
               alt="Remy Sharp"
               src="/static/images/avatar/1.jpg"
             />
           </Box>
-          <Box>
+          <Box
+            sx={{
+              marginLeft: "1rem",
+            }}
+          >
             <Typography
               sx={{
                 fontWeight: "700",
@@ -215,7 +230,7 @@ const ProfilePage = () => {
                 lineHeight: "35px",
               }}
             >
-              Линукс Торвальдс
+              {user.name} {user.last_name}
             </Typography>
             <Typography
               sx={{
@@ -227,11 +242,70 @@ const ProfilePage = () => {
             >
               участник с 22 апреля, 2021 года
             </Typography>
-            <Typography onClick={() => navigate("/editProfile")}>
-              edit profile
-            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                marginTop: "1.5rem",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "18px",
+                  color: "#474747",
+                }}
+              >
+                Статус:
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  lineHeight: "18px",
+                  color: "#004605",
+                }}
+              >
+                Пожарный,ментор,админ
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                marginTop: "0.5rem",
+              }}
+            >
+              <Link>
+                <img src={Tg} />
+              </Link>
+              <Link>
+                <img src={Git} style={{ marginLeft: "0.5rem" }} />
+              </Link>
+              <Link>
+                <img src={ImgLink} style={{ marginLeft: "0.5rem" }} />
+                linustorvalds.com
+              </Link>
+            </Box>
           </Box>
-          <Box></Box>
+          <Box
+            sx={{
+              marginLeft: "20%",
+            }}
+          >
+            <Button
+              sx={{
+                fontWeight: "400",
+                fontSize: "16px",
+                lineHeight: "18px",
+                color: "#474747",
+                textAlign: "center",
+                border: "1px solid #474747",
+                borderRadius: "5px",
+              }}
+            >
+              Редактировать профиль
+            </Button>
+          </Box>
         </Grid>
         <Grid item></Grid>
       </Grid>

@@ -1,16 +1,14 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
+import {AddTags} from '../components/Content/QA/AddTags';
 import {setToStorage, tokenRefresh} from '../helpers/create';
 import {getFromStorage, getUserProfile} from '../helpers/read';
-
+import {getTags} from '../helpers/read';
 export const globalContext = createContext();
 export const useGlobalContext = () => useContext(globalContext);
 
 const GlobalContextProvider = ({children}) => {
    const [user, setUser] = useState('');
-   const value = {
-      user,
-      setUser,
-   };
+   const [tagsArr, setTagsArr] = useState('');
 
    const checkAuth = async () => {
       let token = getFromStorage('token');
@@ -35,7 +33,17 @@ const GlobalContextProvider = ({children}) => {
       if (localStorage.getItem('token')) {
          checkAuth();
       }
+      getTags().then(res => {
+         console.log('then res', res);
+         setTagsArr(res);
+      });
    }, []);
+
+   const value = {
+      user,
+      setUser,
+      tagsArr,
+   };
 
    return (
       <globalContext.Provider value={value}>{children}</globalContext.Provider>
