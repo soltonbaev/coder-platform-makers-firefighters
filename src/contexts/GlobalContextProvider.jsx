@@ -1,53 +1,79 @@
-import React, {createContext, useContext, useEffect, useState} from 'react';
-import {AddTags} from '../components/Content/QA/AddTags';
-import {setToStorage, tokenRefresh} from '../helpers/create';
-import {getFromStorage, getUserProfile} from '../helpers/read';
-import {getTags} from '../helpers/read';
+import axios from "axios";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { AddTags } from "../components/Content/QA/AddTags";
+import { setToStorage, tokenRefresh } from "../helpers/create";
+import { getFromStorage, getUserProfile } from "../helpers/read";
+import { getTags } from "../helpers/read";
+// import BASE_URL from "../helpers/globals";
+import { useNavigate } from "react-router-dom";
 export const globalContext = createContext();
 export const useGlobalContext = () => useContext(globalContext);
 
-const GlobalContextProvider = ({children}) => {
-   const [user, setUser] = useState('');
-   const [tagsArr, setTagsArr] = useState('');
+const GlobalContextProvider = ({ children }) => {
+  const BASE_URL = "http://104.199.234.60/api/v1";
 
-   const checkAuth = async () => {
-      let token = getFromStorage('token');
-      let uid = getFromStorage('uid');
-      try {
-         let res = await tokenRefresh(token.refresh);
+  const [user, setUser] = useState("");
+  const [error, setError] = useState("");
 
-         setToStorage('token', {
-            refresh: token.refresh,
-            access: res.data.access,
-         });
-         let user = await getUserProfile(uid);
-         setUser(user);
-         // user.curent = user;
-      } catch (error) {
-         console.log(error);
-         //  setError(error);
-      }
-   };
+  const [tagsArr, setTagsArr] = useState("");
 
-   useEffect(() => {
-      if (localStorage.getItem('token')) {
-         checkAuth();
-      }
-      getTags().then(res => {
-         console.log('then res', res);
-         setTagsArr(res);
+  const navigate = useNavigate();
+  const checkAuth = async () => {
+    let token = getFromStorage("token");
+    let uid = getFromStorage("uid");
+    try {
+      let res = await tokenRefresh(token.refresh);
+
+      setToStorage("token", {
+        refresh: token.refresh,
+        access: res.data.access,
       });
-   }, []);
+      let user = await getUserProfile(uid);
+      setUser(user);
+      // user.curent = user;
+    } catch (error) {
+      console.log(error);
+      //  setError(error);
+    }
+  };
 
-   const value = {
-      user,
-      setUser,
-      tagsArr,
-   };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+    getTags().then((res) => {
+      console.log("then res", res);
+      setTagsArr(res);
+    });
+  }, []);
 
-   return (
-      <globalContext.Provider value={value}>{children}</globalContext.Provider>
-   );
+  const value = {
+    user,
+    setUser,
+    tagsArr,
+  };
+
+  async function addProducts(user) {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+
+      const res = await axios.post(`${BASE_URL}`, user, config);
+      console.log(res.data);
+      navigate("/products");
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  }
+  return (
+    <globalContext.Provider value={value}>{children}</globalContext.Provider>
+  );
 };
 
 export default GlobalContextProvider;

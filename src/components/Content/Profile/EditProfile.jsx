@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 
 const EditProfile = () => {
-  //?==============================================================    VALIDATION END   ========================================================================================================================================================================================================
-
   return (
     <div>
       <Box
@@ -18,10 +16,6 @@ const EditProfile = () => {
         <Box style={{ display: "block" }}>
           <center>
             <input
-              className="inp-place"
-              type="text"
-              name="githbub"
-              placeholder="github"
               style={{
                 backgroundColor: "#AA6800",
                 color: "white",
@@ -29,6 +23,10 @@ const EditProfile = () => {
                 borderStyle: "none",
                 borderRadius: "7px",
               }}
+              className="inp-place"
+              type="text"
+              name="name"
+              placeholder="name"
             />
           </center>
           <center>
@@ -48,6 +46,21 @@ const EditProfile = () => {
           </center>
           <center>
             <input
+              style={{
+                backgroundColor: "#AA6800",
+                color: "white",
+                paddingLeft: "20px",
+                borderStyle: "none",
+                borderRadius: "7px",
+              }}
+              className="inp-place"
+              type="text"
+              name="githbub"
+              placeholder="github"
+            />
+          </center>
+          <center>
+            <input
               className="inp-place"
               type="text"
               name="telegram"
@@ -61,22 +74,7 @@ const EditProfile = () => {
               }}
             />
           </center>
-          <center>
-            <input
-              className="inp-place"
-              type="file"
-              name="image"
-              placeholder="image"
-              style={{
-                backgroundColor: "#AA6800",
-                color: "white",
-                paddingLeft: "20px",
-                borderStyle: "none",
-                borderRadius: "7px",
-                alignContent: "center",
-              }}
-            />
-          </center>
+
           <center>
             <input
               className="inp-place"
@@ -104,6 +102,24 @@ const EditProfile = () => {
                 paddingLeft: "20px",
                 borderStyle: "none",
                 borderRadius: "7px",
+                // onChange={handleChange}
+              }}
+            />
+          </center>
+          <center>
+            <input
+              className="inp-place"
+              type="file"
+              name="image"
+              placeholder="imag"
+              style={{
+                backgroundColor: "#AA6800",
+                color: "white",
+                paddingLeft: "20px",
+                borderStyle: "none",
+                borderRadius: "7px",
+                alignContent: "center",
+                onChange: { handleChange },
               }}
             />
           </center>
