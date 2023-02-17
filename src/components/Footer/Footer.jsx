@@ -7,7 +7,7 @@ import {Button, Container, Grid, List, ListItem} from '@mui/material';
 import {Link, useNavigate} from 'react-router-dom';
 import {testLogin, testRegister} from '../../helpers/test';
 import {formData} from '../../helpers/test';
-import {getTags} from '../../helpers/read';
+import {getQuestions, getTags} from '../../helpers/read';
 import {getFromStorage} from '../../helpers/read';
 import {useGlobalContext} from '../../contexts/GlobalContextProvider';
 import './Footer.css';
@@ -104,8 +104,9 @@ const Footer = () => {
                      onClick={async () => {
                         console.clear();
                         console.group('Test button group');
-                        console.log('user', user);
-                        console.log(tagsArr);
+                        // console.log('user', user);
+                        // console.log(tagsArr);
+                        getQuestions();
                         // testRegister(formData);
                         // await getTags();
                         // await testLogin();

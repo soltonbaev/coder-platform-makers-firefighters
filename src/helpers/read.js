@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {TAGS} from './globals';
+import {QUESTIONS, TAGS} from './globals';
 import {PROFILE} from './globals';
 import {LOGIN} from './globals';
 import {setToStorage} from './create';
@@ -61,3 +61,15 @@ export const login = async formData => {
       console.log(error);
    }
 };
+
+export async function getQuestions() {
+   let res = await axios(QUESTIONS);
+   console.log('getQuestions result', res);
+   return res.data.results;
+}
+
+export async function getQuestion(slug) {
+   let res = await axios(QUESTIONS + slug);
+   console.log('getQuestion result', res);
+   return res.data;
+}
