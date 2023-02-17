@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {REFRESH, REGISTER} from './globals';
-import {LOGIN} from './globals';
-import {getUserProfile} from './read';
+import {QUESTIONS} from './globals';
+import {getAccessConfig} from './read';
+
 export const Register = async formData => {
    try {
       const res = await axios.post(`${REGISTER}`, formData);
@@ -24,4 +25,9 @@ export async function tokenRefresh(token) {
    return await axios.post(REFRESH, {
       refresh: token,
    });
+}
+
+export async function postQuestion(data) {
+   let res = await axios.post(QUESTIONS, data, getAccessConfig());
+   console.log('postQuestion result', res);
 }

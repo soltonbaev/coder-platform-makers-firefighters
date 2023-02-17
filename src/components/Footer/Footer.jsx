@@ -13,7 +13,7 @@ import {useGlobalContext} from '../../contexts/GlobalContextProvider';
 import './Footer.css';
 import {clearStorage} from '../../helpers/delete';
 const Footer = () => {
-   const {user, setUser} = useGlobalContext();
+   const {user, setUser, tagsArr} = useGlobalContext();
    const navigate = useNavigate();
    function handleLogOut() {
       clearStorage();
@@ -95,7 +95,7 @@ const Footer = () => {
                   >
                      Задать вопрос
                   </Button>
-                  {/* <Button
+                  <Button
                      variant="outlined"
                      sx={{
                         color: ' #ffffff',
@@ -105,6 +105,7 @@ const Footer = () => {
                         console.clear();
                         console.group('Test button group');
                         console.log('user', user);
+                        console.log(tagsArr);
                         // testRegister(formData);
                         // await getTags();
                         // await testLogin();
@@ -113,7 +114,7 @@ const Footer = () => {
                      }}
                   >
                      TEST
-                  </Button> */}
+                  </Button>
                </Grid>
                <Grid item>
                   <List>

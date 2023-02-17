@@ -10,6 +10,7 @@ export async function getTags() {
       let res = await axios.get(TAGS, getAccessConfig());
 
       console.log('getTags results', res.data.results);
+      return res.data.results;
    } catch (error) {
       console.log(error);
    }
