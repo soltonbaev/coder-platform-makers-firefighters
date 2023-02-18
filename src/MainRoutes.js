@@ -27,6 +27,7 @@ const MainRoutes = () => {
       <Route path="/my-profile" element={<ProfilePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/editProfile" element={<EditProfile />} />
+      <Route path="/aboutMe" element={<RenderUserProfile />} />
     </Routes>
   );
 };

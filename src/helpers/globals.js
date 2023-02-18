@@ -9,6 +9,9 @@ export const REFRESH = BASE_URL + "/refresh/";
 export const REGISTER = BASE_URL + "/register/";
 export const ACTIVATE = BASE_URL + "/activate/";
 
+// users
+export const USER_LIST = BASE_URL + "/user_list";
+
 // password handling
 export const FORGOT_PASSOWRD = BASE_URL + "/forgot_password/";
 export const FORGOT_PASSOWRD_COMPLETE = BASE_URL + "/forgot_password_complete/";

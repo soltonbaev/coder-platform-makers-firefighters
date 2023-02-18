@@ -78,7 +78,7 @@ const Questions = () => {
             <Button
               variant="contained"
               sx={{
-                height: "2rem",
+                // height: "2rem",
                 backgroundColor: "#474747",
                 color: "white",
                 "&:hover": {
