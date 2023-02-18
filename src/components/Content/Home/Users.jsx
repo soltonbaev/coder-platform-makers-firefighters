@@ -161,7 +161,7 @@ const Users = () => {
                       textAlign: "left",
                     }}
                   >
-                    {user.name} <br /> “Сладкая душа”
+                    {user.name}
                   </div>
                   <div
                     style={{
