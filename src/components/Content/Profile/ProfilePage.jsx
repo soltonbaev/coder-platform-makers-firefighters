@@ -242,7 +242,7 @@ const ProfilePage = () => {
                 color: "#AA6800",
               }}
             >
-              участник с 22 апреля, 2021 года
+              c {user.date_joined} года
             </Typography>
 
             <Box
@@ -277,15 +277,15 @@ const ProfilePage = () => {
                 marginTop: "0.5rem",
               }}
             >
-              <Link>
+              <Link to={user.telegram_account}>
                 <img src={Tg} />
               </Link>
-              <Link>
+              <Link to={user.github_account}>
                 <img src={Git} style={{ marginLeft: "0.5rem" }} />
               </Link>
               <Link>
                 <img src={ImgLink} style={{ marginLeft: "0.5rem" }} />
-                linustorvalds.com
+                {user.web_site}
               </Link>
             </Box>
           </Box>

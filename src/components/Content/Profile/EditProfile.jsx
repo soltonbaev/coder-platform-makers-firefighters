@@ -1,8 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
+import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
+import { useParams } from "react-router-dom";
 
 const EditProfile = () => {
+  const { user } = useGlobalContext();
+  const [addInpValue, setAddInpvalue] = useState(user);
+  const params = useParams();
+  const handleChange = (e) => {
+    setAddInpvalue(e.target.value);
+  };
+
   return (
     <div>
       <Box
@@ -24,14 +33,17 @@ const EditProfile = () => {
                 borderRadius: "7px",
               }}
               className="inp-place"
+              value={addInpValue.name}
               type="text"
               name="name"
               placeholder="name"
+              onChange={handleChange}
             />
           </center>
           <center>
             <input
               className="inp-place"
+              value={addInpValue.last_name}
               type="text"
               name="lastName"
               placeholder="lastName"
