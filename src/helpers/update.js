@@ -5,7 +5,7 @@ export async function updateUser(id, formData) {
    try {
       let config = getAccessConfig();
       console.log(config);
-      const res = await axios.patch(PROFILE + id, formData, config);
+      const res = await axios.patch(PROFILE + id + '/', formData, config);
       console.log(res);
    } catch (error) {
       console.log(error);
