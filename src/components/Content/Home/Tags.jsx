@@ -1,5 +1,5 @@
-import {Box, Grid} from '@mui/material';
-import React from 'react';
+import {Box, Grid, Pagination} from '@mui/material';
+import React, {useEffect, useState} from 'react';
 import './Tags.css';
 import {styled, alpha} from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,11 +9,38 @@ import Search from '@mui/icons-material/Search';
 import RenderTag from './RenderTag';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import SearchBox from '../../Header/SearchBox';
+import {getTags} from '../../../helpers/read';
 
 const Tags = () => {
-   const {tagsArr} = useGlobalContext();
+   // const { tagsArr } = useGlobalContext();
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+   const [page, setPage] = useState(1);
+   const handleChange = (event, value) => {
+      setPage(value);
+   };
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
+
+   const [tagsObj, setTagsObj] = useState('');
+
+   useEffect(() => {
+      getTags().then(res => {
+         // console.log("then res", res);
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
+         setTagsObj(res);
+      });
+   }, []);
+
    return (
       <Container maxWidth="lg">
+         {tagsObj && console.log(tagsObj)}
          <Grid container direction="column">
             <h1>Поиск по тэгам </h1>
 
@@ -48,16 +75,25 @@ const Tags = () => {
             </Grid>
          </Grid>
          <Grid item container sx={{gap: '1rem'}}>
-            {tagsArr &&
-               tagsArr.map(tag => {
+            {tagsObj &&
+               tagsObj.results.map(tag => {
+                  console.log('tag item', tag);
                   return (
                      <RenderTag
                         key={tag.slug}
+                        slug={tag.slug}
                         title={tag.title}
                         description={tag.description}
                      />
                   );
                })}
+         </Grid>
+         <Grid item>
+            <Pagination
+               count={tagsObj.count / 10}
+               page={page}
+               onChange={handleChange}
+            />
          </Grid>
       </Container>
    );

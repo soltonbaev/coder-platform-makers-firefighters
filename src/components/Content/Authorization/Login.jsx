@@ -5,7 +5,8 @@ import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import {login} from '../../../helpers/read';
 
 const Login = () => {
-   const {user, setUser} = useGlobalContext();
+   console.log('Login group start');
+   const {user, setUser, redirect} = useGlobalContext();
    const [userName, setUserName] = useState('');
    const [password, setPassword] = useState('');
    const [userNameDirty, setUserNameDirty] = useState(false);
@@ -19,6 +20,13 @@ const Login = () => {
    const [formValid, SetFormValid] = useState(false);
 
    let navigate = useNavigate();
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
 
    const handleSubmit = async () => {
       console.clear();
@@ -26,15 +34,25 @@ const Login = () => {
       let formData = new FormData();
       formData.append('username', userName);
       formData.append('password', password);
-      let currUser = await login(formData);
-      console.log('currUser', currUser);
-      setUser(currUser);
-      navigate('/');
+      let loginRes = await login(formData);
+      // console.log('currUser', currUser);
+      if (loginRes.name === 'AxiosError') {
+         setToast(true, 'error', loginRes.message);
+         return;
+      }
+      setUser(loginRes);
+      setToast(true, 'success', 'Вы успешно авторизированны');
+      // console.log(loginRes);
+      if (redirect === 'AskQuestion') {
+         navigate('/ask-question');
+      } else {
+         navigate('/');
+      }
    };
 
-   useEffect(() => {
-      console.log('current user (useeffect)', user);
-   }, [user]);
+   // useEffect(() => {
+   //    console.log('current user (useeffect)', user);
+   // }, [user]);
 
    useEffect(() => {
       if (userNameError || passwordError) {

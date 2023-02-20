@@ -1,67 +1,48 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Pagination,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import "./q.css";
-import RenderQuestion from "./RenderQuestion";
-import SideBar from "./Sidebar";
-import { getQuestions, getQuestionsRaw } from "../../../helpers/read";
 
-// const questions = [
-//    {
-//       question: 'Как вывести нечетные числа в javascript',
-//       votesCount: 5,
-//       answersCount: 3,
-//       viewsCount: 10,
-//       tags: ['javascript', 'even numbers', 'loop'],
-//       username: 'codewarrior',
-//       id: 1,
-//    },
-//    {
-//       question: 'Как в Питоне превратить строку в массив',
-//       votesCount: 10,
-//       answersCount: 2,
-//       viewsCount: 50,
-//       tags: ['python', 'string', 'array'],
-//       username: 'noobiest_noob',
-//       id: 2,
-//    },
-//    {
-//       question: 'Как добавить в html-элемент несколько классов?',
-//       votesCount: 90,
-//       answersCount: 7,
-//       viewsCount: 60,
-//       tags: ['html', 'classes'],
-//       username: 'meowmeow',
-//       id: 3,
-//    },
-//    {
-//       question: 'Как сгенерировать случайное число в Python?',
-//       votesCount: 9,
-//       answersCount: 5,
-//       viewsCount: 70,
-//       tags: ['python', 'random number'],
-//       username: 'axios',
-//       id: 4,
-//    },
-//    {
-//       question: 'Как найти одинаковые элементы в массиве js?',
-//       votesCount: 40,
-//       answersCount: 13,
-//       viewsCount: 133,
-//       tags: ['javascript', 'array'],
-//       username: 'jsexpert',
-//       id: 5,
-//    },
-// ];
+   Box,
+   Button,
+   Container,
+   Grid,
+   Pagination,
+   Typography,
+} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import './q.css';
+import RenderQuestion from './RenderQuestion';
+import SideBar from './Sidebar';
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
+
 const Questions = () => {
+
+
   // console.group("Questions group");
+  
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
+
+   const navigate = useNavigate();
+   const [questions, setQuestions] = useState('');
+   useEffect(() => {
+      getQuestions().then(res => {
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
+         setQuestions(res);
+         console.log('getQuestions res', res);
+      });
+   }, []);
 
   const navigate = useNavigate();
   const [questions, setQuestions] = useState("");
@@ -163,6 +144,7 @@ const Questions = () => {
       </Grid>
     </Container>
   );
+
 };
 
 export default Questions;

@@ -1,16 +1,22 @@
+import {Alert, Snackbar} from '@mui/material';
 import React from 'react';
 
-const RenderError = ({showToast, toastMessage}) => {
+const RenderError = ({errorType, showToast, toastMessage, setShowToast}) => {
    const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
          return;
       }
 
-      setOpen(false);
+      setShowToast(false);
    };
    return (
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-         <Alert onClose={handleClose} severity={errorType} sx={{width: '100%'}}>
+      <Snackbar open={showToast} autoHideDuration={6000} onClose={handleClose}>
+         <Alert
+            variant="filled"
+            onClose={handleClose}
+            severity={errorType}
+            sx={{width: '100%'}}
+         >
             {toastMessage}
          </Alert>
       </Snackbar>
