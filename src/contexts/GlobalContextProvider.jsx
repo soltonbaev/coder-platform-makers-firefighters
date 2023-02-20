@@ -82,6 +82,10 @@ const GlobalContextProvider = ({children}) => {
       });
    };
 
+   useEffect(() => {
+      checkAuth();
+   }, []);
+
    const value = {
       usersList: state.users,
       user,
@@ -97,6 +101,7 @@ const GlobalContextProvider = ({children}) => {
       redirect,
       setRedirect,
       setToast,
+      checkAuth,
    };
 
    return (
