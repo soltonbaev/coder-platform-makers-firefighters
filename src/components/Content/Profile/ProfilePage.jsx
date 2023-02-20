@@ -7,6 +7,7 @@ import Tg from "../Profile/tg.svg";
 import Git from "../Profile/git.svg";
 import ImgLink from "../Profile/imgLink.svg";
 import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
+import Activity from "./Activity";
 const ProfilePage = () => {
   const { user } = useGlobalContext();
   const navigate = useNavigate();
@@ -227,6 +228,15 @@ const ProfilePage = () => {
           >
             <Typography
               sx={{
+                fontWeight: "500",
+                fontSize: "30px",
+                lineHeight: "35px",
+              }}
+            >
+              {user.username}
+            </Typography>
+            <Typography
+              sx={{
                 fontWeight: "700",
                 fontSize: "30px",
                 lineHeight: "35px",
@@ -311,17 +321,7 @@ const ProfilePage = () => {
           </Box>
         </Grid>
         <Grid item>
-          <Typography variant="h3">Cтатистика</Typography>
-
-          <center>
-            <Box
-              sx={{
-                width: "60vw",
-                height: "20vh",
-                border: "1px solid black",
-              }}
-            ></Box>
-          </center>
+          <Activity />
         </Grid>
       </Grid>
     </Grid>
