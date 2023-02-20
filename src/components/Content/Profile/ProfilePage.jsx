@@ -24,6 +24,7 @@ const ProfilePage = () => {
           width: "20vw",
           height: "90vh",
           backgroundColor: "rgb(217 217 217)",
+          padding: "30px",
           margin: "30px",
           borderRadius: "10px",
         }}
@@ -37,7 +38,7 @@ const ProfilePage = () => {
           <Typography
             variant="h1"
             sx={{
-              textAlign: "center",
+              // textAlign: "center",
               fontWeight: "400",
               fontSize: "24px",
               lineHeight: "28px",
@@ -50,7 +51,7 @@ const ProfilePage = () => {
           <Typography
             sx={{
               display: "flex",
-              textAlign: "center",
+              // textAlign: "center",
               flexDirection: "column",
               rowGap: "15px",
               color: "#b0761b",
@@ -103,7 +104,7 @@ const ProfilePage = () => {
           <Typography
             variant="h1"
             sx={{
-              textAlign: "center",
+              // textAlign: "center",
               fontWeight: "400",
               fontSize: "24px",
               lineHeight: "28px",
@@ -116,7 +117,7 @@ const ProfilePage = () => {
           <Typography
             sx={{
               display: "flex",
-              textAlign: "center",
+              // textAlign: "center",
               flexDirection: "column",
               rowGap: "15px",
             }}
@@ -214,7 +215,7 @@ const ProfilePage = () => {
         >
           <Box>
             <Avatar
-              sx={{ width: "16vw", height: "30vh" }}
+              sx={{ width: "10rem", height: "10rem" }}
               alt="Remy Sharp"
               src="/static/images/avatar/1.jpg"
             />
@@ -241,7 +242,7 @@ const ProfilePage = () => {
                 color: "#AA6800",
               }}
             >
-              участник с 22 апреля, 2021 года
+              c {user.date_joined} года
             </Typography>
 
             <Box
@@ -276,15 +277,15 @@ const ProfilePage = () => {
                 marginTop: "0.5rem",
               }}
             >
-              <Link>
+              <Link to={user.telegram_account}>
                 <img src={Tg} />
               </Link>
-              <Link>
+              <Link to={user.github_account}>
                 <img src={Git} style={{ marginLeft: "0.5rem" }} />
               </Link>
               <Link>
                 <img src={ImgLink} style={{ marginLeft: "0.5rem" }} />
-                linustorvalds.com
+                {user.web_site}
               </Link>
             </Box>
           </Box>
@@ -309,7 +310,19 @@ const ProfilePage = () => {
             </Button>
           </Box>
         </Grid>
-        <Grid item></Grid>
+        <Grid item>
+          <Typography variant="h3">Cтатистика</Typography>
+
+          <center>
+            <Box
+              sx={{
+                width: "60vw",
+                height: "20vh",
+                border: "1px solid black",
+              }}
+            ></Box>
+          </center>
+        </Grid>
       </Grid>
     </Grid>
     //  </Container>
