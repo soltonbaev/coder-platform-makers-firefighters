@@ -65,9 +65,10 @@ const Questions = () => {
       });
    }, [searchParams]);
 
-   useEffect(async () => {
-      let data = await getQuestionsRaw();
-      setCount(data.count);
+   useEffect(() => {
+      getQuestionsRaw().then(data => {
+         setCount(data.count);
+      });
    }, []);
 
    // useEffect(() => {
