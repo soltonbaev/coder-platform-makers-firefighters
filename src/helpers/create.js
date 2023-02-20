@@ -6,10 +6,11 @@ import {getAccessConfig} from './read';
 export const Register = async formData => {
    try {
       const res = await axios.post(`${REGISTER}`, formData);
-      console.log(res);
-      console.log(REGISTER);
+      // console.log('Register res', res);
+      return res;
    } catch (error) {
       console.log(error);
+      return error;
    }
 };
 

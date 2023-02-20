@@ -1,5 +1,5 @@
 import {Box, Grid} from '@mui/material';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './Tags.css';
 import {styled, alpha} from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,9 +9,32 @@ import Search from '@mui/icons-material/Search';
 import RenderTag from './RenderTag';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import SearchBox from '../../Header/SearchBox';
+import {getTags} from '../../../helpers/read';
 
 const Tags = () => {
-   const {tagsArr} = useGlobalContext();
+   // const { tagsArr } = useGlobalContext();
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
+
+   const [tagsArr, setTagsArr] = useState('');
+
+   useEffect(() => {
+      getTags().then(res => {
+         // console.log("then res", res);
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
+
+         setTagsArr(res);
+      });
+   }, []);
+
    return (
       <Container maxWidth="lg">
          <Grid container direction="column">

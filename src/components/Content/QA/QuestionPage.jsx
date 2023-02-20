@@ -9,9 +9,10 @@ import MDEditor from '@uiw/react-md-editor';
 import {postAnswer} from '../../../helpers/create';
 import RenderAnswer from './RenderAnswer';
 import RenderMarkdown from './RenderMarkdown';
+import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 
 const QuestionPage = () => {
-   console.clear();
+   // console.clear();
    const navigate = useNavigate('');
    document.documentElement.setAttribute('data-color-mode', 'light');
 
@@ -34,8 +35,20 @@ const QuestionPage = () => {
       loadQuestion();
    }, []);
 
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
+
    function loadQuestion() {
       getQuestion(params.id).then(res => {
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
          console.log('getQuestion', res);
          setQuestion(res);
          setCreatedAt(formatDate(res.created_at));

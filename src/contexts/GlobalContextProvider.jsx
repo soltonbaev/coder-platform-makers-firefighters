@@ -32,15 +32,22 @@ function reducer(state = INIT_STATE, action) {
 }
 const GlobalContextProvider = ({children}) => {
    const [state, dispatch] = useReducer(reducer, INIT_STATE);
-
-   const BASE_URL = 'http://104.199.234.60/api/v1';
-
    const [user, setUser] = useState('');
    const [error, setError] = useState('');
 
-   const [tagsArr, setTagsArr] = useState('');
-
    const navigate = useNavigate();
+   //error handling
+   const [showToast, setShowToast] = useState(false);
+   const [toastMessage, setToastMessage] = useState('');
+   const [errorType, setErrorType] = useState('');
+
+   const [redirect, setRedirect] = useState('');
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
 
    const checkAuth = async () => {
       let token = getFromStorage('token');
@@ -54,22 +61,18 @@ const GlobalContextProvider = ({children}) => {
          });
          let user = await getUserProfile(uid);
          setUser(user);
+         setToast(
+            true,
+            'success',
+            `Пользователь найден. Добро пожаловать ${user.username}`
+         );
          // user.curent = user;
       } catch (error) {
+         setToast(true, 'error', error.message);
          // console.log(error);
          //  setError(error);
       }
    };
-
-   useEffect(() => {
-      if (localStorage.getItem('token')) {
-         checkAuth();
-      }
-      getTags().then(res => {
-         // console.log("then res", res);
-         setTagsArr(res);
-      });
-   }, []);
 
    const getUsers = async () => {
       let {data} = await axios(USER_LIST);
@@ -79,16 +82,20 @@ const GlobalContextProvider = ({children}) => {
       });
    };
 
-   //error handling
-
-   const [showToast, setShowToast] = React.useState(false);
-
    const value = {
       usersList: state.users,
       user,
       setUser,
-      tagsArr,
+
       getUsers,
+      showToast,
+      setShowToast,
+      toastMessage,
+      setToastMessage,
+      errorType,
+      setErrorType,
+      redirect,
+      setRedirect,
    };
 
    return (
