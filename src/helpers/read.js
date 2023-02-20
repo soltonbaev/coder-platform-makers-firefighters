@@ -8,8 +8,21 @@ export async function getTags() {
    console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(TAGS, getAccessConfig());
-      console.log('getTags results', res.data.results);
-      return res.data.results;
+      console.log('getTags results', res.data);
+      return res.data;
+   } catch (error) {
+      console.log(error);
+      return error;
+   }
+}
+
+export async function getTag(slug) {
+   // console.log('access config', getAccessConfig());
+   try {
+      let res = await axios.get(`${TAGS}${slug}/`);
+      console.log('getTag results', res);
+      console.log(`${TAGS}${slug}`);
+      return res.data;
    } catch (error) {
       console.log(error);
       return error;

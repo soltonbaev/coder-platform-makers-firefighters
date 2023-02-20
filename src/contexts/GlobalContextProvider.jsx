@@ -96,6 +96,7 @@ const GlobalContextProvider = ({children}) => {
       setErrorType,
       redirect,
       setRedirect,
+      setToast,
    };
 
    return (
