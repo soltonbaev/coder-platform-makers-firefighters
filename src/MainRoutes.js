@@ -12,7 +12,7 @@ import ProfilePage from "./components/Content/Profile/ProfilePage";
 
 import AskQuestion from "./components/Content/QA/AskQuestion";
 import QuestionPage from "./components/Content/QA/QuestionPage";
-
+import UserProfile from "./components/Content/Home/UserProfile";
 const MainRoutes = () => {
   return (
     <Routes>
@@ -27,6 +27,7 @@ const MainRoutes = () => {
       <Route path="/my-profile" element={<ProfilePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/editProfile" element={<EditProfile />} />
+      <Route path="/UserProfile" element={<UserProfile />} />
     </Routes>
   );
 };
