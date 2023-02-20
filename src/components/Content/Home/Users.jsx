@@ -1,32 +1,35 @@
 import { Block } from "@mui/icons-material";
-import { Grid } from "@mui/material";
+import { Avatar, Grid } from "@mui/material";
 import { borderRadius, Container } from "@mui/system";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
 // import Ernast from "./images/ernast.svg";
 import Fire from "./images/fireexting 1.svg";
 import bita from "./images/image 5.svg";
 
 const Users = () => {
-  const { getUsers, usersList } = useGlobalContext();
+  const { getUsers, usersList, user } = useGlobalContext();
   const navigate = useNavigate();
   //   console.log(usersList);
   useEffect(() => {
     getUsers();
   }, []);
   return (
-    <Container maxWidth="lg" sx={{ display: "flex" }}>
+    <Container maxWidth="lg" sx={{ display: "flex", textAlign: "baseline" }}>
       <div>
         <Grid
           sx={{
-            paddingTop: "3%",
+            padding: "3%",
             display: "block",
             backgroundColor: " rgba(217, 217, 217, 1)",
-            width: "48%",
-            height: "100%",
+            // width: "48%",
+            // height: "100%",
             textAlign: "center",
             borderRadius: "8px",
+            width: "70%",
+            height: "45%",
+            marginTop: "8%",
           }}
         >
           <Grid item>Фильтрация пользователей</Grid>
@@ -34,11 +37,8 @@ const Users = () => {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              justifyContent: "space-between",
-              alignItems: "center",
-              textAlign: "center",
-              marginLeft: "6%",
-              width: "70%",
+
+              //   width: "60%",
             }}
           >
             <span
@@ -48,6 +48,11 @@ const Users = () => {
                 borderRadius: "8px",
                 marginLeft: "5%",
                 marginTop: "5%",
+                //  fontFamily: "Raleway",
+                //  fontSize: " 12px",
+                //  fontWeight: " 400",
+                //  lineHeight: " 14px",
+                //  textAlign: "center",
               }}
             >
               по репутации
@@ -123,7 +128,7 @@ const Users = () => {
           </Grid>
         </Grid>
       </div>
-      <div style={{ display: "block", width: "100%" }}>
+      <div style={{ display: "block", width: "100%", marginRight: "4px" }}>
         <h1>Пользователи</h1>
         <Grid container style={{ display: "flex", flexWrap: "wrap" }}>
           {usersList.map((user) => (
@@ -140,7 +145,6 @@ const Users = () => {
                 paddingBottom: "3%",
                 marginTop: "2%",
                 marginRight: "4%",
-                marginLeft: "4%",
               }}
               //   onClick={() => navigate("/userProfile")}
             >
@@ -150,7 +154,7 @@ const Users = () => {
               >
                 <Grid item>
                   {/* <img src="#" alt="Эрнас “Сладкая душа”" /> */}
-                  {/* {user.user_photo} */}
+                  <Avatar src={user.user_photo}></Avatar>
                 </Grid>
                 <Grid item style={{ marginLeft: "5%  ", width: "60%" }}>
                   <div
@@ -163,7 +167,7 @@ const Users = () => {
                       textAlign: "left",
                     }}
                   >
-                    {user.username}
+                    <Link to={`/users/${user.id}`}>{user.username}</Link>
                   </div>
                   <div
                     style={{
@@ -176,7 +180,7 @@ const Users = () => {
                       marginBottom: "3%",
                     }}
                   >
-                    {user.email}
+                    {user.about_me}
                   </div>
                 </Grid>
               </Grid>
@@ -191,15 +195,19 @@ const Users = () => {
                   }}
                 >
                   <div style={{ color: " rgba(170, 104, 0, 1)" }}>
-                    Голосов: 200
+                    Голосов:200
                   </div>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img src={Fire} alt="" />
-                    <div style={{ color: " rgba(170, 104, 0, 1)" }}> 2 </div>
+                    <div style={{ color: " rgba(170, 104, 0, 1)" }}>
+                      {user.is_fireman}3
+                    </div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <img src={bita} alt="" />
-                    <div style={{ color: " rgba(170, 104, 0, 1)" }}> 3</div>
+                    <div style={{ color: " rgba(170, 104, 0, 1)" }}>
+                      {user.is_mentor}5
+                    </div>
                   </div>
                 </div>
                 <div

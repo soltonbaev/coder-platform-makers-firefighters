@@ -62,7 +62,7 @@ import { getQuestions } from "../../../helpers/read";
 // ];
 const Questions = () => {
   console.clear();
-  console.group("Questions group");
+  // console.group("Questions group");
 
   const navigate = useNavigate();
   const [questions, setQuestions] = useState("");

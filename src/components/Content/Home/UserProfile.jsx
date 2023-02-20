@@ -1,24 +1,34 @@
 import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
-import { Container } from "@mui/system";
-import React, { useEffect } from "react";
+import { borderRadius, Container } from "@mui/system";
+import React, { useEffect, useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Tg from "../Profile/tg.svg";
 import Git from "../Profile/git.svg";
 import ImgLink from "../Profile/imgLink.svg";
 import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
+import { getUserProfile } from "../../../helpers/read";
 
 const UserPage = () => {
-  const { getUsers, usersList, user } = useGlobalContext();
+  const params = useParams();
+  const [user, setUser] = useState("");
+  //   const { getUsers, usersList, user } = useGlobalContext();
   //   console.log(user.name);
   //   console.log(user.last_name);
 
-  console.log(usersList);
+  //   const userfFunc = (user) => {
+  //     getUserProfile(user);
+  // //   };
+  //   console.log(user);
   useEffect(() => {
-    getUsers();
+    getUserProfile(params.id).then((res) => {
+      setUser(res);
+    });
+    // getUsers();
   }, []);
 
   const navigate = useNavigate();
+
   return (
     //  <Container>
     <Grid
@@ -27,187 +37,6 @@ const UserPage = () => {
         marginBottom: "50px",
       }}
     >
-      {/* <Grid
-        item
-        sx={{
-          width: "20vw",
-          height: "90vh",
-          backgroundColor: "rgb(217 217 217)",
-          margin: "30px",
-          borderRadius: "10px",
-        }}
-      >
-        <Grid
-          item
-          sx={{
-            marginTop: "20px",
-          }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              textAlign: "center",
-              fontWeight: "400",
-              fontSize: "24px",
-              lineHeight: "28px",
-              paddingBottom: "2rem",
-              color: "#474747",
-            }}
-          >
-            Уголок Пользователя
-          </Typography>
-          <Typography
-            sx={{
-              display: "flex",
-              textAlign: "center",
-              flexDirection: "column",
-              rowGap: "15px",
-              color: "#b0761b",
-            }}
-          >
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Профиль
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Активность
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Закладки
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Настройки
-              </Typography>
-            </Link>
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          sx={{
-            marginTop: "20px",
-          }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              textAlign: "center",
-              fontWeight: "400",
-              fontSize: "24px",
-              lineHeight: "28px",
-              paddingBottom: "1.5rem",
-              color: "#474747",
-            }}
-          >
-            Мои Группы
-          </Typography>
-          <Typography
-            sx={{
-              display: "flex",
-              textAlign: "center",
-              flexDirection: "column",
-              rowGap: "15px",
-            }}
-          >
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Линуксоиды
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                JS28
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Py24
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Hackers
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                MAckers Mentors
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Programmers
-              </Typography>
-            </Link>
-            <Link>
-              <Typography
-                sx={{
-                  color: "#b0761b",
-                }}
-              >
-                Git Rockstars
-              </Typography>
-            </Link>
-          </Typography>
-          <Link>
-            <Typography
-              sx={{
-                color: "#474747",
-                textAlign: "center",
-
-                marginTop: "2rem",
-              }}
-            >
-              Показать все группы...
-            </Typography>
-          </Link>
-        </Grid>
-      </Grid> */}
       <Grid
         item
         sx={{
@@ -225,7 +54,13 @@ const UserPage = () => {
         >
           <Box>
             <Avatar
-              sx={{ width: "16vw", height: "30vh" }}
+              sx={{
+                height: "128px",
+                width: "128px",
+                left: " 0px",
+                top: " 0px",
+                borderRadius: "64px",
+              }}
               alt="Remy Sharp"
               src={user.user_photo}
             />
@@ -237,41 +72,31 @@ const UserPage = () => {
           >
             <Typography
               sx={{
-                fontWeight: "700",
-                fontSize: "30px",
-                lineHeight: "35px",
-              }}
-            >
-              {user.name}
-            </Typography>
-            <Typography
-              sx={{
                 fontWeight: "400",
                 fontSize: "16px",
                 lineHeight: "18px",
-                color: "#AA6800",
+                color: "rgba(71, 71, 71, 1)",
               }}
             >
-              участник с 22 апреля, 2021 года
+              {user.name} {user.last_name}
             </Typography>
 
+            <Typography
+              sx={{
+                fontWeight: "400",
+                fontSize: "13px",
+                lineHeight: "18px",
+                color: "rgba(170, 104, 0, 1)",
+              }}
+            >
+              участник с:{user.date_joined}
+            </Typography>
             <Box
               sx={{
                 display: "flex",
                 marginTop: "1.5rem",
               }}
             >
-              <Typography
-                sx={{
-                  fontWeight: "400",
-                  fontSize: "16px",
-                  lineHeight: "18px",
-                  color: "#474747",
-                  marginRight: "4%",
-                }}
-              >
-                {user.username}
-              </Typography>
               <Typography
                 sx={{
                   fontWeight: "400",
@@ -290,7 +115,7 @@ const UserPage = () => {
                   color: "#004605",
                 }}
               >
-                Пожарный,ментор,админ
+                {user.is_fireman} {user.is_mentor}
               </Typography>
             </Box>
             <Box
@@ -298,20 +123,48 @@ const UserPage = () => {
                 marginTop: "0.5rem",
               }}
             >
-              <Link>
+              <Link to={user.telegram_account}>
                 <img src={Tg} />
               </Link>
-              <Link>
+              <Link to={user.github_account}>
+                {/* <a src={user.github_account}></a> */}
+
                 <img src={Git} style={{ marginLeft: "0.5rem" }} />
               </Link>
-              <Link>
+              <Link to={user.web_site}>
                 <img src={ImgLink} style={{ marginLeft: "0.5rem" }} />
-                {user.web_site}
               </Link>
+            </Box>
+            <Box>
+              Обо мне
+              <Typography
+                sx={{
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "18px",
+                  color: "#AA6800",
+                  border: "1px solid rgba(217, 217, 217, 1)",
+                  borderRadius: "5px",
+                  paddin: "10px",
+                }}
+              >
+                <p
+                  style={{
+                    margin: "2%",
+                    color: "rgba(71, 71, 71, 1)",
+                    fontFamily: "Raleway",
+                    fontSize: "16px",
+                    fontWeight: " 400",
+                    linHeight: "19px",
+                    textalign: "left",
+                  }}
+                >
+                  {user.about_me}
+                </p>
+              </Typography>
             </Box>
           </Box>
         </Grid>
-        <Grid item></Grid>
       </Grid>
     </Grid>
     //  </Container>
