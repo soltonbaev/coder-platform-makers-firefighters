@@ -1,20 +1,54 @@
 import { Block } from "@mui/icons-material";
 import { Avatar, Grid } from "@mui/material";
 import { borderRadius, Container } from "@mui/system";
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
+import { USER_LIST } from "../../../helpers/globals";
 // import Ernast from "./images/ernast.svg";
 import Fire from "./images/fireexting 1.svg";
 import bita from "./images/image 5.svg";
 
+const INIT_STATE = {
+  users: [],
+};
+
+function reducer(state = INIT_STATE, action) {
+  switch (action.type) {
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload.results,
+        //   pages: Math.ceil(action.payload.count / 6),
+      };
+  }
+}
+
 const Users = () => {
-  const { getUsers, usersList, user } = useGlobalContext();
+  const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const [user, setUser] = useState("");
+  const usersList = state.users;
+
   const navigate = useNavigate();
   //   console.log(usersList);
   useEffect(() => {
     getUsers();
   }, []);
+
+  const getUsers = async () => {
+    let { data } = await axios(USER_LIST);
+    dispatch({
+      type: "GET_USERS",
+      payload: data,
+    });
+  };
+
+  const mentor = () => {
+    if (user.is_mentor === true) {
+    }
+  };
+
   return (
     <Container maxWidth="lg" sx={{ display: "flex", textAlign: "baseline" }}>
       <div>
