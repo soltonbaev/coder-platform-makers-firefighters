@@ -2,6 +2,7 @@ import axios from 'axios';
 import {PROFILE} from './globals';
 import {getAccessConfig} from './read';
 export async function updateUser(id, formData) {
+
    try {
       let config = getAccessConfig();
       console.log(config);
