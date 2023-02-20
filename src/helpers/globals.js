@@ -1,4 +1,4 @@
-const BASE_URL = "http://104.199.234.60/api/v1";
+const BASE_URL = " https://makersoverflow.net/api/v1";
 
 // login and logout
 export const LOGIN = BASE_URL + "/login/";
