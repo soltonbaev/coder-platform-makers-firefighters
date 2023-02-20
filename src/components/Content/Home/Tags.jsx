@@ -10,14 +10,13 @@ import RenderTag from './RenderTag';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import SearchBox from '../../Header/SearchBox';
 import {getTags} from '../../../helpers/read';
+import {useSearchParams} from 'react-router-dom';
 
 const Tags = () => {
    // const { tagsArr } = useGlobalContext();
+   const [searchParams, setSearchParams] = useSearchParams();
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
-   const [page, setPage] = useState(1);
-   const handleChange = (event, value) => {
-      setPage(value);
-   };
+   const [currentPage, setCurrentPage] = useState(1);
 
    function setToast(showToast, errorType, toastMessage) {
       setShowToast(showToast);
@@ -37,6 +36,21 @@ const Tags = () => {
          setTagsObj(res);
       });
    }, []);
+
+   useEffect(() => {
+      getTags().then(res => {
+         setTagsObj(res);
+         console.log('tagsObj', res);
+         // console.log('getQuestions res', res);
+      });
+   }, [searchParams]);
+
+   useEffect(() => {
+      setSearchParams({
+         page: currentPage,
+      });
+      //  console.log(currentPage);
+   }, [currentPage]);
 
    return (
       <Container maxWidth="lg">
@@ -90,9 +104,11 @@ const Tags = () => {
          </Grid>
          <Grid item>
             <Pagination
-               count={tagsObj.count / 10}
-               page={page}
-               onChange={handleChange}
+               count={Math.ceil(tagsObj.count / 10)}
+               page={currentPage}
+               onChange={(e, p) => {
+                  setCurrentPage(p);
+               }}
             />
          </Grid>
       </Container>

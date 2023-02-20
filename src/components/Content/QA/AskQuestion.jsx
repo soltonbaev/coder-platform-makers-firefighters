@@ -30,7 +30,7 @@ const AskQuestion = () => {
       setToastMessage(toastMessage);
    }
 
-   const [tagsArr, setTagsArr] = useState('');
+   const [tagsObj, setTagsObj] = useState('');
 
    useEffect(() => {
       getTags().then(res => {
@@ -40,7 +40,7 @@ const AskQuestion = () => {
             return;
          }
 
-         setTagsArr(res);
+         setTagsObj(res);
       });
    }, []);
 
@@ -69,7 +69,7 @@ const AskQuestion = () => {
    }
    return (
       <>
-         {tagsArr && (
+         {tagsObj && (
             <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
                <h1>Задайте вопрос</h1>
                <h2>Заголовок для вопроса</h2>
@@ -95,7 +95,11 @@ const AskQuestion = () => {
             style={{whiteSpace: 'pre-wrap'}}
          /> */}
                <h2>Тэги</h2>
-               <AddTags tagsArr={tagsArr} tags={tags} setTags={setTags} />
+               <AddTags
+                  tagsArr={tagsObj.results}
+                  tags={tags}
+                  setTags={setTags}
+               />
                <h2>Похожие вопросы</h2>
                <Box sx={{border: '1px solid #D9D9D9', minHeight: '30vh'}}></Box>
                <Button
