@@ -22,12 +22,12 @@ const MainRoutes = () => {
       <Route path="/groups" element={<FindGroups />} />
       <Route path="/ask-question" element={<AskQuestion />} />
       <Route path="/questions/:id" element={<QuestionPage />} />
-      <Route path="/users/:id" element={<RenderUserProfile />} />
+      {/* <Route path="/users/:id" element={<RenderUserProfile />} /> */}
       <Route path="/auth" element={<Auth />} />
       <Route path="/my-profile" element={<ProfilePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/editProfile" element={<EditProfile />} />
-      <Route path="/UserProfile" element={<UserProfile />} />
+      <Route path="/users/:id" element={<UserProfile />} />
     </Routes>
   );
 };
