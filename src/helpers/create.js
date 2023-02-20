@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {REFRESH, REGISTER} from './globals';
+import {ANSWERS, REFRESH, REGISTER} from './globals';
 import {QUESTIONS} from './globals';
 import {getAccessConfig} from './read';
 
@@ -30,4 +30,9 @@ export async function tokenRefresh(token) {
 export async function postQuestion(data) {
    let res = await axios.post(QUESTIONS, data, getAccessConfig());
    console.log('postQuestion result', res);
+}
+
+export async function postAnswer(data) {
+   let res = await axios.post(ANSWERS, data, getAccessConfig());
+   console.log('postAnswerResult', res);
 }

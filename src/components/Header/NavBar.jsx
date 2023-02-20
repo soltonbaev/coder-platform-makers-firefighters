@@ -1,3 +1,4 @@
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -32,7 +33,18 @@ const NavBar = () => {
          >
             <Box sx={{display: 'flex', alignItems: 'center'}}>
                <Logo />
-               <SearchBox />
+               <SearchBox
+                  style={{
+                     height: '4vh',
+                     width: '30vw',
+                     borderColor: 'darkgray',
+                     backgroundColor: '#D9D9D9',
+                     borderRadius: '0.3rem',
+                     paddingLeft: '10%',
+                     borderStyle: 'none',
+                  }}
+                  placeholder="искать вопросы"
+               />
                <RightSideIcons />
             </Box>
          </Container>

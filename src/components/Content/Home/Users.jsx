@@ -11,7 +11,7 @@ import bita from "./images/image 5.svg";
 const Users = () => {
   const { getUsers, usersList } = useGlobalContext();
   const navigate = useNavigate();
-  console.log(usersList);
+  //   console.log(usersList);
   useEffect(() => {
     getUsers();
   }, []);
@@ -142,6 +142,7 @@ const Users = () => {
                 marginRight: "4%",
                 marginLeft: "4%",
               }}
+              //   onClick={() => navigate("/userProfile")}
             >
               <Grid
                 item
@@ -149,6 +150,7 @@ const Users = () => {
               >
                 <Grid item>
                   {/* <img src="#" alt="Эрнас “Сладкая душа”" /> */}
+                  {/* {user.user_photo} */}
                 </Grid>
                 <Grid item style={{ marginLeft: "5%  ", width: "60%" }}>
                   <div
@@ -161,7 +163,7 @@ const Users = () => {
                       textAlign: "left",
                     }}
                   >
-                    {user.name}
+                    {user.username}
                   </div>
                   <div
                     style={{
@@ -174,8 +176,7 @@ const Users = () => {
                       marginBottom: "3%",
                     }}
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et
+                    {user.email}
                   </div>
                 </Grid>
               </Grid>
@@ -262,7 +263,6 @@ const Users = () => {
             </Grid>
           ))}
         </Grid>
-        <button onClick={() => navigate("/aboutMe")}>click</button>
       </div>
     </Container>
   );

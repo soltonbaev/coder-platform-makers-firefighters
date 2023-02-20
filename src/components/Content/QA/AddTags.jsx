@@ -14,7 +14,7 @@ export const AddTags = ({tagsArr, tags, setTags}) => {
 
    useEffect(() => {}, []);
 
-   const suggestions = tagsArr?.map(tag => {
+   const suggestions = tagsArr.map(tag => {
       return {
          id: tag.title,
          text: tag.title,
@@ -22,7 +22,7 @@ export const AddTags = ({tagsArr, tags, setTags}) => {
    });
 
    const tagInputArr = [];
-   tagsArr?.map(tag => {
+   tagsArr.map(tag => {
       tagInputArr.push({id: tag.title, text: tag.title});
    });
 
