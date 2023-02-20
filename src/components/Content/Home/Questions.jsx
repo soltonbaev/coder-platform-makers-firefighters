@@ -7,11 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./q.css";
 import RenderQuestion from "./RenderQuestion";
 import SideBar from "./Sidebar";
-import { getQuestions } from "../../../helpers/read";
+import { getQuestions, getQuestionsRaw } from "../../../helpers/read";
 
 // const questions = [
 //    {
@@ -61,17 +61,45 @@ import { getQuestions } from "../../../helpers/read";
 //    },
 // ];
 const Questions = () => {
-  console.clear();
   // console.group("Questions group");
 
   const navigate = useNavigate();
   const [questions, setQuestions] = useState("");
+  const [count, setCount] = useState();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  let total = Math.ceil(count / 10);
+
   useEffect(() => {
-    getQuestions().then((res) => {
-      setQuestions(res);
+    getQuestionsRaw().then((res) => {
+      setQuestions(res.results);
       console.log("getQuestions res", res);
     });
   }, []);
+
+  useEffect(() => {
+    getQuestionsRaw().then((res) => {
+      setQuestions(res.results);
+      console.log("getQuestions res", res);
+    });
+  }, [searchParams]);
+
+  useEffect(async () => {
+    let data = await getQuestionsRaw();
+    setCount(data.count);
+  }, []);
+
+  // useEffect(() => {
+  //   getQuestions();
+  // }, [searchParams]);
+
+  useEffect(() => {
+    setSearchParams({
+      page: currentPage,
+    });
+    console.log(currentPage);
+  }, [currentPage]);
 
   return (
     <Container maxWidth="lg" sx={{ minHeight: "60vh" }}>
@@ -125,7 +153,11 @@ const Questions = () => {
               })}
           </Box>
           <Box>
-            <Pagination />
+            <Pagination
+              count={total}
+              page={currentPage}
+              onChange={(e, p) => setCurrentPage(p)}
+            />
           </Box>
         </Grid>
       </Grid>

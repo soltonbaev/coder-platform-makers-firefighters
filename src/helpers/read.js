@@ -64,9 +64,18 @@ export const login = async (formData) => {
 
 export async function getQuestions() {
   let res = await axios(QUESTIONS);
-  console.log("getQuestions result", res);
-
+  console.error("getQuestions result", res.data);
+  console.log(res.data);
+  console.log(res.data.results);
   return res.data.results;
+  //   console.log(res.data.results);
+}
+
+export async function getQuestionsRaw() {
+  let res = await axios(QUESTIONS + window.location.search);
+  console.error("getQuestions result", res.data);
+
+  return res.data;
   //   console.log(res.data.results);
 }
 
