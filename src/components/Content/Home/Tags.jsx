@@ -52,6 +52,7 @@ const Tags = () => {
                tagsArr.map(tag => {
                   return (
                      <RenderTag
+                        key={tag.slug}
                         title={tag.title}
                         description={tag.description}
                      />

@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import Tg from "../Profile/tg.svg";
@@ -8,8 +8,16 @@ import Git from "../Profile/git.svg";
 import ImgLink from "../Profile/imgLink.svg";
 import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
 
-const RenderUserPage = () => {
-  const { user } = useGlobalContext();
+const UserPage = () => {
+  const { getUsers, usersList, user } = useGlobalContext();
+  //   console.log(user.name);
+  //   console.log(user.last_name);
+
+  console.log(usersList);
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   const navigate = useNavigate();
   return (
     //  <Container>
@@ -19,7 +27,7 @@ const RenderUserPage = () => {
         marginBottom: "50px",
       }}
     >
-      <Grid
+      {/* <Grid
         item
         sx={{
           width: "20vw",
@@ -199,11 +207,13 @@ const RenderUserPage = () => {
             </Typography>
           </Link>
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid
         item
         sx={{
           marginTop: "1.5rem",
+          width: "100%",
+          marginLeft: "5%",
         }}
       >
         <Grid
@@ -217,7 +227,7 @@ const RenderUserPage = () => {
             <Avatar
               sx={{ width: "16vw", height: "30vh" }}
               alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              src={user.user_photo}
             />
           </Box>
           <Box
@@ -232,7 +242,7 @@ const RenderUserPage = () => {
                 lineHeight: "35px",
               }}
             >
-              {user.name} {user.last_name}
+              {user.name}
             </Typography>
             <Typography
               sx={{
@@ -251,6 +261,17 @@ const RenderUserPage = () => {
                 marginTop: "1.5rem",
               }}
             >
+              <Typography
+                sx={{
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "18px",
+                  color: "#474747",
+                  marginRight: "4%",
+                }}
+              >
+                {user.username}
+              </Typography>
               <Typography
                 sx={{
                   fontWeight: "400",
@@ -285,29 +306,9 @@ const RenderUserPage = () => {
               </Link>
               <Link>
                 <img src={ImgLink} style={{ marginLeft: "0.5rem" }} />
-                linustorvalds.com
+                {user.web_site}
               </Link>
             </Box>
-          </Box>
-          <Box
-            sx={{
-              marginLeft: "20%",
-            }}
-          >
-            <Button
-              onClick={() => navigate("/editProfile")}
-              sx={{
-                fontWeight: "400",
-                fontSize: "16px",
-                lineHeight: "18px",
-                color: "#474747",
-                textAlign: "center",
-                border: "1px solid #474747",
-                borderRadius: "5px",
-              }}
-            >
-              Редактировать профиль
-            </Button>
           </Box>
         </Grid>
         <Grid item></Grid>
@@ -317,4 +318,4 @@ const RenderUserPage = () => {
   );
 };
 
-export default RenderUserPage;
+export default UserPage;

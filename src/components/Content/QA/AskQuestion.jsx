@@ -32,7 +32,12 @@ const AskQuestion = () => {
       formData.append('title', questionTitle);
       formData.append('body', markdown);
       formData.append('tag', preppedTags);
-      user ? await postQuestion(formData) : navigate('/login');
+      if (user) {
+         let thisQuestionSlug = await postQuestion(formData);
+         navigate(`/questions/${thisQuestionSlug}`);
+      } else {
+         navigate('/login');
+      }
    }
    return (
       <>
