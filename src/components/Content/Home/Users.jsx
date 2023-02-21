@@ -1,4 +1,4 @@
-import { Avatar, Grid, Pagination } from "@mui/material";
+import { Avatar, Box, Grid, Pagination } from "@mui/material";
 import { Container } from "@mui/system";
 import axios from "axios";
 import React, {
@@ -306,7 +306,6 @@ const Users = () => {
               </div>
             </Grid>
           ))}
-          {/* <Pagination count={10} /> */}
         </Grid>
       </div>
     </Container>
