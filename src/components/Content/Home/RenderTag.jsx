@@ -21,12 +21,15 @@ const RenderTag = ({title, slug, description}) => {
             <span
                style={{
                   borderRadius: '0.3rem',
+                  fontSize: '0.8rem',
                   color: 'white',
                   backgroundColor: '#AA6800',
                   padding: '0.1rem 0.3rem',
                }}
             >
-               <Link to={`/tags/${slug}`}>{title}</Link>
+               <Link style={{color: 'white'}} to={`/tags/${slug}`}>
+                  {title}
+               </Link>
             </span>
          </Grid>
          <Grid item sx={{margin: '0.5rem 0', fontSize: '0.8rem'}}>
