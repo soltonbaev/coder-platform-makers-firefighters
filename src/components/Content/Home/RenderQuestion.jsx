@@ -12,6 +12,9 @@ const RenderQuestion = ({
    username,
    isAnswered,
    slug,
+   setShowSearch,
+   showSearch,
+   setSearchInp,
 }) => {
    const [questionObj, setQuestionObj] = useState('');
    //  const [uName, setUName] = useState('');
@@ -49,7 +52,14 @@ const RenderQuestion = ({
          </Grid>
          <Grid item container sx={{gap: '1rem'}}>
             <Grid item>
-               <Link to={`/questions/${slug}`} state={questionObj}>
+               <Link
+                  to={`/questions/${slug}`}
+                  state={questionObj}
+                  onClick={() => {
+                     setShowSearch && setShowSearch(false);
+                     setSearchInp && setSearchInp('');
+                  }}
+               >
                   {question}
                </Link>
             </Grid>

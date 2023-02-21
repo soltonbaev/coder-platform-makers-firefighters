@@ -90,6 +90,16 @@ export async function getQuestions() {
    }
 }
 
+export async function searchQuestions(query) {
+   try {
+      let res = await axios(QUESTIONS + '?search=' + query);
+      console.log('searchQuestions result', res);
+      return res.data.results;
+   } catch (error) {
+      return error;
+   }
+}
+
 export async function getQuestionsRaw() {
    let res = await axios(QUESTIONS + window.location.search);
    console.error('getQuestions result', res.data);

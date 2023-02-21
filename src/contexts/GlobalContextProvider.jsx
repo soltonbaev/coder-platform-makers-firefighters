@@ -25,6 +25,9 @@ const GlobalContextProvider = ({children}) => {
    const [errorType, setErrorType] = useState('');
    const [toastMessage, setToastMessage] = useState('');
    const [redirect, setRedirect] = useState('');
+   const [showSearch, setShowSearch] = useState(false);
+   const [searchResults, setSearchResults] = useState([]);
+   const [searchInp, setSearchInp] = useState('');
 
    function setToast(showToast, errorType, toastMessage) {
       setShowToast(showToast);
@@ -64,7 +67,12 @@ const GlobalContextProvider = ({children}) => {
    const value = {
       user,
       setUser,
-
+      showSearch,
+      setShowSearch,
+      searchResults,
+      setSearchResults,
+      searchInp,
+      setSearchInp,
       showToast,
       setShowToast,
       toastMessage,
