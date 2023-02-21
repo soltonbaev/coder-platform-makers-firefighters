@@ -16,32 +16,13 @@ import {USER_LIST} from '../helpers/globals';
 export const globalContext = createContext();
 export const useGlobalContext = () => useContext(globalContext);
 
-const INIT_STATE = {
-   users: [],
-};
 
-function reducer(state = INIT_STATE, action) {
-   switch (action.type) {
-      case 'GET_USERS':
-         return {
-            ...state,
-            users: action.payload.results,
-            //   pages: Math.ceil(action.payload.count / 6),
-         };
-   }
-}
-const GlobalContextProvider = ({children}) => {
-   const [state, dispatch] = useReducer(reducer, INIT_STATE);
-   const [user, setUser] = useState('');
-   const [error, setError] = useState('');
+const GlobalContextProvider = ({ children }) => {
+  const BASE_URL = "http://104.199.234.60/api/v1";
 
-   const navigate = useNavigate();
-   //error handling
-   const [showToast, setShowToast] = useState(false);
-   const [toastMessage, setToastMessage] = useState('');
-   const [errorType, setErrorType] = useState('');
+  const [error, setError] = useState("");
+  const [user, setUser] = useState("");
 
-   const [redirect, setRedirect] = useState('');
 
    function setToast(showToast, errorType, toastMessage) {
       setShowToast(showToast);
@@ -86,12 +67,13 @@ const GlobalContextProvider = ({children}) => {
       checkAuth();
    }, []);
 
+
    const value = {
-      usersList: state.users,
+   
       user,
       setUser,
 
-      getUsers,
+
       showToast,
       setShowToast,
       toastMessage,
@@ -103,6 +85,7 @@ const GlobalContextProvider = ({children}) => {
       setToast,
       checkAuth,
    };
+
 
    return (
       <globalContext.Provider value={value}>{children}</globalContext.Provider>

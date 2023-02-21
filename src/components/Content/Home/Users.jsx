@@ -1,24 +1,176 @@
-import {Block} from '@mui/icons-material';
-import {Avatar, Grid} from '@mui/material';
-import {borderRadius, Container} from '@mui/system';
-import React, {useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
-// import Ernast from "./images/ernast.svg";
-import Fire from './images/fireexting 1.svg';
-import bita from './images/image 5.svg';
+
+import { Avatar, Grid, Pagination } from "@mui/material";
+import { Container } from "@mui/system";
+import axios from "axios";
+import React, {
+  useEffect,
+  useReducer,
+  useState,
+  createContext,
+  useContext,
+} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { USER_LIST } from "../../../helpers/globals";
+import Fire from "./images/fireexting 1.svg";
+import bita from "./images/image 5.svg";
+
+export const userContext = createContext();
+export const useUserContext = () => useContext(userContext);
+
+const INIT_STATE = {
+  users: [],
+};
+
+function reducer(state = INIT_STATE, action) {
+  switch (action.type) {
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload.results,
+        //   pages: Math.ceil(action.payload.count / 6),
+      };
+  }
+}
 
 const Users = () => {
-   const {getUsers, usersList, user} = useGlobalContext();
-   const navigate = useNavigate();
-   //   console.log(usersList);
-   useEffect(() => {
-      getUsers();
-   }, []);
 
-   return (
-      <Container maxWidth="lg" sx={{display: 'flex', textAlign: 'baseline'}}>
-         <div>
+  const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const [user, setUser] = useState("");
+  const usersList = state.users;
+
+  const navigate = useNavigate();
+  //   console.log(usersList);
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    let { data } = await axios(USER_LIST);
+    dispatch({
+      type: "GET_USERS",
+      payload: data,
+    });
+  };
+
+  return (
+    <Container maxWidth="lg" sx={{ display: "flex", textAlign: "baseline" }}>
+      <div>
+        <Grid
+          sx={{
+            padding: "3%",
+            display: "block",
+            backgroundColor: " rgba(217, 217, 217, 1)",
+            // width: "48%",
+            // height: "100%",
+            textAlign: "center",
+            borderRadius: "8px",
+            width: "70%",
+            height: "45%",
+            marginTop: "8%",
+          }}
+        >
+          <Grid item>Фильтрация пользователей</Grid>
+          <Grid
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+
+              //   width: "60%",
+            }}
+          >
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+                //  fontFamily: "Raleway",
+                //  fontSize: " 12px",
+                //  fontWeight: " 400",
+                //  lineHeight: " 14px",
+                //  textAlign: "center",
+              }}
+            >
+              по репутации
+            </span>{" "}
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+              // onClick={mentor}
+            >
+              новые
+            </span>{" "}
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              голосующие
+            </span>{" "}
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              админы
+            </span>{" "}
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              трекеры
+            </span>{" "}
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+            >
+              менторы
+            </span>
+            <span
+              style={{
+                border: "1px solid rgba(0, 70, 5, 1)",
+                color: "rgba(0, 70, 5, 1)",
+
+                borderRadius: "8px",
+                marginLeft: "5%",
+                marginTop: "5%",
+              }}
+              s
+            >
+              кураторы
+            </span>
+          </Grid>
+        </Grid>
+      </div>
+      <div style={{ display: "block", width: "100%", marginRight: "4px" }}>
+        <h1>Пользователи</h1>
+        <Grid container style={{ display: "flex", flexWrap: "wrap" }}>
+          {usersList.map((user) => (
+
             <Grid
                sx={{
                   padding: '3%',
@@ -277,9 +429,14 @@ const Users = () => {
                   </Grid>
                ))}
             </Grid>
-         </div>
-      </Container>
-   );
+
+          ))}
+          {/* <Pagination count={10} /> */}
+        </Grid>
+      </div>
+    </Container>
+  );
+
 };
 
 export default Users;
