@@ -13,7 +13,8 @@ import {useGlobalContext} from '../../contexts/GlobalContextProvider';
 import './Footer.css';
 import {clearStorage} from '../../helpers/delete';
 const Footer = () => {
-   const {user, setUser, tagsArr} = useGlobalContext();
+   const {user, setUser, tagsArr, setShowToast, setErrorType, setToastMessage} =
+      useGlobalContext();
    const navigate = useNavigate();
    function handleLogOut() {
       clearStorage();
@@ -106,11 +107,14 @@ const Footer = () => {
                         console.group('Test button group');
                         // console.log('user', user);
                         // console.log(tagsArr);
-                        getQuestions();
+                        // getQuestions();
                         // testRegister(formData);
                         // await getTags();
                         // await testLogin();
                         // console.log('Tokens from storage:', getFromStorage());
+                        setShowToast(true);
+                        setErrorType('error');
+                        setToastMessage('Test error');
                         console.groupEnd();
                      }}
                   >

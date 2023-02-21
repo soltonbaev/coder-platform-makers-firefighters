@@ -8,11 +8,24 @@ export async function getTags() {
    console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(TAGS, getAccessConfig());
-
-      console.log('getTags results', res.data.results);
-      return res.data.results;
+      console.log('getTags results', res.data);
+      return res.data;
    } catch (error) {
       console.log(error);
+      return error;
+   }
+}
+
+export async function getTag(slug) {
+   // console.log('access config', getAccessConfig());
+   try {
+      let res = await axios.get(`${TAGS}${slug}/`);
+      console.log('getTag results', res);
+      console.log(`${TAGS}${slug}`);
+      return res.data;
+   } catch (error) {
+      console.log(error);
+      return error;
    }
 }
 
@@ -25,13 +38,17 @@ export function getFromStorage(type) {
 }
 
 export function getAccessConfig() {
-   const accessToken = getFromStorage('token').access;
-   const Authorization = `Bearer ${accessToken}`;
-   return {
-      headers: {
-         Authorization,
-      },
-   };
+   try {
+      const accessToken = getFromStorage('token').access;
+      const Authorization = `Bearer ${accessToken}`;
+      return {
+         headers: {
+            Authorization,
+         },
+      };
+   } catch (error) {
+      console.log(error);
+   }
 }
 
 export async function getUserProfile(id) {
@@ -58,18 +75,49 @@ export const login = async formData => {
       return userProfileRes;
    } catch (error) {
       console.log('Login failed');
-      console.log(error);
+      console.log('login error', error);
+      return error;
    }
 };
 
 export async function getQuestions() {
-   let res = await axios(QUESTIONS);
-   console.log('getQuestions result', res);
-   return res.data.results;
+   try {
+      let res = await axios(QUESTIONS);
+      // console.log('getQuestions result', res);
+      return res.data.results;
+   } catch (error) {
+      return error;
+   }
+}
+
+export async function getQuestionsRaw() {
+   let res = await axios(QUESTIONS + window.location.search);
+   console.error('getQuestions result', res.data);
+
+   return res.data;
+   //   console.log(res.data.results);
 }
 
 export async function getQuestion(slug) {
-   let res = await axios(QUESTIONS + slug);
-   console.log('getQuestion result', res);
-   return res.data;
+   try {
+      let res = await axios(QUESTIONS + slug);
+      // console.log('getQuestion result', res);
+      return res.data;
+   } catch (error) {
+      return error;
+   }
+}
+
+export async function getSimilarQuestions(slug) {
+   try {
+      let res = await axios.post(
+         QUESTIONS + slug + '/similar_questions/',
+         getAccessConfig()
+      );
+      console.log('getSimQuestions result', res);
+      return res.data;
+   } catch (error) {
+      console.log('getSimQs error', error);
+      return error;
+   }
 }

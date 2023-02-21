@@ -1,7 +1,8 @@
 import {Grid, Typography} from '@mui/material';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const RenderTag = ({title, description}) => {
+const RenderTag = ({title, slug, description}) => {
    return (
       <Grid
          item
@@ -20,23 +21,26 @@ const RenderTag = ({title, description}) => {
             <span
                style={{
                   borderRadius: '0.3rem',
+                  fontSize: '0.8rem',
                   color: 'white',
                   backgroundColor: '#AA6800',
                   padding: '0.1rem 0.3rem',
                }}
             >
-               {title}
+               <Link style={{color: 'white'}} to={`/tags/${slug}`}>
+                  {title}
+               </Link>
             </span>
          </Grid>
          <Grid item sx={{margin: '0.5rem 0', fontSize: '0.8rem'}}>
             {description}
          </Grid>
-         <Grid
+         {/* <Grid
             item
             sx={{color: '#AA6800', fontSize: '0.7rem', margin: '0.5rem 0'}}
          >
             Всего задано 250 вопросов
-         </Grid>
+         </Grid> */}
       </Grid>
    );
 };

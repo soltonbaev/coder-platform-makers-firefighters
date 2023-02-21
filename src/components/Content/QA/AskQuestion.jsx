@@ -1,19 +1,20 @@
 import {Button, Container} from '@mui/material';
 import {Box} from '@mui/system';
 import MDEditor from '@uiw/react-md-editor';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import {AddTags} from './AddTags';
 import {postQuestion} from './../../../helpers/create';
 import {useNavigate} from 'react-router-dom';
+import {getTags} from '../../../helpers/read';
 
 document.documentElement.setAttribute('data-color-mode', 'light');
 
 const AskQuestion = () => {
    console.clear();
    console.group('AskQuestion.jsx group');
-   const {user, tagsArr} = useGlobalContext();
-   console.log('tagsArr', tagsArr);
+   const {user, redirect, setRedirect} = useGlobalContext();
+   // console.log('tagsArr', tagsArr);
 
    const navigate = useNavigate();
    const [questionTitle, setQuestionTitle] = useState('');
@@ -21,6 +22,27 @@ const AskQuestion = () => {
       'Опишите детали вашей проблемы и результат который вы ожидаете'
    );
    const [tags, setTags] = useState([]);
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
+
+   const [tagsObj, setTagsObj] = useState('');
+
+   useEffect(() => {
+      getTags().then(res => {
+         // console.log("then res", res);
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
+
+         setTagsObj(res);
+      });
+   }, []);
 
    async function handlePostQuestion() {
       console.log(tags);
@@ -33,15 +55,21 @@ const AskQuestion = () => {
       formData.append('body', markdown);
       formData.append('tag', preppedTags);
       if (user) {
-         let thisQuestionSlug = await postQuestion(formData);
-         navigate(`/questions/${thisQuestionSlug}`);
+         let questionRes = await postQuestion(formData);
+         if (questionRes.name === 'AxiosError') {
+            setToast(true, 'error', questionRes.message);
+            return;
+         }
+         setToast(true, 'success', 'Вопрос успешно принят');
+         navigate(`/questions/${questionRes}`);
       } else {
+         setRedirect('AskQuestion');
          navigate('/login');
       }
    }
    return (
       <>
-         {tagsArr && (
+         {tagsObj && (
             <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
                <h1>Задайте вопрос</h1>
                <h2>Заголовок для вопроса</h2>
@@ -67,7 +95,11 @@ const AskQuestion = () => {
             style={{whiteSpace: 'pre-wrap'}}
          /> */}
                <h2>Тэги</h2>
-               <AddTags tagsArr={tagsArr} tags={tags} setTags={setTags} />
+               <AddTags
+                  tagsArr={tagsObj.results}
+                  tags={tags}
+                  setTags={setTags}
+               />
                <h2>Похожие вопросы</h2>
                <Box sx={{border: '1px solid #D9D9D9', minHeight: '30vh'}}></Box>
                <Button

@@ -1,7 +1,4 @@
-
-// const BASE_URL = "http://104.199.234.60/api/v1";
 const BASE_URL = 'https://makersoverflow.net/api/v1';
-
 
 // login and logout
 export const LOGIN = BASE_URL + '/login/';
@@ -11,9 +8,6 @@ export const REFRESH = BASE_URL + '/refresh/';
 // register
 export const REGISTER = BASE_URL + '/register/';
 export const ACTIVATE = BASE_URL + '/activate/';
-
-// users
-export const USER_LIST = BASE_URL + "/user_list";
 
 // password handling
 export const FORGOT_PASSOWRD = BASE_URL + '/forgot_password/';
@@ -33,3 +27,5 @@ export const COMMENTS = BASE_URL + '/comments/';
 export const FAVORITES = BASE_URL + '/favorites/';
 export const PROFILE = BASE_URL + '/profile/';
 export const TAGS = BASE_URL + '/tags/';
+
+export const USER_LIST = BASE_URL + '/user_list/';
