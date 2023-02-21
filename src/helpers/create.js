@@ -43,3 +43,17 @@ export async function postAnswer(data) {
    let res = await axios.post(ANSWERS, data, getAccessConfig());
    console.log('postAnswerResult', res);
 }
+
+export async function setQuestionVote(slug) {
+   try {
+      const res = await axios.post(
+         QUESTIONS + slug + '/like/',
+         getAccessConfig()
+      );
+      console.log(res);
+      return res;
+   } catch (error) {
+      console.log(error);
+      return error;
+   }
+}

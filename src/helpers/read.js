@@ -81,7 +81,6 @@ export const login = async formData => {
 };
 
 export async function getQuestions() {
-
    try {
       let res = await axios(QUESTIONS);
       // console.log('getQuestions result', res);
@@ -89,15 +88,14 @@ export async function getQuestions() {
    } catch (error) {
       return error;
    }
-
 }
 
 export async function getQuestionsRaw() {
-  let res = await axios(QUESTIONS + window.location.search);
-  console.error("getQuestions result", res.data);
+   let res = await axios(QUESTIONS + window.location.search);
+   console.error('getQuestions result', res.data);
 
-  return res.data;
-  //   console.log(res.data.results);
+   return res.data;
+   //   console.log(res.data.results);
 }
 
 export async function getQuestion(slug) {
@@ -106,6 +104,20 @@ export async function getQuestion(slug) {
       // console.log('getQuestion result', res);
       return res.data;
    } catch (error) {
+      return error;
+   }
+}
+
+export async function getSimilarQuestions(slug) {
+   try {
+      let res = await axios.post(
+         QUESTIONS + slug + '/similar_questions/',
+         getAccessConfig()
+      );
+      console.log('getSimQuestions result', res);
+      return res.data;
+   } catch (error) {
+      console.log('getSimQs error', error);
       return error;
    }
 }
