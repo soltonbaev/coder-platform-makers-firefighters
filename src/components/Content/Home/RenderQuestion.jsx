@@ -1,6 +1,6 @@
-import {Avatar, Box, Grid} from '@mui/material';
+import {Avatar, Box, Grid, Typography} from '@mui/material';
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {getUserProfile} from '../../../helpers/read';
 
 const RenderQuestion = ({
@@ -17,6 +17,7 @@ const RenderQuestion = ({
    setSearchInp,
 }) => {
    const [questionObj, setQuestionObj] = useState('');
+   const navigate = useNavigate();
    //  const [uName, setUName] = useState('');
    //  const [userPic, setUserPic] = useState('');
 
@@ -26,6 +27,7 @@ const RenderQuestion = ({
          //  setUName(res.username);
          //  setUserPic(res.user_photo);
          setQuestionObj(res);
+         // console.log('useParams', url.id);
       });
    }, []);
 
@@ -51,14 +53,18 @@ const RenderQuestion = ({
             <Grid item>{viewsCount} просмотров</Grid>
          </Grid>
          <Grid item container sx={{gap: '1rem'}}>
-            <Grid item>
+            <Grid
+               item
+               onClick={() => {
+                  // navigate();
+                  setShowSearch && setShowSearch(false);
+                  setSearchInp && setSearchInp('');
+               }}
+            >
                <Link
                   to={`/questions/${slug}`}
-                  state={questionObj}
-                  onClick={() => {
-                     setShowSearch && setShowSearch(false);
-                     setSearchInp && setSearchInp('');
-                  }}
+                  // sx={{cursor: 'pointer'}}
+                  // state={questionObj}
                >
                   {question}
                </Link>

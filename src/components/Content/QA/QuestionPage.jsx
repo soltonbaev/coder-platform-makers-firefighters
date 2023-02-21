@@ -39,10 +39,12 @@ const QuestionPage = () => {
       return new Date(dateString).toLocaleDateString(undefined, options);
    };
 
+   // const url = useParams();
+
    useEffect(() => {
       console.log(params.id);
       loadQuestion();
-   }, []);
+   }, [params.id]);
 
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
 
