@@ -110,10 +110,7 @@ export async function getQuestion(slug) {
 
 export async function getSimilarQuestions(slug) {
    try {
-      let res = await axios.post(
-         QUESTIONS + slug + '/similar_questions/',
-         getAccessConfig()
-      );
+      let res = await axios.post(QUESTIONS + slug + '/similar_questions/');
       console.log('getSimQuestions result', res);
       return res.data;
    } catch (error) {
