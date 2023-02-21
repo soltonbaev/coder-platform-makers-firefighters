@@ -5,13 +5,13 @@ import {LOGIN} from './globals';
 import {setToStorage} from './create';
 
 export async function getTags() {
-   console.log('access config', getAccessConfig());
+   // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(TAGS, getAccessConfig());
-      console.log('getTags results', res.data);
+      // console.log('getTags results', res.data);
       return res.data;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
@@ -20,11 +20,11 @@ export async function getTag(slug) {
    // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(`${TAGS}${slug}/`);
-      console.log('getTag results', res);
-      console.log(`${TAGS}${slug}`);
+      // console.log('getTag results', res);
+      // console.log(`${TAGS}${slug}`);
       return res.data;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
@@ -58,23 +58,24 @@ export async function getUserProfile(id) {
       return res.data;
    } catch (error) {
       console.log(error);
+      return error;
    }
 }
 
 export const login = async formData => {
    try {
       const res = await axios.post(LOGIN, formData);
-      console.log('Result of login request', res.data);
+      // console.log('Result of login request', res.data);
       setToStorage('token', {
          refresh: res.data.refresh,
          access: res.data.access,
       });
       setToStorage('uid', res.data.id);
       let userProfileRes = await getUserProfile(res.data.id);
-      console.log('userProfieRes', userProfileRes);
+      // console.log('userProfieRes', userProfileRes);
       return userProfileRes;
    } catch (error) {
-      console.log('Login failed');
+      // console.log('Login failed');
       console.log('login error', error);
       return error;
    }
@@ -93,7 +94,7 @@ export async function getQuestions() {
 export async function searchQuestions(query) {
    try {
       let res = await axios(QUESTIONS + '?search=' + query);
-      console.log('searchQuestions result', res);
+      // console.log('searchQuestions result', res);
       return res.data.results;
    } catch (error) {
       return error;
@@ -121,7 +122,7 @@ export async function getQuestion(slug) {
 export async function getSimilarQuestions(slug) {
    try {
       let res = await axios.post(QUESTIONS + slug + '/similar_questions/');
-      console.log('getSimQuestions result', res);
+      // console.log('getSimQuestions result', res);
       return res.data;
    } catch (error) {
       console.log('getSimQs error', error);

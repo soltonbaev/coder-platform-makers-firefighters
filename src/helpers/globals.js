@@ -28,4 +28,4 @@ export const FAVORITES = BASE_URL + '/favorites/';
 export const PROFILE = BASE_URL + '/profile/';
 export const TAGS = BASE_URL + '/tags/';
 
-export const USER_LIST = BASE_URL + '/user_list/';
+export const USER_LIST = BASE_URL + '/user_list';
