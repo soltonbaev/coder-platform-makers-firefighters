@@ -1,14 +1,20 @@
-import { Block } from "@mui/icons-material";
-import { Avatar, Grid } from "@mui/material";
-import { borderRadius, Container } from "@mui/system";
+import { Avatar, Grid, Pagination } from "@mui/material";
+import { Container } from "@mui/system";
 import axios from "axios";
-import React, { useEffect, useReducer, useState } from "react";
+import React, {
+  useEffect,
+  useReducer,
+  useState,
+  createContext,
+  useContext,
+} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
 import { USER_LIST } from "../../../helpers/globals";
-// import Ernast from "./images/ernast.svg";
 import Fire from "./images/fireexting 1.svg";
 import bita from "./images/image 5.svg";
+
+export const userContext = createContext();
+export const useUserContext = () => useContext(userContext);
 
 const INIT_STATE = {
   users: [],
@@ -42,11 +48,6 @@ const Users = () => {
       type: "GET_USERS",
       payload: data,
     });
-  };
-
-  const mentor = () => {
-    if (user.is_mentor === true) {
-    }
   };
 
   return (
@@ -99,6 +100,7 @@ const Users = () => {
                 marginLeft: "5%",
                 marginTop: "5%",
               }}
+              // onClick={mentor}
             >
               новые
             </span>{" "}
@@ -304,6 +306,7 @@ const Users = () => {
               </div>
             </Grid>
           ))}
+          {/* <Pagination count={10} /> */}
         </Grid>
       </div>
     </Container>
