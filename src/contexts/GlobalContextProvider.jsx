@@ -16,13 +16,15 @@ import {USER_LIST} from '../helpers/globals';
 export const globalContext = createContext();
 export const useGlobalContext = () => useContext(globalContext);
 
+const GlobalContextProvider = ({children}) => {
+   const BASE_URL = 'http://104.199.234.60/api/v1';
 
-const GlobalContextProvider = ({ children }) => {
-  const BASE_URL = "http://104.199.234.60/api/v1";
-
-  const [error, setError] = useState("");
-  const [user, setUser] = useState("");
-
+   const [error, setError] = useState('');
+   const [user, setUser] = useState('');
+   const [showToast, setShowToast] = useState(false);
+   const [errorType, setErrorType] = useState('');
+   const [toastMessage, setToastMessage] = useState('');
+   const [redirect, setRedirect] = useState('');
 
    function setToast(showToast, errorType, toastMessage) {
       setShowToast(showToast);
@@ -55,24 +57,13 @@ const GlobalContextProvider = ({ children }) => {
       }
    };
 
-   const getUsers = async () => {
-      let {data} = await axios(USER_LIST);
-      dispatch({
-         type: 'GET_USERS',
-         payload: data,
-      });
-   };
-
    useEffect(() => {
       checkAuth();
    }, []);
 
-
    const value = {
-   
       user,
       setUser,
-
 
       showToast,
       setShowToast,
@@ -85,7 +76,6 @@ const GlobalContextProvider = ({ children }) => {
       setToast,
       checkAuth,
    };
-
 
    return (
       <globalContext.Provider value={value}>{children}</globalContext.Provider>

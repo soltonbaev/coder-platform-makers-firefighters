@@ -25,7 +25,7 @@ const EditProfile = () => {
    const navigate = useNavigate();
 
    const handleSubmit = async () => {
-      inpData.current.user_photo = '';
+      // inpData.current.user_photo = '';
       let formData = new FormData();
       formData.append('name', inpData.current.name);
       formData.append('last_name', inpData.current.last_name);

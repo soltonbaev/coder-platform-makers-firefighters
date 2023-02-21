@@ -42,9 +42,6 @@ const QuestionPage = () => {
    useEffect(() => {
       console.log(params.id);
       loadQuestion();
-      getSimilarQuestions(question.slug).then(res => {
-         // setSimilarQuestions(res);
-      });
    }, []);
 
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
@@ -67,6 +64,9 @@ const QuestionPage = () => {
          setUpdatedAt(formatDate(res.created_at));
          getUserProfile(res.author).then(res => {
             setUserProfile(res);
+         });
+         getSimilarQuestions(res.slug).then(res => {
+            // setSimilarQuestions(res);
          });
       });
    }
