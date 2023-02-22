@@ -190,59 +190,78 @@ const ProfilePage = () => {
                            // marginTop: '1.5rem',
                         }
                      }
+
                   >
-                     <Grid
-                        item
+                    Показать все группы...
+                  </Typography>
+                </Link>
+              </Grid>
+            </Grid>
+            <Grid
+              className="right-column"
+              item
+              sm={9}
+              md={9}
+              lg={9}
+              sx={
+                {
+                  // marginTop: '1.5rem',
+                }
+              }
+            >
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  gap: "1rem",
+                  alignItems: "center",
+                }}
+              >
+                <Grid item>
+                  <Avatar
+                    sx={{ width: "10rem", height: "10rem" }}
+                    alt={user.username}
+                    src={user.user_photo}
+                  />
+                </Grid>
+                <Grid item sx={{}}>
+                  <Grid item>
+                    <Grid
+                      item
+                      sx={{
+                        display: "flex",
+                        gap: "1rem",
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <h1 style={{ padding: "0", margin: "0" }}>
+                        {user.name} {user.last_name}
+                      </h1>
+
+                      <Button
+                        onClick={() => navigate("/editProfile")}
                         sx={{
-                           display: 'flex',
-                           gap: '1rem',
-                           alignItems: 'center',
+                          height: "2rem",
+                          color: "#474747",
+                          border: "1px solid #474747",
+                          borderRadius: "5px",
                         }}
-                     >
-                        <Grid item>
-                           <Avatar
-                              sx={{width: '10rem', height: '10rem'}}
-                              alt={user.username}
-                              src={user.user_photo}
-                           />
-                        </Grid>
-                        <Grid item sx={{}}>
-                           <Grid item>
-                              <Grid
-                                 item
-                                 sx={{
-                                    display: 'flex',
-                                    gap: '1rem',
-                                    alignItems: 'center',
-                                    flexWrap: 'wrap',
-                                 }}
-                              >
-                                 <h1 style={{padding: '0', margin: '0'}}>
-                                    {user.name} {user.last_name}
-                                 </h1>
+                      >
+                        Редактировать профиль
+                      </Button>
+                    </Grid>
+                    <Typography>@{user.username}</Typography>
+                  </Grid>
 
-                                 <Button
-                                    onClick={() => navigate('/editProfile')}
-                                    sx={{
-                                       height: '2rem',
-                                       color: '#474747',
-                                       border: '1px solid #474747',
-                                       borderRadius: '5px',
-                                    }}
-                                 >
-                                    Редактировать профиль
-                                 </Button>
-                              </Grid>
-                              <Typography>@{user.username}</Typography>
-                           </Grid>
+                  <Typography
+                    sx={{
+                      color: "#AA6800",
+                    }}
+                  >
+                    Участник c {user.date_joined} года
+                  </Typography>
 
-                           <Typography
-                              sx={{
-                                 color: '#AA6800',
-                              }}
-                           >
-                              Участник c {user.date_joined} года
-                           </Typography>
 
                            <Box
                               sx={{
@@ -294,6 +313,7 @@ const ProfilePage = () => {
          )}
       </>
    );
+
 };
 
 export default ProfilePage;

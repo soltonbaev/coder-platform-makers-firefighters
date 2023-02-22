@@ -25,6 +25,7 @@ import {
 } from '../../../helpers/read';
 
 const Questions = () => {
+
    // console.group("Questions group");
 
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
@@ -163,6 +164,7 @@ const Questions = () => {
                      count={total}
                      page={currentPage}
                      onChange={(e, p) => setCurrentPage(p)}
+
                   />
                </Box>
             </Grid>
