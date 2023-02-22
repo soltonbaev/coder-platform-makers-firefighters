@@ -8,8 +8,10 @@ import {updateUser} from '../../../helpers/update';
 const EditProfile = () => {
    const {user, setToast, checkAuth} = useGlobalContext();
    const inpData = useRef(user);
+   inpData.current.user_photo = '';
    const handleChange = e => {
       if (e.target.name === 'user_photo') {
+         console.log(e.target.files[0]);
          inpData.current = {
             ...inpData.current,
             [e.target.name]: e.target.files[0],
@@ -25,7 +27,8 @@ const EditProfile = () => {
    const navigate = useNavigate();
 
    const handleSubmit = async () => {
-      // inpData.current.user_photo = '';
+      console.log('userPhoto', inpData.current.user_photo);
+      // inpData.current.user_photo = 'inpData.current.user_photo';
       let formData = new FormData();
       formData.append('name', inpData.current.name);
       formData.append('last_name', inpData.current.last_name);
@@ -35,7 +38,7 @@ const EditProfile = () => {
       formData.append('web_site', inpData.current.web_site);
       formData.append('about_me', inpData.current.about_me);
       formData.append('user_photo', inpData.current.user_photo);
-      console.log(formData);
+      // console.log(formData);
 
       let updateRes = await updateUser(user.id, formData);
       if (updateRes.name === 'AxiosError') {
@@ -198,6 +201,7 @@ const EditProfile = () => {
                               borderRadius: '7px',
                               alignContent: 'center',
                            }}
+                           onChange={handleChange}
                         />
                      </center>
                      <center>

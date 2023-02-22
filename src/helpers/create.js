@@ -9,7 +9,7 @@ export const Register = async formData => {
       // console.log('Register res', res);
       return res;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 };
@@ -31,17 +31,22 @@ export async function tokenRefresh(token) {
 export async function postQuestion(data) {
    try {
       let res = await axios.post(QUESTIONS, data, getAccessConfig());
-      console.log('postQuestion result', res);
+      // console.log('postQuestion result', res);
       return res.data.slug;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
 
 export async function postAnswer(data) {
-   let res = await axios.post(ANSWERS, data, getAccessConfig());
-   console.log('postAnswerResult', res);
+   try {
+      let res = await axios.post(ANSWERS, data, getAccessConfig());
+      console.log('postAnswerResult', res);
+      return res;
+   } catch (error) {
+      return error;
+   }
 }
 
 export async function setQuestionVote(slug) {
@@ -50,10 +55,10 @@ export async function setQuestionVote(slug) {
          QUESTIONS + slug + '/like/',
          getAccessConfig()
       );
-      console.log(res);
+      // console.log(res);
       return res;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }

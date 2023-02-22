@@ -34,15 +34,18 @@ const QuestionPage = () => {
       'this is markdown code ```console.log("Hello")```'
    );
    const [similarQuestions, setSimilarQuestions] = useState('');
+   const [answers, setAnswers] = useState('');
    const formatDate = dateString => {
       const options = {year: 'numeric', month: 'long', day: 'numeric'};
       return new Date(dateString).toLocaleDateString(undefined, options);
    };
 
+   // const url = useParams();
+
    useEffect(() => {
       console.log(params.id);
       loadQuestion();
-   }, []);
+   }, [params.id]);
 
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
 
@@ -52,14 +55,18 @@ const QuestionPage = () => {
       setToastMessage(toastMessage);
    }
 
-   function loadQuestion() {
+   async function loadQuestion() {
+      console.log('Loading question....');
       getQuestion(params.id).then(res => {
          if (res.name === 'AxiosError') {
             setToast(true, 'error', res.message);
             return;
          }
          console.log('getQuestion', res);
+         // res.sort((a, b) => a.id - b.id);
          setQuestion(res);
+         let answers = res.answers.sort((a, b) => b.id - a.id);
+         setAnswers(answers);
          setCreatedAt(formatDate(res.created_at));
          setUpdatedAt(formatDate(res.created_at));
          getUserProfile(res.author).then(res => {
@@ -77,9 +84,14 @@ const QuestionPage = () => {
       let formData = new FormData();
       formData.append('body', markdown);
       formData.append('question', question.slug);
-      postAnswer(formData);
+      let res = await postAnswer(formData);
+      if (res.name === 'AxiosError') {
+         setToast(true, 'error', res.message);
+         return;
+      }
       setMarkdown('');
-      loadQuestion();
+      await loadQuestion();
+      setToast(true, 'success', 'Ваш ответ успешно отправлен');
    }
    return (
       <Container>
@@ -271,8 +283,8 @@ const QuestionPage = () => {
                </Grid>
                <Grid item>
                   {console.log('question answers', question.answers)}
-                  {question &&
-                     question.answers.map(answer => {
+                  {answers &&
+                     answers.map(answer => {
                         return (
                            <RenderAnswer
                               key={answer.id}

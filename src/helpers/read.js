@@ -5,6 +5,7 @@ import { LOGIN } from "./globals";
 import { setToStorage } from "./create";
 
 export async function getTags() {
+
   console.log("access config", getAccessConfig());
   try {
     let res = await axios.get(TAGS, getAccessConfig());
@@ -38,6 +39,7 @@ export async function getTag(slug) {
     console.log(error);
     return error;
   }
+
 }
 
 export function getFromStorage(type) {
@@ -63,32 +65,35 @@ export function getAccessConfig() {
 }
 
 export async function getUserProfile(id) {
-  try {
-    let res = await axios.get(`${PROFILE}${id}`, getAccessConfig());
-    console.log("getUserProfile result", res.data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+
+   try {
+      let res = await axios.get(`${PROFILE}${id}`, getAccessConfig());
+      console.log('getUserProfile result', res.data);
+      return res.data;
+   } catch (error) {
+      console.log(error);
+      return error;
+   }
 }
 
-export const login = async (formData) => {
-  try {
-    const res = await axios.post(LOGIN, formData);
-    console.log("Result of login request", res.data);
-    setToStorage("token", {
-      refresh: res.data.refresh,
-      access: res.data.access,
-    });
-    setToStorage("uid", res.data.id);
-    let userProfileRes = await getUserProfile(res.data.id);
-    console.log("userProfieRes", userProfileRes);
-    return userProfileRes;
-  } catch (error) {
-    console.log("Login failed");
-    console.log("login error", error);
-    return error;
-  }
+export const login = async formData => {
+   try {
+      const res = await axios.post(LOGIN, formData);
+      // console.log('Result of login request', res.data);
+      setToStorage('token', {
+         refresh: res.data.refresh,
+         access: res.data.access,
+      });
+      setToStorage('uid', res.data.id);
+      let userProfileRes = await getUserProfile(res.data.id);
+      // console.log('userProfieRes', userProfileRes);
+      return userProfileRes;
+   } catch (error) {
+      // console.log('Login failed');
+      console.log('login error', error);
+      return error;
+   }
+
 };
 
 export async function getQuestions() {
@@ -99,6 +104,16 @@ export async function getQuestions() {
   } catch (error) {
     return error;
   }
+}
+
+export async function searchQuestions(query) {
+   try {
+      let res = await axios(QUESTIONS + '?search=' + query);
+      // console.log('searchQuestions result', res);
+      return res.data.results;
+   } catch (error) {
+      return error;
+   }
 }
 
 export async function getQuestionsRaw() {
@@ -120,6 +135,7 @@ export async function getQuestion(slug) {
 }
 
 export async function getSimilarQuestions(slug) {
+
   try {
     let res = await axios.post(QUESTIONS + slug + "/similar_questions/");
     console.log("getSimQuestions result", res);
@@ -139,4 +155,5 @@ export async function getUsers() {
     console.log(error);
     return error;
   }
+
 }
