@@ -5,7 +5,6 @@ import {LOGIN} from './globals';
 import {setToStorage} from './create';
 
 export async function getTags() {
-
    // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(TAGS, getAccessConfig());
@@ -15,7 +14,6 @@ export async function getTags() {
       // console.log(error);
       return error;
    }
-
 }
 export async function getTagsRaw() {
    // console.log('access config', getAccessConfig());
@@ -30,7 +28,6 @@ export async function getTagsRaw() {
 }
 
 export async function getTag(slug) {
-
    // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(`${TAGS}${slug}/`);
@@ -41,7 +38,6 @@ export async function getTag(slug) {
       // console.log(error);
       return error;
    }
-
 }
 
 export function getFromStorage(type) {
@@ -68,7 +64,6 @@ export function getAccessConfig() {
 }
 
 export async function getUserProfile(id) {
-
    try {
       let res = await axios.get(`${PROFILE}${id}`, getAccessConfig());
       // console.log('getUserProfile result', res.data);
@@ -96,7 +91,6 @@ export const login = async formData => {
       console.log('login error', error);
       return error;
    }
-
 };
 
 export async function getQuestions() {
@@ -110,13 +104,13 @@ export async function getQuestions() {
 }
 
 export async function searchQuestions(query) {
-  try {
-    let res = await axios(QUESTIONS + "?search=" + query);
-    // console.log('searchQuestions result', res);
-    return res.data.results;
-  } catch (error) {
-    return error;
-  }
+   try {
+      let res = await axios(QUESTIONS + '?search=' + query);
+      // console.log('searchQuestions result', res);
+      return res.data.results;
+   } catch (error) {
+      return error;
+   }
 }
 
 export async function sortQuestions(type) {
@@ -166,20 +160,17 @@ export async function getSimilarQuestions(slug) {
 }
 
 export async function addFavorites(slug) {
-  try {
-    const res = await axios.post(
-      QUESTIONS + slug + "/favorite/",
-      getAccessConfig()
-    );
-    // const res = await axios.post(
-    //   "https://makersoverflow.net/api/v1/questions/kak-vyvesti-nechetnye-chisla-v-javascript/favorite/",
-    //   getAccessConfig()
-    // );
-    console.error("DATA", res.data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+   try {
+      const res = await axios.post(
+         QUESTIONS + slug + '/favorite/',
+         getAccessConfig()
+      );
+      console.error('DATA', res.data);
+      return res.data;
+   } catch (error) {
+      console.log(error);
+   }
+}
 
 export async function getUsers() {
    try {
@@ -201,5 +192,4 @@ export async function getAnswer(id) {
       console.log(error);
       return error;
    }
-
 }

@@ -1,14 +1,21 @@
 import {Grid} from '@mui/material';
 import {useEffect, useState} from 'react';
+import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import {getQuestions} from '../../../helpers/read';
+import {userContext} from '../Home/Users';
 
 const Activity = () => {
+   const {user} = useGlobalContext();
    const [questions, setQuestions] = useState('');
    useEffect(() => {
       getQuestions().then(res => {
-         // res.filter;
-         setQuestions(res);
-         console.log('activity', res);
+         let filteredQs = res.map(question => {
+            if (user.id === question.author) {
+               return question;
+            }
+         });
+         setQuestions(filteredQs);
+         console.log('activity', filteredQs);
       });
    }, []);
    return (
