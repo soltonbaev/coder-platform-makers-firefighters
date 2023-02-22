@@ -2,16 +2,25 @@ import {Avatar, Button, Container, Grid} from '@mui/material';
 import {Box} from '@mui/system';
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {getQuestion, getUserProfile} from '../../../helpers/read';
+import {
+   getQuestion,
+   getSimilarQuestions,
+   getUserProfile,
+} from '../../../helpers/read';
 
 import bookmarkIcon from './bookmark-icon.svg';
 import MDEditor from '@uiw/react-md-editor';
-import {postAnswer} from '../../../helpers/create';
+import {
+   postAnswer,
+   postQuestion,
+   setQuestionVote,
+} from '../../../helpers/create';
 import RenderAnswer from './RenderAnswer';
 import RenderMarkdown from './RenderMarkdown';
+import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 
 const QuestionPage = () => {
-   console.clear();
+   // console.clear();
    const navigate = useNavigate('');
    document.documentElement.setAttribute('data-color-mode', 'light');
 
@@ -24,24 +33,47 @@ const QuestionPage = () => {
    const [markdown, setMarkdown] = useState(
       'this is markdown code ```console.log("Hello")```'
    );
+   const [similarQuestions, setSimilarQuestions] = useState('');
+   const [answers, setAnswers] = useState('');
    const formatDate = dateString => {
       const options = {year: 'numeric', month: 'long', day: 'numeric'};
       return new Date(dateString).toLocaleDateString(undefined, options);
    };
 
+   // const url = useParams();
+
    useEffect(() => {
       console.log(params.id);
       loadQuestion();
-   }, []);
+   }, [params.id]);
 
-   function loadQuestion() {
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
+
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
+
+   async function loadQuestion() {
+      console.log('Loading question....');
       getQuestion(params.id).then(res => {
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
          console.log('getQuestion', res);
+         // res.sort((a, b) => a.id - b.id);
          setQuestion(res);
+         let answers = res.answers.sort((a, b) => b.id - a.id);
+         setAnswers(answers);
          setCreatedAt(formatDate(res.created_at));
          setUpdatedAt(formatDate(res.created_at));
          getUserProfile(res.author).then(res => {
             setUserProfile(res);
+         });
+         getSimilarQuestions(res.slug).then(res => {
+            // setSimilarQuestions(res);
          });
       });
    }
@@ -52,22 +84,31 @@ const QuestionPage = () => {
       let formData = new FormData();
       formData.append('body', markdown);
       formData.append('question', question.slug);
-      postAnswer(formData);
+      let res = await postAnswer(formData);
+      if (res.name === 'AxiosError') {
+         setToast(true, 'error', res.message);
+         return;
+      }
       setMarkdown('');
-      loadQuestion();
+      await loadQuestion();
+      setToast(true, 'success', 'Ваш ответ успешно отправлен');
    }
    return (
       <Container>
-         {console.log('userProfile', userProfile)}
+         {console.log('similar Qs', similarQuestions)}
          <h1>{question.title}</h1>
          <Grid
             className="content-wrapper"
+            spacing={3}
             container
-            sx={{gap: '2rem', display: 'flex'}}
+            sx={{display: 'flex'}}
          >
             <Grid
                className="left-column"
                item
+               sm={9}
+               md={9}
+               lg={9}
                sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -186,6 +227,9 @@ const QuestionPage = () => {
                            justifyContent: 'center',
                            alignItems: 'center',
                         }}
+                        onClick={() => {
+                           setQuestionVote(question.slug);
+                        }}
                      >
                         +
                      </span>
@@ -239,8 +283,8 @@ const QuestionPage = () => {
                </Grid>
                <Grid item>
                   {console.log('question answers', question.answers)}
-                  {question &&
-                     question.answers.map(answer => {
+                  {answers &&
+                     answers.map(answer => {
                         return (
                            <RenderAnswer
                               key={answer.id}
@@ -259,6 +303,9 @@ const QuestionPage = () => {
             <Grid
                className="right-column"
                item
+               sm={3}
+               md={3}
+               lg={3}
                sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -277,7 +324,7 @@ const QuestionPage = () => {
                      backgroundColor: '#D9D9D9',
                   }}
                >
-                  <h2>Похожие вопросы</h2>
+                  <h2>Популярные вопросы</h2>
                </Grid>
                <Grid
                   item

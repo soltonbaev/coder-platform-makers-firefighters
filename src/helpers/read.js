@@ -1,5 +1,5 @@
 import axios from "axios";
-import { QUESTIONS, TAGS } from "./globals";
+import { QUESTIONS, TAGS, USER_LIST } from "./globals";
 import { PROFILE } from "./globals";
 import { LOGIN } from "./globals";
 import { setToStorage } from "./create";
@@ -8,6 +8,17 @@ export async function getTags() {
   console.log("access config", getAccessConfig());
   try {
     let res = await axios.get(TAGS, getAccessConfig());
+    console.log("getTags results", res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+export async function getTagsRaw() {
+  console.log("access config", getAccessConfig());
+  try {
+    let res = await axios.get(TAGS + window.location.search);
     console.log("getTags results", res.data);
     return res.data;
   } catch (error) {
@@ -58,23 +69,24 @@ export async function getUserProfile(id) {
     return res.data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 }
 
 export const login = async (formData) => {
   try {
     const res = await axios.post(LOGIN, formData);
-    console.log("Result of login request", res.data);
+    // console.log('Result of login request', res.data);
     setToStorage("token", {
       refresh: res.data.refresh,
       access: res.data.access,
     });
     setToStorage("uid", res.data.id);
     let userProfileRes = await getUserProfile(res.data.id);
-    //  console.log("userProfieRes", userProfileRes);
+    // console.log('userProfieRes', userProfileRes);
     return userProfileRes;
   } catch (error) {
-    //  console.log("Login failed");
+    // console.log('Login failed');
     console.log("login error", error);
     return error;
   }
@@ -90,11 +102,37 @@ export async function getQuestions() {
   }
 }
 
-export async function getQuestionsRaw() {
-  let res = await axios(QUESTIONS + window.location.search);
-  console.error("getQuestions result", res.data);
+export async function searchQuestions(query) {
+  try {
+    let res = await axios(QUESTIONS + "?search=" + query);
+    // console.log('searchQuestions result', res);
+    return res.data.results;
+  } catch (error) {
+    return error;
+  }
+}
 
-  return res.data;
+export async function sortQuestions(type) {
+  try {
+    let res = await axios(
+      QUESTIONS + window.location.search + `&ordering=${type}`
+    );
+    console.error("getQuestions result", res.data);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+  //   console.log(res.data.results);
+}
+
+export async function getQuestionsRaw() {
+  try {
+    let res = await axios(QUESTIONS + window.location.search);
+    console.error("getQuestions result", res.data);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
   //   console.log(res.data.results);
 }
 
@@ -104,6 +142,28 @@ export async function getQuestion(slug) {
     // console.log('getQuestion result', res);
     return res.data;
   } catch (error) {
+    return error;
+  }
+}
+
+export async function getSimilarQuestions(slug) {
+  try {
+    let res = await axios.post(QUESTIONS + slug + "/similar_questions/");
+    console.log("getSimQuestions result", res);
+    return res.data;
+  } catch (error) {
+    console.log("getSimQs error", error);
+    return error;
+  }
+}
+
+export async function getUsers() {
+  try {
+    let res = await axios.get(USER_LIST + window.location.search);
+    console.log(res, "ernas");
+    return res.data;
+  } catch (error) {
+    console.log(error);
     return error;
   }
 }

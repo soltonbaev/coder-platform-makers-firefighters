@@ -56,8 +56,8 @@ const Users = () => {
       type: "GET_USERS",
       payload: array,
     });
-  };
 
+ 
   return (
     <Container maxWidth="lg">
       <div
@@ -84,6 +84,7 @@ const Users = () => {
           >
             <Grid
               item
+              key={user.id}
               style={{
                 width: "80%",
                 marginLeft: "8%",
