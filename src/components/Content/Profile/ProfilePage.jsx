@@ -1,6 +1,6 @@
 import {Avatar, Box, Button, Grid, Typography} from '@mui/material';
 import {Container} from '@mui/system';
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Link, useNavigate} from 'react-router-dom';
 import Tg from '../Profile/tg.svg';
@@ -9,7 +9,10 @@ import ImgLink from '../Profile/imgLink.svg';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import Activity from './Activity';
 import Statistics from './Statistics';
+import Saved from './Saved';
 const ProfilePage = () => {
+   const [profileSection, setProfileSection] = useState('statistics');
+
    const {user} = useGlobalContext();
    const navigate = useNavigate();
    return (
@@ -49,7 +52,11 @@ const ProfilePage = () => {
                               color: '#b0761b',
                            }}
                         >
-                           <Link>
+                           <Link
+                              onClick={() => {
+                                 setProfileSection('statistics');
+                              }}
+                           >
                               <Typography
                                  sx={{
                                     color: '#b0761b',
@@ -58,7 +65,11 @@ const ProfilePage = () => {
                                  Профиль
                               </Typography>
                            </Link>
-                           <Link>
+                           <Link
+                              onClick={() => {
+                                 setProfileSection('activity');
+                              }}
+                           >
                               <Typography
                                  sx={{
                                     color: '#b0761b',
@@ -67,16 +78,20 @@ const ProfilePage = () => {
                                  Активность
                               </Typography>
                            </Link>
-                           <Link>
+                           <Link
+                              onClick={() => {
+                                 setProfileSection('saved');
+                              }}
+                           >
                               <Typography
                                  sx={{
                                     color: '#b0761b',
                                  }}
                               >
-                                 Закладки
+                                 Избранное
                               </Typography>
                            </Link>
-                           <Link>
+                           <Link to="/editProfile">
                               <Typography
                                  sx={{
                                     color: '#b0761b',
@@ -267,7 +282,11 @@ const ProfilePage = () => {
                         </Grid>
                      </Grid>
                      <Grid item>
-                        <Statistics aboutMe={user.about_me} />
+                        {profileSection === 'statistics' && (
+                           <Statistics aboutMe={user.about_me} />
+                        )}
+                        {profileSection === 'activity' && <Activity userId />}
+                        {profileSection === 'saved' && <Saved />}
                      </Grid>
                   </Grid>
                </Grid>

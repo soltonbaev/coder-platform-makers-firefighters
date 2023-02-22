@@ -25,128 +25,148 @@ import {
 } from "../../../helpers/read";
 
 const Questions = () => {
-  // console.group("Questions group");
 
-  const { setShowToast, setErrorType, setToastMessage } = useGlobalContext();
 
-  function setToast(showToast, errorType, toastMessage) {
-    setShowToast(showToast);
-    setErrorType(errorType);
-    setToastMessage(toastMessage);
-  }
+   // console.group("Questions group");
 
-  const [questions, setQuestions] = useState("");
-  useEffect(() => {
-    getQuestions().then((res) => {
-      if (res.name === "AxiosError") {
-        setToast(true, "error", res.message);
-        return;
-      }
-      setQuestions(res);
-      console.log("getQuestions res", res);
-    });
-  }, []);
+   const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
 
-  const navigate = useNavigate();
+   function setToast(showToast, errorType, toastMessage) {
+      setShowToast(showToast);
+      setErrorType(errorType);
+      setToastMessage(toastMessage);
+   }
 
-  const [count, setCount] = useState();
+   const [questions, setQuestions] = useState('');
+   useEffect(() => {
+      getQuestions().then(res => {
+         if (res.name === 'AxiosError') {
+            setToast(true, 'error', res.message);
+            return;
+         }
+         setQuestions(res);
+      });
+   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
-  let total = Math.ceil(count / 10);
+   const navigate = useNavigate();
 
-  useEffect(() => {
-    getQuestionsRaw().then((res) => {
-      setQuestions(res.results);
-      console.log("getQuestions res", res);
-    });
-  }, []);
+   const [count, setCount] = useState();
 
-  useEffect(() => {
-    getQuestionsRaw().then((res) => {
-      setQuestions(res.results);
-      console.log("getQuestions res", res);
-    });
-  }, [searchParams]);
+   const [currentPage, setCurrentPage] = useState(1);
+   const [searchParams, setSearchParams] = useSearchParams();
+   let total = Math.ceil(count / 10);
 
-  useEffect(() => {
-    getQuestionsRaw().then((data) => {
-      setCount(data.count);
-    });
-  }, []);
+   useEffect(() => {
+      getQuestionsRaw().then(res => {
+         setQuestions(res.results);
+         // console.log('getQuestions res', res);
+      });
+   }, []);
 
-  // useEffect(() => {
-  //   getQuestions();
-  // }, [searchParams]);
+   useEffect(() => {
+      getQuestionsRaw().then(res => {
+         setQuestions(res.results);
+         // console.log('getQuestions res', res);
+      });
+   }, [searchParams]);
 
-  useEffect(() => {
-    setSearchParams({
-      page: currentPage,
-    });
-    console.log(currentPage);
-  }, [currentPage]);
+   useEffect(() => {
+      getQuestionsRaw().then(data => {
+         setCount(data.count);
+      });
+   }, []);
 
-  // function sortQuestions(type) {
-  //    if ((type = 'title')) {
-  //       getQuestionsRaw().then(res => {
-  //          setQuestions(res.results);
-  //          console.log('getQuestions res', res);
-  //       });
-  //    }
-  // }
+   // useEffect(() => {
+   //   getQuestions();
+   // }, [searchParams]);
 
-  function handleSortQuestions(type) {
-    sortQuestions(type).then((res) => {
-      setQuestions(res.results);
-    });
-  }
-  return (
-    <Container maxWidth="lg" sx={{ minHeight: "60vh" }}>
-      <Grid container spacing={2}>
-        <Grid item sm={2} md={3} lg={3}>
-          <SideBar handleSortQuestions={handleSortQuestions} />
-        </Grid>
-        <Grid item sm={10} md={9} lg={9}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <h1>Последние вопросы</h1>
-            <Button
-              variant="contained"
-              sx={{
-                height: "2rem",
-                backgroundColor: "#474747",
-                color: "white",
-                "&:hover": {
-                  backgroundColor: "rgba(170, 104, 0, 1);",
-                  // color: '#3c52b2',
-                },
-              }}
-              onClick={() => {
-                navigate("/ask-question");
-              }}
-            >
-              Задать вопрос
-            </Button>
-          </Box>
-          <Box sx={{ border: "1px solid #D9D9D9", borderRadius: "0.3rem" }}>
-            {questions &&
-              questions.map((question) => {
-                return (
-                  <RenderQuestion
-                    key={question.created_at}
-                    username={question.author}
-                    question={question.title}
-                    body={question.body}
-                    slug={question.slug}
-                    // votesCount={question.votesCount}
-                    // answersCount={question.answersCount}
-                    viewsCount={question.views_count}
-                    tags={question.tag}
+   useEffect(() => {
+      setSearchParams({
+         page: currentPage,
+      });
+      // console.log(currentPage);
+   }, [currentPage]);
+
+   // function sortQuestions(type) {
+   //    if ((type = 'title')) {
+   //       getQuestionsRaw().then(res => {
+   //          setQuestions(res.results);
+   //          console.log('getQuestions res', res);
+   //       });
+   //    }
+   // }
+
+   function handleSortQuestions(type) {
+      sortQuestions(type).then(res => {
+         setQuestions(res.results);
+      });
+   }
+   return (
+      <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
+         <Grid container spacing={2}>
+            <Grid item sm={2} md={3} lg={3}>
+               <SideBar handleSortQuestions={handleSortQuestions} />
+            </Grid>
+            <Grid item sm={10} md={9} lg={9}>
+               <Grid
+                  item
+                  container
+                  direction="row"
+                  sx={{
+                     // display: 'flex',
+                     justifyContent: 'space-between',
+                     alignItems: 'center',
+                  }}
+               >
+                  <Grid item>
+                     <h1>Последние вопросы</h1>
+                  </Grid>
+                  <Grid item>
+                     <Button
+                        variant="contained"
+                        sx={{
+                           margin: '1rem',
+                           height: '2rem',
+                           backgroundColor: '#474747',
+                           color: 'white',
+                           '&:hover': {
+                              backgroundColor: 'rgba(170, 104, 0, 1);',
+                              // color: '#3c52b2',
+                           },
+                        }}
+                        onClick={() => {
+                           navigate('/ask-question');
+                        }}
+                     >
+                        Задать вопрос
+                     </Button>
+                  </Grid>
+               </Grid>
+               <Box sx={{border: '1px solid #D9D9D9', borderRadius: '0.3rem'}}>
+                  {questions &&
+                     questions.map(question => {
+                        return (
+                           <RenderQuestion
+                              key={question.created_at}
+                              username={question.author}
+                              question={question.title}
+                              body={question.body}
+                              slug={question.slug}
+                              // votesCount={question.votesCount}
+                              // answersCount={question.answersCount}
+                              viewsCount={question.views_count}
+                              tags={question.tag}
+                           />
+                        );
+                     })}
+               </Box>
+               <Box>
+                  <Pagination
+                     count={total}
+                     page={currentPage}
+                     onChange={(e, p) => setCurrentPage(p)}
+
+
                   />
                 );
               })}

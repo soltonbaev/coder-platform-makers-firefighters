@@ -6,12 +6,12 @@ import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 import {AddTags} from './AddTags';
 import {postQuestion} from './../../../helpers/create';
 import {useNavigate} from 'react-router-dom';
-import {getTags} from '../../../helpers/read';
+import {getSimilarQuestions, getTags} from '../../../helpers/read';
 
 document.documentElement.setAttribute('data-color-mode', 'light');
 
 const AskQuestion = () => {
-   console.clear();
+   // console.clear();
    console.group('AskQuestion.jsx group');
    const {user, redirect, setRedirect} = useGlobalContext();
    // console.log('tagsArr', tagsArr);
@@ -22,6 +22,7 @@ const AskQuestion = () => {
       'Опишите детали вашей проблемы и результат который вы ожидаете'
    );
    const [tags, setTags] = useState([]);
+   const [similarQuestions, setSimilarQuestions] = useState();
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
 
    function setToast(showToast, errorType, toastMessage) {
@@ -42,14 +43,17 @@ const AskQuestion = () => {
 
          setTagsObj(res);
       });
+      getSimilarQuestions().then(res => {
+         setSimilarQuestions(res);
+      });
    }, []);
 
    async function handlePostQuestion() {
-      console.log(tags);
+      // console.log(tags);
       const preppedTags = tags.map(tag => {
          return tag.id;
       });
-      console.log('preppedTags', preppedTags);
+      // console.log('preppedTags', preppedTags);
       const formData = new FormData();
       formData.append('title', questionTitle);
       formData.append('body', markdown);
@@ -100,8 +104,11 @@ const AskQuestion = () => {
                   tags={tags}
                   setTags={setTags}
                />
-               <h2>Похожие вопросы</h2>
-               <Box sx={{border: '1px solid #D9D9D9', minHeight: '30vh'}}></Box>
+               {/* <h2>Похожие вопросы</h2>
+               <Box sx={{border: '1px solid #D9D9D9', minHeight: '30vh'}}>
+                  {similarQuestions &&
+                     console.log('similarQuestions', similarQuestions)}
+               </Box> */}
                <Button
                   sx={{
                      margin: '2rem 0',
