@@ -82,6 +82,15 @@ const Questions = () => {
       console.log(currentPage);
    }, [currentPage]);
 
+   function sortQuestions(type) {
+      if ((type = 'title')) {
+         getQuestionsRaw().then(res => {
+            setQuestions(res.results);
+            console.log('getQuestions res', res);
+         });
+      }
+   }
+
    return (
       <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
          <Grid container sx={{gap: '2rem'}}>
