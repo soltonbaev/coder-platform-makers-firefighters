@@ -35,30 +35,34 @@ const NavBar = () => {
             <Grid container sx={{display: 'flex', alignItems: 'center'}}>
                <Grid
                   item
-                  xs={2}
+                  xs={3}
                   sm={4}
-                  md={4}
+                  md={3}
                   lg={2}
-                  sx={{display: 'flex', justifyContent: 'flex-start'}}
+                  sx={{
+                     display: 'flex',
+                     justifyContent: 'flex-start',
+                  }}
                >
                   <Logo />
                </Grid>
                <Grid
                   item
-                  xs={8}
+                  xs={6}
                   sm={4}
-                  md={4}
+                  md={6}
                   lg={8}
                   sx={{display: 'flex', justifyContent: 'center'}}
                >
                   <SearchBox
                      style={{
+                        // flex: '1 0 auto',
                         height: '4vh',
-                        width: '30vw',
+                        width: '40vw',
                         borderColor: 'darkgray',
                         backgroundColor: '#D9D9D9',
                         borderRadius: '0.3rem',
-                        paddingLeft: '10%',
+                        paddingLeft: '1.5rem',
                         borderStyle: 'none',
                      }}
                      placeholder="искать вопросы"
@@ -66,9 +70,9 @@ const NavBar = () => {
                </Grid>
                <Grid
                   item
-                  xs={2}
+                  xs={3}
                   sm={4}
-                  md={4}
+                  md={3}
                   lg={2}
                   sx={{display: 'flex', justifyContent: 'flex-end'}}
                >

@@ -18,10 +18,14 @@ const ProfilePage = () => {
    return (
       <>
          {user && (
-            <Container maxWidth="lg">
+            <Container
+               maxWidth="lg"
+               sx={{marginTop: '2rem', minHeight: '60vh'}}
+            >
                <Grid
                   className="userProfile_container"
                   container
+                  spacing={3}
                   // sx={{gap: '2rem'}}
                >
                   <Grid
@@ -31,19 +35,17 @@ const ProfilePage = () => {
                      md={3}
                      lg={3}
                      sx={{
-                        // width: '20vw',
-                        // height: '90vh',
                         backgroundColor: 'rgb(217 217 217)',
-                        // padding: '30px',
-                        // margin: '30px',
-                        padding: '0 1rem 1rem',
                         borderRadius: '0.3rem',
+                        paddingBottom: '2rem',
+                        paddingRight: '2rem',
+                        maxHeight: '300px',
                      }}
                   >
-                     <Grid item sx={{}}>
-                        <h3> Уголок Пользователя</h3>
+                     {/* <Grid item> */}
+                     <h3> Уголок Пользователя</h3>
 
-                        <Grid
+                     {/* <Grid
                            sx={{
                               display: 'flex',
                               // textAlign: "center",
@@ -51,58 +53,58 @@ const ProfilePage = () => {
                               // rowGap: '15px',
                               color: '#b0761b',
                            }}
+                        > */}
+                     <Link
+                        onClick={() => {
+                           setProfileSection('statistics');
+                        }}
+                     >
+                        <Typography
+                           sx={{
+                              color: '#b0761b',
+                           }}
                         >
-                           <Link
-                              onClick={() => {
-                                 setProfileSection('statistics');
-                              }}
-                           >
-                              <Typography
-                                 sx={{
-                                    color: '#b0761b',
-                                 }}
-                              >
-                                 Профиль
-                              </Typography>
-                           </Link>
-                           <Link
-                              onClick={() => {
-                                 setProfileSection('activity');
-                              }}
-                           >
-                              <Typography
-                                 sx={{
-                                    color: '#b0761b',
-                                 }}
-                              >
-                                 Активность
-                              </Typography>
-                           </Link>
-                           <Link
-                              onClick={() => {
-                                 setProfileSection('saved');
-                              }}
-                           >
-                              <Typography
-                                 sx={{
-                                    color: '#b0761b',
-                                 }}
-                              >
-                                 Избранное
-                              </Typography>
-                           </Link>
-                           <Link to="/editProfile">
-                              <Typography
-                                 sx={{
-                                    color: '#b0761b',
-                                 }}
-                              >
-                                 Настройки
-                              </Typography>
-                           </Link>
-                        </Grid>
-                     </Grid>
-                     <Grid item sx={{}}>
+                           Профиль
+                        </Typography>
+                     </Link>
+                     <Link
+                        onClick={() => {
+                           setProfileSection('activity');
+                        }}
+                     >
+                        <Typography
+                           sx={{
+                              color: '#b0761b',
+                           }}
+                        >
+                           Активность
+                        </Typography>
+                     </Link>
+                     <Link
+                        onClick={() => {
+                           setProfileSection('saved');
+                        }}
+                     >
+                        <Typography
+                           sx={{
+                              color: '#b0761b',
+                           }}
+                        >
+                           Избранное
+                        </Typography>
+                     </Link>
+                     <Link to="/editProfile">
+                        <Typography
+                           sx={{
+                              color: '#b0761b',
+                           }}
+                        >
+                           Настройки
+                        </Typography>
+                     </Link>
+                     {/* </Grid> */}
+                  </Grid>
+                  {/* <Grid item sx={{}}>
                         <h3> Мои Группы</h3>
                         <Link>
                            <Typography
@@ -177,8 +179,8 @@ const ProfilePage = () => {
                               Показать все группы...
                            </Typography>
                         </Link>
-                     </Grid>
-                  </Grid>
+                     </Grid> */}
+                  {/* </Grid> */}
                   <Grid
                      className="right-column"
                      item
@@ -195,7 +197,7 @@ const ProfilePage = () => {
                         item
                         sx={{
                            display: 'flex',
-                           gap: '1rem',
+                           gap: '2rem',
                            alignItems: 'center',
                         }}
                      >
@@ -206,13 +208,13 @@ const ProfilePage = () => {
                               src={user.user_photo}
                            />
                         </Grid>
-                        <Grid item sx={{}}>
+                        <Grid item>
                            <Grid item>
                               <Grid
                                  item
                                  sx={{
                                     display: 'flex',
-                                    gap: '1rem',
+                                    gap: '2rem',
                                     alignItems: 'center',
                                     flexWrap: 'wrap',
                                  }}
@@ -228,6 +230,7 @@ const ProfilePage = () => {
                                        color: '#474747',
                                        border: '1px solid #474747',
                                        borderRadius: '5px',
+                                       alignSelf: 'flex-end',
                                     }}
                                  >
                                     Редактировать профиль
