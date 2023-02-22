@@ -96,30 +96,6 @@ const Footer = () => {
                   >
                      Задать вопрос
                   </Button>
-                  <Button
-                     variant="outlined"
-                     sx={{
-                        color: ' #ffffff',
-                        borderColor: 'red',
-                     }}
-                     onClick={async () => {
-                        console.clear();
-                        console.group('Test button group');
-                        // console.log('user', user);
-                        // console.log(tagsArr);
-                        // getQuestions();
-                        // testRegister(formData);
-                        // await getTags();
-                        // await testLogin();
-                        // console.log('Tokens from storage:', getFromStorage());
-                        setShowToast(true);
-                        setErrorType('error');
-                        setToastMessage('Test error');
-                        console.groupEnd();
-                     }}
-                  >
-                     TEST
-                  </Button>
                </Grid>
                <Grid item>
                   <List>

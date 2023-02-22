@@ -2,6 +2,7 @@ import React from 'react';
 import {useGlobalContext} from '../../contexts/GlobalContextProvider';
 import MainRoutes from '../../MainRoutes';
 import MiniMenu from '../Header/MiniMenu';
+import DevMenu from './DevMenu';
 import RenderError from './Errors/RenderError';
 import SearchResults from './SearchResults';
 
@@ -40,6 +41,7 @@ const Content = () => {
                toastMessage={toastMessage}
             />
          )}
+         <DevMenu />
       </>
    );
 };

@@ -1,28 +1,28 @@
 import axios from 'axios';
-import {QUESTIONS, TAGS, USER_LIST} from './globals';
+import {ANSWERS, QUESTIONS, TAGS, USER_LIST} from './globals';
 import {PROFILE} from './globals';
 import {LOGIN} from './globals';
 import {setToStorage} from './create';
 
 export async function getTags() {
-   console.log('access config', getAccessConfig());
+   // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(TAGS, getAccessConfig());
-      console.log('getTags results', res.data);
+      // console.log('getTags results', res.data);
       return res.data;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
 export async function getTagsRaw() {
-   console.log('access config', getAccessConfig());
+   // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(TAGS + window.location.search);
-      console.log('getTags results', res.data);
+      // console.log('getTags results', res.data);
       return res.data;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
@@ -31,11 +31,11 @@ export async function getTag(slug) {
    // console.log('access config', getAccessConfig());
    try {
       let res = await axios.get(`${TAGS}${slug}/`);
-      console.log('getTag results', res);
-      console.log(`${TAGS}${slug}`);
+      // console.log('getTag results', res);
+      // console.log(`${TAGS}${slug}`);
       return res.data;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
@@ -58,17 +58,18 @@ export function getAccessConfig() {
          },
       };
    } catch (error) {
-      console.log(error);
+      // console.log(error);
+      return error;
    }
 }
 
 export async function getUserProfile(id) {
    try {
       let res = await axios.get(`${PROFILE}${id}`, getAccessConfig());
-      console.log('getUserProfile result', res.data);
+      // console.log('getUserProfile result', res.data);
       return res.data;
    } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
    }
 }
@@ -139,9 +140,10 @@ export async function getQuestionsRaw() {
 export async function getQuestion(slug) {
    try {
       let res = await axios(QUESTIONS + slug);
-      // console.log('getQuestion result', res);
+      console.log('getQuestion result', res);
       return res.data;
    } catch (error) {
+      console.log(error);
       return error;
    }
 }
@@ -149,10 +151,10 @@ export async function getQuestion(slug) {
 export async function getSimilarQuestions(slug) {
    try {
       let res = await axios.post(QUESTIONS + slug + '/similar_questions/');
-      console.log('getSimQuestions result', res);
+      // console.log('getSimQuestions result', res);
       return res.data;
    } catch (error) {
-      console.log('getSimQs error', error);
+      // console.log('getSimQs error', error);
       return error;
    }
 }
@@ -160,7 +162,18 @@ export async function getSimilarQuestions(slug) {
 export async function getUsers() {
    try {
       let res = await axios.get(USER_LIST + window.location.search);
-      console.log(res, 'ernas');
+      // console.log(res, 'ernas');
+      return res.data;
+   } catch (error) {
+      // console.log(error);
+      return error;
+   }
+}
+
+export async function getAnswer(id) {
+   try {
+      let res = await axios(ANSWERS + id, getAccessConfig());
+      // console.log('getQuestion result', res);
       return res.data;
    } catch (error) {
       console.log(error);

@@ -11,7 +11,7 @@ const SideBar = ({handleSortQuestions}) => {
       <Grid
          container
          sx={{
-            position: 'fixed',
+            position: {lg: 'fixed'},
             width: '250px',
             gap: '0.5rem',
             padding: '0rem 1rem 2rem 1rem',

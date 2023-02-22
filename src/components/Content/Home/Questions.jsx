@@ -43,7 +43,6 @@ const Questions = () => {
             return;
          }
          setQuestions(res);
-         console.log('getQuestions res', res);
       });
    }, []);
 
@@ -58,14 +57,14 @@ const Questions = () => {
    useEffect(() => {
       getQuestionsRaw().then(res => {
          setQuestions(res.results);
-         console.log('getQuestions res', res);
+         // console.log('getQuestions res', res);
       });
    }, []);
 
    useEffect(() => {
       getQuestionsRaw().then(res => {
          setQuestions(res.results);
-         console.log('getQuestions res', res);
+         // console.log('getQuestions res', res);
       });
    }, [searchParams]);
 
@@ -83,7 +82,7 @@ const Questions = () => {
       setSearchParams({
          page: currentPage,
       });
-      console.log(currentPage);
+      // console.log(currentPage);
    }, [currentPage]);
 
    // function sortQuestions(type) {
@@ -107,32 +106,40 @@ const Questions = () => {
                <SideBar handleSortQuestions={handleSortQuestions} />
             </Grid>
             <Grid item sm={10} md={9} lg={9}>
-               <Box
+               <Grid
+                  item
+                  container
+                  direction="row"
                   sx={{
-                     display: 'flex',
+                     // display: 'flex',
                      justifyContent: 'space-between',
                      alignItems: 'center',
                   }}
                >
-                  <h1>Последние вопросы</h1>
-                  <Button
-                     variant="contained"
-                     sx={{
-                        height: '2rem',
-                        backgroundColor: '#474747',
-                        color: 'white',
-                        '&:hover': {
-                           backgroundColor: 'rgba(170, 104, 0, 1);',
-                           // color: '#3c52b2',
-                        },
-                     }}
-                     onClick={() => {
-                        navigate('/ask-question');
-                     }}
-                  >
-                     Задать вопрос
-                  </Button>
-               </Box>
+                  <Grid item>
+                     <h1>Последние вопросы</h1>
+                  </Grid>
+                  <Grid item>
+                     <Button
+                        variant="contained"
+                        sx={{
+                           margin: '1rem',
+                           height: '2rem',
+                           backgroundColor: '#474747',
+                           color: 'white',
+                           '&:hover': {
+                              backgroundColor: 'rgba(170, 104, 0, 1);',
+                              // color: '#3c52b2',
+                           },
+                        }}
+                        onClick={() => {
+                           navigate('/ask-question');
+                        }}
+                     >
+                        Задать вопрос
+                     </Button>
+                  </Grid>
+               </Grid>
                <Box sx={{border: '1px solid #D9D9D9', borderRadius: '0.3rem'}}>
                   {questions &&
                      questions.map(question => {

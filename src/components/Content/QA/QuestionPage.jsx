@@ -43,7 +43,7 @@ const QuestionPage = () => {
    // const url = useParams();
 
    useEffect(() => {
-      console.log(params.id);
+      // console.log(params.id);
       loadQuestion();
    }, [params.id]);
 
@@ -62,7 +62,7 @@ const QuestionPage = () => {
             setToast(true, 'error', res.message);
             return;
          }
-         console.log('getQuestion', res);
+         // console.log('getQuestion', res);
          // res.sort((a, b) => a.id - b.id);
          setQuestion(res);
          let answers = res.answers.sort((a, b) => b.id - a.id);
@@ -73,7 +73,7 @@ const QuestionPage = () => {
             setUserProfile(res);
          });
          getSimilarQuestions(res.slug).then(res => {
-            // setSimilarQuestions(res);
+            setSimilarQuestions(res);
          });
       });
    }
@@ -95,7 +95,7 @@ const QuestionPage = () => {
    }
    return (
       <Container>
-         {console.log('similar Qs', similarQuestions)}
+         {/* {console.log('similar Qs', similarQuestions)} */}
          <h1>{question.title}</h1>
          <Grid
             className="content-wrapper"
@@ -191,48 +191,6 @@ const QuestionPage = () => {
                   </Grid>
                   <Grid item sx={{display: 'flex', gap: '0.5rem'}}>
                      <img src={bookmarkIcon} />
-                     <span
-                        style={{
-                           color: 'white',
-                           backgroundColor: '#474747',
-                           width: '2.5rem',
-                           height: '2.5rem',
-                           display: 'flex',
-                           justifyContent: 'center',
-                           alignItems: 'center',
-                        }}
-                     >
-                        -
-                     </span>
-                     <span
-                        style={{
-                           color: 'white',
-                           backgroundColor: '#AA6800',
-                           width: '2.5rem',
-                           height: '2.5rem',
-                           display: 'flex',
-                           justifyContent: 'center',
-                           alignItems: 'center',
-                        }}
-                     >
-                        5
-                     </span>
-                     <span
-                        style={{
-                           color: 'white',
-                           backgroundColor: '#474747',
-                           width: '2.5rem',
-                           height: '2.5rem',
-                           display: 'flex',
-                           justifyContent: 'center',
-                           alignItems: 'center',
-                        }}
-                        onClick={() => {
-                           setQuestionVote(question.slug);
-                        }}
-                     >
-                        +
-                     </span>
                   </Grid>
                </Grid>
                <Grid
@@ -282,11 +240,12 @@ const QuestionPage = () => {
                   </Grid>
                </Grid>
                <Grid item>
-                  {console.log('question answers', question.answers)}
+                  {/* {console.log('question answers', question.answers)} */}
                   {answers &&
                      answers.map(answer => {
                         return (
                            <RenderAnswer
+                              id={answer.id}
                               key={answer.id}
                               author={answer.author}
                               body={answer.body}
