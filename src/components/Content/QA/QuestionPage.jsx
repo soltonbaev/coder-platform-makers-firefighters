@@ -1,7 +1,7 @@
 import {Avatar, Button, Container, Grid} from '@mui/material';
 import {Box} from '@mui/system';
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {
    getQuestion,
    getSimilarQuestions,
@@ -77,6 +77,21 @@ const QuestionPage = () => {
          });
       });
    }
+
+   const saveQuestion = question => {
+      let notes = JSON.parse(localStorage.getItem('notes'));
+      if (!notes) {
+         notes = [];
+      }
+      let check = 0;
+      notes.forEach(item => {
+         if (question.slug == item.slug) check = 1;
+      });
+      if (check == 1) return;
+      notes.push(question);
+
+      localStorage.setItem('notes', JSON.stringify(notes));
+   };
 
    async function handleAnswer() {
       console.clear();
@@ -190,7 +205,9 @@ const QuestionPage = () => {
                      редактирован последний раз {updatedAt}
                   </Grid>
                   <Grid item sx={{display: 'flex', gap: '0.5rem'}}>
-                     <img src={bookmarkIcon} />
+                     <Link onClick={() => saveQuestion(question)}>
+                        <img src={bookmarkIcon} />
+                     </Link>
                   </Grid>
                </Grid>
                <Grid
