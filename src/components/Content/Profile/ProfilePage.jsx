@@ -194,6 +194,7 @@ const ProfilePage = () => {
                   >
                     Показать все группы...
                   </Typography>
+                
                 </Link>
               </Grid>
             </Grid>
