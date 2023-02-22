@@ -11,7 +11,7 @@ const EditProfile = () => {
    inpData.current.user_photo = '';
    const handleChange = e => {
       if (e.target.name === 'user_photo') {
-         console.log(e.target.files[0]);
+         // console.log(e.target.files[0]);
          inpData.current = {
             ...inpData.current,
             [e.target.name]: e.target.files[0],
@@ -21,13 +21,13 @@ const EditProfile = () => {
             ...inpData.current,
             [e.target.name]: e.target.value,
          };
-         console.log(inpData.current);
+         // console.log(inpData.current);
       }
    };
    const navigate = useNavigate();
 
    const handleSubmit = async () => {
-      console.log('userPhoto', inpData.current.user_photo);
+      // console.log('userPhoto', inpData.current.user_photo);
       // inpData.current.user_photo = 'inpData.current.user_photo';
       let formData = new FormData();
       formData.append('name', inpData.current.name);

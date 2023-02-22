@@ -10,7 +10,7 @@ import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
 
 export const AddTags = ({tagsArr, tags, setTags}) => {
    console.group('AddTags group');
-   console.log('tagsArr', tagsArr);
+   // console.log('tagsArr', tagsArr);
 
    useEffect(() => {}, []);
 
@@ -54,7 +54,7 @@ export const AddTags = ({tagsArr, tags, setTags}) => {
    };
 
    const handleTagClick = index => {
-      console.log('The tag at index ' + index + ' was clicked');
+      // console.log('The tag at index ' + index + ' was clicked');
    };
 
    return (

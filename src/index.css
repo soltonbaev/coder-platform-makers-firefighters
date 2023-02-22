@@ -16,6 +16,12 @@ h2 {
    font-size: 1.5rem;
    color: #aa6800;
 }
+
+h3 {
+   font-size: 1.5rem;
+   color: #474747;
+   font-weight: normal;
+}
 code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;

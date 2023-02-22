@@ -33,7 +33,7 @@ const Auth = () => {
       formData.append('password_confirm', confirmPassword);
       // console.log(formData);
       let registerRes = await Register(formData);
-      console.log('registerRes', registerRes);
+      // console.log('registerRes', registerRes);
       if (registerRes.name === 'AxiosError') {
          let errorMessage = registerRes.response
             ? registerRes.response.data.email[0]
@@ -146,12 +146,12 @@ const Auth = () => {
          setPasswordError('');
          setConfirmPasswordError('');
       }
-      console.log(confirmPassword);
+      // console.log(confirmPassword);
    };
    const confirmPasswordHandler = e => {
-      console.log(confirmPassword);
-      console.log(e.target.value);
-      console.log(password);
+      // console.log(confirmPassword);
+      // console.log(e.target.value);
+      // console.log(password);
 
       setConfirmPassword(e.target.value);
       if (e.target.value != password) {

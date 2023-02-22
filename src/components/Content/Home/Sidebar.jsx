@@ -1,25 +1,92 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Container, Grid} from '@mui/material';
 import './SideBar.css';
-const SideBar = () => {
+const SideBar = ({handleSortQuestions}) => {
+   const [slugAsc, setSlugAsc] = useState(true);
+   const [dateCreatedAsc, setDateCreatedAsc] = useState(true);
+   const [dateUpdatedAsc, setDateUpdatedAsc] = useState(true);
+   const [viewsCountAsc, setViewsCountAsc] = useState(true);
+   const [authorAsc, setAuthorAsc] = useState(true);
    return (
       <Grid
          container
          sx={{
-            padding: '1rem',
+            position: {lg: 'fixed'},
+            width: '250px',
+            gap: '0.5rem',
+            padding: '0rem 1rem 2rem 1rem',
             display: 'flex',
             flexDirection: 'column',
             borderRadius: '0.3rem',
             backgroundColor: '#d9d9d9',
-            minHeight: '50vh',
+            // minHeight: '50vh',
          }}
       >
-         <Grid item>Фильтровать по тэгам</Grid>
+         <h3>Сортировать</h3>
          <Grid item>
-            <input className="inp" placeholder="поиск тэгов" />
+            <span
+               style={{cursor: 'pointer'}}
+               onClick={() => {
+                  if (slugAsc) {
+                     handleSortQuestions('title');
+                     setSlugAsc(false);
+                  } else {
+                     handleSortQuestions('-title');
+                     setSlugAsc(true);
+                  }
+               }}
+            >
+               По заголовку
+            </span>
          </Grid>
-
-         <span className="preventSearch">prevent search</span>
+         <Grid item>
+            <span
+               style={{cursor: 'pointer'}}
+               onClick={() => {
+                  if (dateCreatedAsc) {
+                     handleSortQuestions('created_at');
+                     setDateCreatedAsc(false);
+                  } else {
+                     handleSortQuestions('-created_at');
+                     setDateCreatedAsc(true);
+                  }
+               }}
+            >
+               По дате создания
+            </span>
+         </Grid>
+         <Grid item>
+            <span
+               style={{cursor: 'pointer'}}
+               onClick={() => {
+                  if (dateUpdatedAsc) {
+                     handleSortQuestions('updated_at');
+                     setDateUpdatedAsc(false);
+                  } else {
+                     handleSortQuestions('-updated_at');
+                     setDateUpdatedAsc(true);
+                  }
+               }}
+            >
+               По дате редактирования
+            </span>
+         </Grid>
+         <Grid item>
+            <span
+               style={{cursor: 'pointer'}}
+               onClick={() => {
+                  if (viewsCountAsc) {
+                     handleSortQuestions('views_count');
+                     setViewsCountAsc(false);
+                  } else {
+                     handleSortQuestions('-views_count');
+                     setViewsCountAsc(true);
+                  }
+               }}
+            >
+               По количеству просмотров
+            </span>
+         </Grid>
       </Grid>
    );
 };

@@ -14,7 +14,7 @@ const SearchBox = ({placeholder, style}) => {
    } = useGlobalContext();
 
    function handleSearch(e) {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setSearchInp(e.target.value);
       searchQuestions(e.target.value).then(res => {
          setSearchResults(res);

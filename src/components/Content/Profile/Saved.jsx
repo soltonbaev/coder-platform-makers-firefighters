@@ -26,6 +26,7 @@ const Saved = () => {
       </Box>
     </div>
   );
+
 };
 
 export default Saved;

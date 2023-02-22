@@ -18,8 +18,8 @@ const RenderTagPage = () => {
             setToast(true, 'error', res.message);
             return;
          }
-         console.log(params);
-         console.log('RenderTagPage res', res);
+         // console.log(params);
+         // console.log('RenderTagPage res', res);
          setTag(res);
       });
 
@@ -28,14 +28,14 @@ const RenderTagPage = () => {
             setToast(true, 'error', res.message);
             return;
          }
-         console.log('question res', res);
+         // console.log('question res', res);
          setQuestions(res);
       });
    }, []);
 
    return (
       <Container>
-         {console.log(questions)}
+         {/* {console.log(questions)} */}
          <Grid container>
             <Grid item>
                <h1>{tag.title}</h1>
