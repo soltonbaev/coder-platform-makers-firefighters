@@ -8,29 +8,24 @@ const Logo = () => {
       <>
          <Box
             sx={{
-               width: {xs: '60%', md: '30%'},
+               width: {xs: '8rem', md: '10rem'},
+               // width: '5rem',
                display: 'flex',
-               justifyContent: {xs: 'flex', md: 'flex-start'},
+               justifyContent: 'center',
             }}
          >
-            <Box
-               sx={{
-                  width: {xs: '100%', sm: '50%'},
-                  paddingRight: {xs: '5px'},
+            <img
+               style={{
+                  width: '100%',
+                  marginTop: '0.3rem',
+                  objectFit: 'contain',
+                  cursor: 'pointer',
                }}
-            >
-               <img
-                  style={{
-                     marginTop: '0.3rem',
-                     width: '10rem',
-                     cursor: 'pointer',
-                  }}
-                  src={logo}
-                  onClick={() => {
-                     navigate('/');
-                  }}
-               />
-            </Box>
+               src={logo}
+               onClick={() => {
+                  navigate('/');
+               }}
+            />
          </Box>
       </>
    );

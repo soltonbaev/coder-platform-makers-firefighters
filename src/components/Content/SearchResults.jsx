@@ -12,9 +12,9 @@ const SearchResults = ({
    return (
       <Box
          sx={{
-            boxShadow: '0.1rem 0.1rem 0.1rem',
-            width: '500px',
-            minHeight: '200px',
+            boxShadow: '0.1rem 0.1rem 0.5rem grey',
+            width: {xs: '95vw', sm: '50vw'},
+            // minHeight: '100px',
             position: 'absolute',
             left: '50%',
             transform: 'translate(-50%, 0)',
@@ -24,7 +24,7 @@ const SearchResults = ({
          }}
       >
          <Box sx={{border: '1px solid #D9D9D9', borderRadius: '0.3rem'}}>
-            {searchResults &&
+            {searchResults && searchResults.length > 0 ? (
                searchResults.map(question => {
                   return (
                      <RenderQuestion
@@ -43,7 +43,12 @@ const SearchResults = ({
                         tags={question.tag}
                      />
                   );
-               })}
+               })
+            ) : (
+               <Box sx={{textAlign: 'center', margin: '1rem'}}>
+                  Вопросов не найдено
+               </Box>
+            )}
          </Box>
       </Box>
    );

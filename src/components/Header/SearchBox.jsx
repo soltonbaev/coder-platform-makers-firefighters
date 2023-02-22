@@ -29,6 +29,7 @@ const SearchBox = ({placeholder, style}) => {
    return (
       <Box sx={{position: 'relative', display: 'flex'}}>
          <input
+            // style={{width: '100%'}}
             onChange={handleSearch}
             type="text"
             value={searchInp}

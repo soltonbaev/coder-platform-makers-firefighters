@@ -8,13 +8,16 @@ const RenderTag = ({title, slug, description}) => {
          item
          container
          direction="column"
+         sm={3}
+         md={3}
+         lg={2}
          sx={{
+            width: '100%',
             borderRadius: '0.3rem',
             // border: '1px solid grey',
             backgroundColor: '#D9D9D9',
             // margin: '1rem',
             padding: '0.5rem',
-            width: '20%',
          }}
       >
          <Grid item>

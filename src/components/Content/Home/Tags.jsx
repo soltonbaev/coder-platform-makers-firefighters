@@ -82,11 +82,10 @@ const Tags = () => {
          <Grid container direction="column">
             <h1>Поиск по тэгам </h1>
 
-            <Grid item sx={{display: 'flex', justifyContent: 'space-between'}}>
+            <Grid item container sx={{display: 'flex'}}>
                <Grid
                   item
                   sx={{
-                     maxWidth: '500px',
                      marginBottom: '1.5rem',
                      color: '#474747',
                   }}
@@ -95,7 +94,7 @@ const Tags = () => {
                   схожим темам. Изпользуя тэги правильным образом вы можете
                   помочь другим пользователям легко найти ваш вопрос
                </Grid>
-               <Grid item sx={{alignSelf: 'flex-end'}}>
+               <Grid item sx={{alignSelf: 'center'}}>
                   <input
                      style={{
                         height: '1.5rem',

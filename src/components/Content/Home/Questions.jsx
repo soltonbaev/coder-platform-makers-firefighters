@@ -25,7 +25,6 @@ import {
 } from '../../../helpers/read';
 
 const Questions = () => {
-
    // console.group("Questions group");
 
    const {setShowToast, setErrorType, setToastMessage} = useGlobalContext();
@@ -102,11 +101,11 @@ const Questions = () => {
    }
    return (
       <Container maxWidth="lg" sx={{minHeight: '60vh'}}>
-         <Grid container spacing={2}>
-            <Grid item sm={2} md={3} lg={3}>
+         <Grid container spacing={2} sx={{marginTop: '0.5rem'}}>
+            <Grid item md={4} lg={3}>
                <SideBar handleSortQuestions={handleSortQuestions} />
             </Grid>
-            <Grid item sm={10} md={9} lg={9}>
+            <Grid item md={8} lg={9}>
                <Grid
                   item
                   container
@@ -164,7 +163,6 @@ const Questions = () => {
                      count={total}
                      page={currentPage}
                      onChange={(e, p) => setCurrentPage(p)}
-
                   />
                </Box>
             </Grid>

@@ -53,7 +53,7 @@ const Users = () => {
                   marginTop: '8%',
                }}
             >
-               <Grid item>Фильтрация пользователей</Grid>
+               {/* <Grid item>Фильтрация пользователей</Grid>
                <Grid
                   style={{
                      display: 'flex',
@@ -147,27 +147,32 @@ const Users = () => {
                   >
                      кураторы
                   </span>
-               </Grid>
+               </Grid> */}
             </Grid>
          </div>
          <div style={{display: 'block', width: '100%', marginRight: '4px'}}>
             <h1>Пользователи</h1>
-            <Grid container style={{display: 'flex', flexWrap: 'wrap'}}>
+            <Grid container sx={{margin: 'auto', gap: '1rem'}}>
                {users?.results?.map(user => (
                   <Grid
                      item
+                     sm={5}
+                     md={4}
+                     lg={3}
                      key={user.id}
                      style={{
                         backgroundColor: 'rgba(217, 217, 217, 1)',
-                        width: '300px',
-                        alignContent: 'center',
+
+                        // alignContent: 'center',
                         borderRadius: '8px',
                         display: 'flex',
+                        minHeight: '10rem',
                         flexWrap: 'wrap',
-                        paddingTop: '3%',
-                        paddingBottom: '3%',
-                        marginTop: '2%',
-                        marginRight: '4%',
+                        padding: '0.5rem',
+                        // paddingTop: '3%',
+                        // paddingBottom: '3%',
+                        // marginTop: '2%',
+                        // marginRight: '4%',
                      }}
                      //   onClick={() => navigate("/userProfile")}
                   >
@@ -235,6 +240,7 @@ const Users = () => {
                         >
                            <div
                               style={{
+                                 margin: '0.5rem',
                                  backgroundColor: ' rgba(170, 104, 0, 1)',
                                  color: 'white',
                                  borderRadius: '5px',
@@ -251,6 +257,7 @@ const Users = () => {
                            </div>
                            <div
                               style={{
+                                 margin: '0.5rem',
                                  backgroundColor: ' rgba(170, 104, 0, 1)',
                                  color: 'white',
                                  borderRadius: '5px',
@@ -267,6 +274,7 @@ const Users = () => {
                            </div>
                            <div
                               style={{
+                                 margin: '0.5rem',
                                  backgroundColor: ' rgba(170, 104, 0, 1)',
                                  color: 'white',
                                  borderRadius: '5px',
