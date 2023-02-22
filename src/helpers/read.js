@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import {ANSWERS, QUESTIONS, TAGS, USER_LIST} from './globals';
 import {PROFILE} from './globals';
@@ -38,14 +39,15 @@ export async function getTag(slug) {
       // console.log(error);
       return error;
    }
+
 }
 
 export function getFromStorage(type) {
-   if (type === 'token') {
-      return JSON.parse(localStorage.getItem('token'));
-   } else if (type === 'uid') {
-      return JSON.parse(localStorage.getItem('uid'));
-   }
+  if (type === "token") {
+    return JSON.parse(localStorage.getItem("token"));
+  } else if (type === "uid") {
+    return JSON.parse(localStorage.getItem("uid"));
+  }
 }
 
 export function getAccessConfig() {
@@ -72,72 +74,74 @@ export async function getUserProfile(id) {
       // console.log(error);
       return error;
    }
+
 }
 
-export const login = async formData => {
-   try {
-      const res = await axios.post(LOGIN, formData);
-      // console.log('Result of login request', res.data);
-      setToStorage('token', {
-         refresh: res.data.refresh,
-         access: res.data.access,
-      });
-      setToStorage('uid', res.data.id);
-      let userProfileRes = await getUserProfile(res.data.id);
-      // console.log('userProfieRes', userProfileRes);
-      return userProfileRes;
-   } catch (error) {
-      // console.log('Login failed');
-      console.log('login error', error);
-      return error;
-   }
+export const login = async (formData) => {
+  try {
+    const res = await axios.post(LOGIN, formData);
+    // console.log('Result of login request', res.data);
+    setToStorage("token", {
+      refresh: res.data.refresh,
+      access: res.data.access,
+    });
+    setToStorage("uid", res.data.id);
+    let userProfileRes = await getUserProfile(res.data.id);
+    // console.log('userProfieRes', userProfileRes);
+    return userProfileRes;
+  } catch (error) {
+    // console.log('Login failed');
+    console.log("login error", error);
+    return error;
+  }
 };
 
 export async function getQuestions() {
-   try {
-      let res = await axios(QUESTIONS);
-      // console.log('getQuestions result', res);
-      return res.data.results;
-   } catch (error) {
-      return error;
-   }
+  try {
+    let res = await axios(QUESTIONS);
+    // console.log('getQuestions result', res);
+    return res.data.results;
+  } catch (error) {
+    return error;
+  }
 }
 
 export async function searchQuestions(query) {
-   try {
-      let res = await axios(QUESTIONS + '?search=' + query);
-      // console.log('searchQuestions result', res);
-      return res.data.results;
-   } catch (error) {
-      return error;
-   }
+  try {
+    let res = await axios(QUESTIONS + "?search=" + query);
+    // console.log('searchQuestions result', res);
+    return res.data.results;
+  } catch (error) {
+    return error;
+  }
 }
 
 export async function sortQuestions(type) {
-   try {
-      let res = await axios(
-         QUESTIONS + window.location.search + `&ordering=${type}`
-      );
-      console.error('getQuestions result', res.data);
-      return res.data;
-   } catch (error) {
-      return error;
-   }
-   //   console.log(res.data.results);
+  try {
+    let res = await axios(
+      QUESTIONS + window.location.search + `&ordering=${type}`
+    );
+    console.error("getQuestions result", res.data);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+  //   console.log(res.data.results);
 }
 
 export async function getQuestionsRaw() {
-   try {
-      let res = await axios(QUESTIONS + window.location.search);
-      console.error('getQuestions result', res.data);
-      return res.data;
-   } catch (error) {
-      return error;
-   }
-   //   console.log(res.data.results);
+  try {
+    let res = await axios(QUESTIONS + window.location.search);
+    console.error("getQuestions result", res.data);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+  //   console.log(res.data.results);
 }
 
 export async function getQuestion(slug) {
+
    try {
       let res = await axios(QUESTIONS + slug);
       console.log('getQuestion result', res);
@@ -157,6 +161,7 @@ export async function getSimilarQuestions(slug) {
       // console.log('getSimQs error', error);
       return error;
    }
+
 }
 
 export async function addFavorites(slug) {
@@ -173,6 +178,7 @@ export async function addFavorites(slug) {
 }
 
 export async function getUsers() {
+
    try {
       let res = await axios.get(USER_LIST + window.location.search);
       // console.log(res, 'ernas');
@@ -192,4 +198,5 @@ export async function getAnswer(id) {
       console.log(error);
       return error;
    }
+
 }

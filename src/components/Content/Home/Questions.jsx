@@ -1,30 +1,31 @@
 import {
-   Box,
-   Button,
-   Container,
-   Grid,
-   Pagination,
-   Typography,
-} from '@mui/material';
+  Box,
+  Button,
+  Container,
+  Grid,
+  Pagination,
+  Typography,
+} from "@mui/material";
 
-import React, {useEffect, useState} from 'react';
-import {useNavigate, useSearchParams} from 'react-router-dom';
-import './q.css';
-import RenderQuestion from './RenderQuestion';
-import SideBar from './Sidebar';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import "./q.css";
+import RenderQuestion from "./RenderQuestion";
+import SideBar from "./Sidebar";
 // const [page, setPage] = React.useState(1);
 // const handleChange = (event, value) => {
 //    setPage(value);
 // };
 
-import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
+import { useGlobalContext } from "../../../contexts/GlobalContextProvider";
 import {
-   getQuestions,
-   getQuestionsRaw,
-   sortQuestions,
-} from '../../../helpers/read';
+  getQuestions,
+  getQuestionsRaw,
+  sortQuestions,
+} from "../../../helpers/read";
 
 const Questions = () => {
+
 
    // console.group("Questions group");
 
@@ -165,12 +166,22 @@ const Questions = () => {
                      page={currentPage}
                      onChange={(e, p) => setCurrentPage(p)}
 
+
                   />
-               </Box>
-            </Grid>
-         </Grid>
-      </Container>
-   );
+                );
+              })}
+          </Box>
+          <Box>
+            <Pagination
+              count={total}
+              page={currentPage}
+              onChange={(e, p) => setCurrentPage(p)}
+            />
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
+  );
 };
 
 export default Questions;
