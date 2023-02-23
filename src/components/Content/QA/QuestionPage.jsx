@@ -18,10 +18,12 @@ import {
 import RenderAnswer from './RenderAnswer';
 import RenderMarkdown from './RenderMarkdown';
 import {useGlobalContext} from '../../../contexts/GlobalContextProvider';
+import {deleteQuestion} from '../../../helpers/delete';
 
 const QuestionPage = () => {
    // console.clear();
    const navigate = useNavigate('');
+   const {user} = useGlobalContext();
    document.documentElement.setAttribute('data-color-mode', 'light');
 
    console.group('QuestionPage start');
@@ -208,6 +210,33 @@ const QuestionPage = () => {
                      <Link onClick={() => saveQuestion(question)}>
                         <img src={bookmarkIcon} />
                      </Link>
+                  </Grid>
+                  <Grid item sx={{display: 'flex', gap: '0.5rem'}}>
+                     {user.id === question.author ? (
+                        <Button
+                           onClick={async () => {
+                              let res = await deleteQuestion(params.id);
+                              if (res.name === 'AxiosError') {
+                                 setToast(true, 'error', res.message);
+                                 console.log(res);
+                                 return;
+                              }
+                              setToast(
+                                 true,
+                                 'success',
+                                 'Ваш вопрос успешно удален'
+                              );
+                              navigate('/');
+                           }}
+                           sx={{height: '2rem'}}
+                           variant="contained"
+                           color="warning"
+                        >
+                           Удалить вопрос
+                        </Button>
+                     ) : (
+                        ''
+                     )}
                   </Grid>
                </Grid>
                <Grid
